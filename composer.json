@@ -1,0 +1,15 @@
+{
+    "name": "adult/midnight",
+    "description":" ",
+    "keywords":[
+    ],
+    "config":{
+        "bin-dir": "bin"
+    },
+    "license": "BSD-3-Clause",
+    "autoload":{
+        "psr-4":{
+            "Adult\\Midnight\\": "src/"
+        }
+    }
+}
