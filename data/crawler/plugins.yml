@@ -1,0 +1,12 @@
+Plugins:
+    # UnitTest用プラグイン
+    TestDisablePlugin:
+        enable: false
+
+    # UnitTest用プラグイン
+    TestEnablePlugin:
+        enable: true
+
+    AdultGeek:
+        enable: true
+
