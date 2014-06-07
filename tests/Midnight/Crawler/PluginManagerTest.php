@@ -57,7 +57,7 @@ class PluginManagerTest extends PHPUnit_Framework_TestCase
      */
     public function 有効化されているプラグインの場合 ()
     {
-        $p_name = 'TestEnablePlugin';
+        $p_name = 'AdultGeek';
         $result = $this->manager->ifEnablePlugin($p_name);
         $this->assertTrue($result);
     }
