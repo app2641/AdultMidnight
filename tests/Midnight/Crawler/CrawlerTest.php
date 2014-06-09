@@ -63,6 +63,7 @@ class CrawlerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
      * @expectedException           Exception
      * @expectedExceptionMessage    プラグインが指定されていません
      * @group crawler
