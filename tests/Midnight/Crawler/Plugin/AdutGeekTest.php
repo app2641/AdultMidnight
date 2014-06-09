@@ -99,6 +99,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
      * @group geek-fetch-html
      * @group geek
      */
@@ -113,6 +114,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
      * @group geek-get-title
      * @group geek
      */
@@ -128,6 +130,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
      * @group geek-get-eyecatch-url
      * @group geek
      */
