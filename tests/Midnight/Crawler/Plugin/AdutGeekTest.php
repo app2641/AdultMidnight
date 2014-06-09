@@ -142,5 +142,22 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('http://www.adultgeek.net/upimg/1406/mmgouhiyake.jpg', $img_url);
     }
+
+
+    /**
+     * @test
+     * @medium
+     * @group geek-get-movies-url
+     * @group geek
+     */
+    public function 動画へのリンクを取得する ()
+    {
+        $dry_run = true;
+        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $movies_url = $this->plugin->getMoviesUrl($html);
+
+        $this->assertTrue(is_array($movies_url));
+        $this->assertEquals('http://vid.bz/watch/yW8Xp5', $movies_url[0]);
+    }
 }
 

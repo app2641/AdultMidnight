@@ -24,7 +24,7 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
 
 
     /**
-     * DOMElementからコンテンツのURLを返す
+     * DOMElementからエントリのURLを返す
      *
      * @param  $entry DOMElement
      * @return string
@@ -74,6 +74,29 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
         $img_el = $html->find($query, 0);
 
         return $img_el->getAttribute('src');
+    }
+
+
+    /**
+     * 動画のURLを取得する
+     *
+     * @param  simple_html_dom $html
+     * @return array
+     **/
+    public function getMoviesUrl ($html)
+    {
+        $query = 'div.entry div.entry-content div#more p a';
+        $movies_els = $html->find($query);
+        $movie_data = array();
+
+        // 動画はこちらテキストのリンクを取得する
+        foreach ($movies_els as $movies_el) {
+            if (preg_match('/動画[0-9０-９]*はこちら/', $movies_el->plaintext)) {
+                $movie_data[] = $movies_el->getAttribute('href');
+            }
+        }
+
+        return $movie_data;
     }
 }
 
