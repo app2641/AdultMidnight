@@ -51,7 +51,7 @@ class Crawler
 
             foreach ($entries as $entry) {
                 // エントリを解析して必要データを取得する
-                $entry_data = $this->_parseEntry($entry);
+                $this->crawl_data[] = $this->_parseEntry($entry);
             }
         
         } catch (\Exception $e) {

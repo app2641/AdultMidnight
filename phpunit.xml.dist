@@ -24,6 +24,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
             <exclude>
+                <directory>src/Midnight/Commands</directory>
                 <directory>src/Library</directory>
             </exclude>
         </whitelist>

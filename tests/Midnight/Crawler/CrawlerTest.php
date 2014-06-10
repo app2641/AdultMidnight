@@ -58,6 +58,18 @@ class CrawlerTest extends PHPUnit_Framework_TestCase
         $this->plugin->expects($this->any())
             ->method('fetchHtml')
             ->will($this->returnValue($html));
+
+        $this->plugin->expects($this->any())
+            ->method('getEntryTitle')
+            ->will($this->returnValue('【エロ動画】 真夏の海！水着ギャルをミラー号に乗せて猥褻本番マッサージ企画！'));
+
+        $this->plugin->expects($this->any())
+            ->method('getEyeCatchUrl')
+            ->will($this->returnValue('http://www.adultgeek.net/upimg/1406/mmgouhiyake.jpg'));
+
+        $this->plugin->expects($this->any())
+            ->method('getMoviesUrl')
+            ->will($this->returnValue(array('http://vid.bz/watch/yW8Xp5')));
     }
 
 
@@ -87,5 +99,9 @@ class CrawlerTest extends PHPUnit_Framework_TestCase
         $result = $this->crawler->crawl();
 
         $this->assertTrue(is_array($result));
+        $this->assertTrue(is_array($result[0]));
+        $this->assertArrayHasKey('title', $result[0]);
+        $this->assertArrayHasKey('eyecatch', $result[0]);
+        $this->assertArrayHasKey('movies', $result[0]);
     }
 }
