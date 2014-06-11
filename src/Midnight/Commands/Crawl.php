@@ -77,18 +77,19 @@ class Crawl extends AbstractCommand implements CommandInterface
      * クロール処理を行う
      *
      * @param  array $plugins  読み込むプラグイン名の配列
-     * @return void
+     * @return array
      **/
     private function _crawl ($plugins)
     {
-        $crawler = new Crawler();
-        $manager = new PluginManager();
+        $crawler   = new Crawler();
+        $p_manager = new PluginManager();
+        $crawl_data = array();
 
         foreach ($plugins as $plugin_name) {
-            $plugin = $manager->getPlugin($plugin_name);
+            $plugin = $p_manager->getPlugin($plugin_name);
 
             $crawler->setPlugin($plugin);
-            $crawl_data = $crawler->crawl();
+            $crawl_data[] = $crawler->crawl();
         }
     }
 }

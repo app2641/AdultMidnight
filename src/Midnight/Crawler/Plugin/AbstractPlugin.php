@@ -73,6 +73,19 @@ abstract class AbstractPlugin
 
 
     /**
+     * published要素からエントリの登録日を取得する
+     *
+     * @param  DOMElement $element
+     * @return string
+     **/
+    public function getDateByPublished ($element)
+    {
+        $date = $this->getNodeValueByTagName($element, 'published');
+        return date('Y-m-d', strtotime($date));
+    }
+
+
+    /**
      * HTMLを取得する
      *
      * @param  string $url

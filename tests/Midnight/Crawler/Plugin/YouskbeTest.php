@@ -1,13 +1,13 @@
 <?php
 
 
-use Midnight\Crawler\Plugin\AdultGeek;
+use Midnight\Crawler\Plugin\Youskbe;
 
-class AdultGeekTest extends PHPUnit_Framework_TestCase
+class YouskbeTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var AdultGeek
+     * @var Youskbe
      **/
     private $plugin;
 
@@ -26,7 +26,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      * @var array
      **/
     private $html_paths = array(
-        'adult-geek/post_5459.html'
+        'youskbe/11_161548.html'
     );
 
 
@@ -37,15 +37,15 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
-        $this->plugin = new AdultGeek;
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/adult-geek.xml');
+        $this->plugin = new Youskbe;
+        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/youskbe.xml');
     }
 
 
     /**
      * @test
-     * @group geek
-     * @group geek-fetch-rss
+     * @group youskbe
+     * @group youskbe-fetch-rss
      */
     public function RSSを取得する ()
     {
@@ -56,8 +56,8 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group geek
-     * @group geek-get-entries
+     * @group youskbe
+     * @group youskbe-get-entries
      */
     public function コンテンツ要素を取得する ()
     {
@@ -70,8 +70,8 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group geek
-     * @group geek-get-entry-url
+     * @group youskbe
+     * @group youskbe-get-entry-url
      */
     public function エントリのURLを取得する ()
     {
@@ -80,14 +80,14 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://www.adultgeek.net/2014/06/post_5459.html', $url);
+        $this->assertEquals('http://www.youskbe.com/blog/archives/2014/06/11_161548.php', $url);
     }
 
 
     /**
      * @test
-     * @group geek-get-entry-date
-     * @group geek
+     * @group youskbe-get-entry-date
+     * @group youskbe
      */
     public function エントリの日付を取得する ()
     {
@@ -96,15 +96,15 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-06-07', $date);
+        $this->assertEquals('2014-06-11', $date);
     }
 
 
     /**
      * @test
      * @medium
-     * @group geek-fetch-html
-     * @group geek
+     * @group youskbe-fetch-html
+     * @group youskbe
      */
     public function HTMLを取得する ()
     {
@@ -118,8 +118,8 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group geek-get-title
-     * @group geek
+     * @group youskbe-get-title
+     * @group youskbe
      */
     public function エントリのタイトルを取得する ()
     {
@@ -127,15 +127,15 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
         $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('【エロ動画】 真夏の海！水着ギャルをミラー号に乗せて猥褻本番マッサージ企画！', $title);
+        $this->assertEquals('【愛内希】萌えるコスプレ作品！【XVideos】', $title);
     }
 
 
     /**
      * @test
      * @medium
-     * @group geek-get-eyecatch-url
-     * @group geek
+     * @group youskbe-get-eyecatch-url
+     * @group youskbe
      */
     public function アイキャッチ画像のURLを取得する ()
     {
@@ -143,15 +143,15 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
         $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('http://www.adultgeek.net/upimg/1406/mmgouhiyake.jpg', $img_url);
+        $this->assertEquals('http://www.youskbe.com/img2/12/07/281121.jpg', $img_url);
     }
 
 
     /**
      * @test
      * @medium
-     * @group geek-get-movies-url
-     * @group geek
+     * @group youskbe-get-movies-url
+     * @group youskbe
      */
     public function 動画へのリンクを取得する ()
     {
@@ -160,7 +160,8 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://vid.bz/watch/yW8Xp5', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video7953646/', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video7953677/', $movies_url[1]);
     }
 }
 
