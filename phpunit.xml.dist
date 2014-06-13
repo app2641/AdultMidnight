@@ -26,6 +26,7 @@
             <exclude>
                 <directory>src/Midnight/Commands</directory>
                 <directory>src/Library</directory>
+                <file>src/Bootstrap.php</file>
             </exclude>
         </whitelist>
     </filter>

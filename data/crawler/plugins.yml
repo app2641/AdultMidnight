@@ -6,3 +6,9 @@ Plugins:
     AdultGeek:
         enable: true
 
+    Youskbe:
+        enable: true
+
+    AvSelection:
+        enable: true
+

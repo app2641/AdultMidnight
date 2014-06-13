@@ -86,6 +86,19 @@ abstract class AbstractPlugin
 
 
     /**
+     * dc:date要素からエントリの登録日を取得する
+     *
+     * @param  DOMElement $element
+     * @return string
+     **/
+    public function getDateByDcDate ($element)
+    {
+        $date = $this->getNodeValueByTagName($element, 'date');
+        return date('Y-m-d', strtotime($date));
+    }
+
+
+    /**
      * HTMLを取得する
      *
      * @param  string $url
