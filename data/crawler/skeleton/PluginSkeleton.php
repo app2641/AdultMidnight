@@ -3,6 +3,8 @@
 
 namespace Midnight\Crawler\Plugin;
 
+use Midnight\Crawler\UriManager;
+
 class ${name} extends AbstractPlugin implements PluginInterface
 {
 

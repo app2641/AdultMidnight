@@ -3,6 +3,8 @@
 
 namespace Midnight\Crawler\Plugin;
 
+use Midnight\Crawler\UriManager;
+
 class Youskbe extends AbstractPlugin implements PluginInterface
 {
 
@@ -102,10 +104,11 @@ class Youskbe extends AbstractPlugin implements PluginInterface
         $query = 'div.entry div#more a';
         $movies_els = $html->find($query);
         $movie_data = array();
+        $manager    = new UriManager();
 
         // 動画はこちらテキストのリンクを取得する
         foreach ($movies_els as $movies_el) {
-            $movie_data[] = $movies_el->getAttribute('href');
+            $movie_data[] = $manager->resolve($movies_el->getAttribute('href'));
         }
 
         return $movie_data;
