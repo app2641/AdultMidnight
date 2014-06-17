@@ -170,6 +170,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
      * @group adult-get-advertisement
      * @group adult
      **/
