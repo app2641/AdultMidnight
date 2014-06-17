@@ -30,7 +30,9 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
      **/
     public function 引数がurlでなかった場合 ()
     {
-        $url = $this->manager->resolve('hoge');
+        $url = '(๑´ڡ`๑)';
+        $url = $this->manager->resolve($url);
+
         $this->assertFalse($url);
     }
 

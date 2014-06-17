@@ -12,3 +12,6 @@ Plugins:
     AvSelection:
         enable: true
 
+    AdultAdult:
+        enable: true
+
