@@ -50,5 +50,28 @@ class S3
 
         $this->bucket = $ini['bucket'];
     }
+
+
+    /**
+     * S3の指定パスへファイルをアップロードする
+     *
+     * @param  string $from_path
+     * @param  string $to_path
+     * @return void
+     **/
+    public function upload ($from_path, $to_path)
+    {
+        try {
+            $this->client->putObject(array(
+                'Bucket' => $this->bucket,
+                'Body' => $body
+            ));
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return true;
+    }
 }
 

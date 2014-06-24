@@ -112,5 +112,8 @@ class Crawl extends AbstractCommand implements CommandInterface
     private function _downloadEyeCatchImages ()
     {
         $manager = new ImageManager();
+
+        //var_dump($this->crawl_data);
+        //exit();
     }
 }
