@@ -98,13 +98,9 @@ class Crawl extends AbstractCommand implements CommandInterface
             $plugin = $p_manager->getPlugin($plugin_name);
 
             $crawler->setPlugin($plugin);
-<<<<<<< HEAD
-            $crawl_data[] = $crawler->crawl();
-=======
             $crawl_data = $crawler->crawl();
 
             $this->crawl_data = array_merge($this->crawl_data, $crawl_data);
->>>>>>> 190597b... 基本構成の実装 #5
         }
     }
 
