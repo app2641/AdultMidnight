@@ -23,10 +23,9 @@ script:
 after_script:
   - php bin/coveralls -v
 
-branches:
-  only:
-    - develop
-
 notifications:
-  email: false
+    email:
+        - app2641@gmail.com
+    on_success: never
+    on_failure: always
 
