@@ -3,15 +3,19 @@ Plugins:
     TestDisablePlugin:
         enable: false
 
-    AdultGeek:
+
+    AdultAdult:
         enable: true
 
-    Youskbe:
+    AdultGeek:
         enable: true
 
     AvSelection:
         enable: true
 
-    AdultAdult:
+    Minna:
+        enable: true
+
+    Youskbe:
         enable: true
 
