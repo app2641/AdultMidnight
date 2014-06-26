@@ -102,8 +102,6 @@ class Crawl extends AbstractCommand implements CommandInterface
 
             $this->crawl_data = array_merge($this->crawl_data, $crawl_data);
         }
-        var_dump($this->crawl_data);
-        exit();
 
         // エントリーデータを整理する
         $entry_manager = new EntryManager();
