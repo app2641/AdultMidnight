@@ -8,6 +8,7 @@ use Garnet\Factory\AbstractFactory;
 use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\AdultGeek,
     Midnight\Crawler\Plugin\AvSelection,
+    Midnight\Crawler\Plugin\Baaaaaa,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Youskbe;
 
@@ -38,6 +39,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildAvSelection ()
     {
         return new AvSelection();
+    }
+
+
+    /**
+     * @var Baaaaaa
+     **/
+    public function buildBaaaaaa ()
+    {
+        return new Baaaaaa();
     }
 
 

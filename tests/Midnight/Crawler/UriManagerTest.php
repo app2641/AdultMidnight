@@ -93,6 +93,26 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group uri
+     * @group uri-fc2
+     */
+    public function FC2のurlを整形する場合 ()
+    {
+        // 正しい動画url
+        $url = 'http://video.fc2.com/flv2.swf?i=20130827LybYzuyu&d=2185'.
+            '&movie_stop=off&no_progressive=1&otag=1&sj=17&rel=0&tk=TXpNeE1EVXpOVEU9';
+        $url = $this->manager->resolve($url);
+        $this->assertEquals('http://video.fc2.com/content/20130827LybYzuyu', $url);
+
+        // 誤った動画url
+        $url = 'http://video.fc2.com/flv2.swf?d31sd=adflkadg';
+        $url = $this->manager->resolve($url);
+        $this->assertEquals('http://video.fc2.com', $url);
+    }
+
+
+    /**
+     * @test
+     * @group uri
      * @group uri-unrelated-url
      */
     public function AdultMidnightに関係のないurlの場合 ()
