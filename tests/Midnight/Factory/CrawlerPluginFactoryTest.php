@@ -58,6 +58,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-baaaaaa
+     **/
+    public function Baaaaaaプラグインの取得 ()
+    {
+        $plugin = $this->container->get('Baaaaaa');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\Baaaaaa', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-minna
      */
     public function Minnaプラグインの取得 ()

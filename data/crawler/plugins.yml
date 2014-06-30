@@ -13,6 +13,9 @@ Plugins:
     AvSelection:
         enable: true
 
+    Baaaaaa:
+        enable: true
+
     Minna:
         enable: true
 
