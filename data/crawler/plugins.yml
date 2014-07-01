@@ -16,6 +16,9 @@ Plugins:
     Baaaaaa:
         enable: true
 
+    Bikyaku:
+        enable: true
+
     Minna:
         enable: true
 
