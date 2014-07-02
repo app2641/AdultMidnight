@@ -96,7 +96,7 @@ class DoesuTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-07-02', $date);
+        $this->assertEquals('2014-07-01', $date);
     }
 
 
