@@ -10,6 +10,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\AvSelection,
     Midnight\Crawler\Plugin\Baaaaaa,
     Midnight\Crawler\Plugin\Bikyaku,
+    Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Youskbe;
 
@@ -58,6 +59,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildBikyaku ()
     {
         return new Bikyaku();
+    }
+
+
+    /**
+     * @var Doesu
+     **/
+    public function buildDoesu ()
+    {
+        return new Doesu();
     }
 
 
