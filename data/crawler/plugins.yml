@@ -19,6 +19,9 @@ Plugins:
     Bikyaku:
         enable: true
 
+    Doesu:
+        enable: true
+
     Minna:
         enable: true
 
