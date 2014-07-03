@@ -1,13 +1,13 @@
 <?php
 
 
-use Midnight\Crawler\Plugin\Bikyaku;
+use Midnight\Crawler\Plugin\Download;
 
-class BikyakuTest extends PHPUnit_Framework_TestCase
+class DownloadTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var Bikyaku
+     * @var Download
      **/
     private $plugin;
 
@@ -26,8 +26,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
      * @var array
      **/
     private $html_paths = array(
-        'bikyaku/blog-entry-1957.html',
-        'bikyaku/blog-entry-1954.html'
+        'download/60188.html'
     );
 
 
@@ -38,15 +37,15 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
-        $this->plugin = new Bikyaku();
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/bikyaku.xml');
+        $this->plugin = new Download();
+        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/download.xml');
     }
 
 
     /**
      * @test
-     * @group bikyaku
-     * @group bikyaku-fetch-rss
+     * @group download
+     * @group download-fetch-rss
      */
     public function RSSを取得する ()
     {
@@ -57,8 +56,8 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group bikyaku
-     * @group bikyaku-get-entries
+     * @group download
+     * @group download-get-entries
      */
     public function コンテンツ要素を取得する ()
     {
@@ -71,8 +70,8 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group bikyaku
-     * @group bikyaku-get-entry-url
+     * @group download
+     * @group download-get-entry-url
      */
     public function エントリのURLを取得する ()
     {
@@ -81,14 +80,14 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://bikyakukiss.blog40.fc2.com/blog-entry-1957.html', $url);
+        $this->assertEquals('http://xvideos-field.com/archives/60188', $url);
     }
 
 
     /**
      * @test
-     * @group bikyaku-get-entry-date
-     * @group bikyaku
+     * @group download-get-entry-date
+     * @group download
      */
     public function エントリの日付を取得する ()
     {
@@ -97,15 +96,15 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-06-30', $date);
+        $this->assertEquals('2014-07-03', $date);
     }
 
 
     /**
      * @test
      * @medium
-     * @group bikyaku-fetch-html
-     * @group bikyaku
+     * @group download-fetch-html
+     * @group download
      */
     public function HTMLを取得する ()
     {
@@ -119,8 +118,8 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group bikyaku-get-title
-     * @group bikyaku
+     * @group download-get-title
+     * @group download
      */
     public function エントリのタイトルを取得する ()
     {
@@ -128,15 +127,15 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('ミニスカ黒パンストお姉さん達に蒸れた匂いを嗅がされ足責めされるM男(FC2Adult)', $title);
+        $this->assertEquals('【美藤れん】イイ女たちの美しきレズPLAY DUAL BOX 駆け引きの無しの愛撫で淫れ合う真のエロス', $title);
     }
 
 
     /**
      * @test
      * @medium
-     * @group bikyaku-get-eyecatch-url
-     * @group bikyaku
+     * @group download-get-eyecatch-url
+     * @group download
      */
     public function アイキャッチ画像のURLを取得する ()
     {
@@ -144,15 +143,18 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('http://blog-imgs-70-origin.fc2.com/b/i/k/bikyakukiss/b20140630_2_1.jpg', $img_url);
+        $this->assertEquals(
+            'http://img100-937.xvideos.com/videos/thumbslll/34/f7/0c/'.
+            '34f70c8ec830ecbfa81496c54dd6d0f2/34f70c8ec830ecbfa81496c54dd6d0f2.2.jpg', $img_url
+        );
     }
 
 
     /**
      * @test
-     * @large
-     * @group bikyaku-get-movies-url
-     * @group bikyaku
+     * @medium
+     * @group download-get-movies-url
+     * @group download
      */
     public function 動画へのリンクを取得する ()
     {
@@ -161,13 +163,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://video.fc2.com/ja/a/content/20121211fMQyW6NQ/', $movies_url[0]);
-
-
-        $html = $this->plugin->fetchHtml($this->html_paths[1], $dry_run);
-        $movies_url = $this->plugin->getMoviesUrl($html);
-
-        $this->assertTrue(is_array($movies_url));
-        $this->assertEquals(0, count($movies_url));
+        $this->assertEquals('http://jp.xvideos.com/video1764937', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video1764995', $movies_url[1]);
     }
 }
