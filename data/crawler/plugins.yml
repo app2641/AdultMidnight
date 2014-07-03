@@ -22,6 +22,9 @@ Plugins:
     Doesu:
         enable: true
 
+    Download:
+        enable: true
+
     Minna:
         enable: true
 
