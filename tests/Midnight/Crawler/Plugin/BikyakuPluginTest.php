@@ -150,7 +150,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @group bikyaku-get-movies-url
      * @group bikyaku
      */
