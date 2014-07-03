@@ -11,6 +11,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Baaaaaa,
     Midnight\Crawler\Plugin\Bikyaku,
     Midnight\Crawler\Plugin\Doesu,
+    Midnight\Crawler\Plugin\Download,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Youskbe;
 
@@ -18,7 +19,7 @@ class CrawlerPluginFactory extends AbstractFactory
 {
 
     /**
-     * @var AdultAdult
+     * @return AdultAdult
      **/
     public function buildAdultAdult ()
     {
@@ -36,7 +37,7 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var AvSelection
+     * @return AvSelection
      **/
     public function buildAvSelection ()
     {
@@ -45,7 +46,7 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var Baaaaaa
+     * @return Baaaaaa
      **/
     public function buildBaaaaaa ()
     {
@@ -54,7 +55,7 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var Bikyaku
+     * @return Bikyaku
      **/
     public function buildBikyaku ()
     {
@@ -63,7 +64,7 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var Doesu
+     * @return Doesu
      **/
     public function buildDoesu ()
     {
@@ -72,7 +73,16 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var Minna
+     * @return Download
+     **/
+    public function buildDownload ()
+    {
+        return new Download();
+    }
+
+
+    /**
+     * @return Minna
      **/
     public function buildMinna ()
     {
@@ -81,7 +91,7 @@ class CrawlerPluginFactory extends AbstractFactory
 
 
     /**
-     * @var Youskbe
+     * @return Youskbe
      **/
     public function buildYouskbe ()
     {
