@@ -25,6 +25,9 @@ Plugins:
     Download:
         enable: true
 
+    Epusta:
+        enable: true
+
     Minna:
         enable: true
 
