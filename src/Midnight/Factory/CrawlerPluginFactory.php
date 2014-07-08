@@ -12,6 +12,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Bikyaku,
     Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Download,
+    Midnight\Crawler\Plugin\Epusta,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Youskbe;
 
@@ -78,6 +79,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildDownload ()
     {
         return new Download();
+    }
+
+
+    /**
+     * @var Epusta
+     **/
+    public function buildEpusta ()
+    {
+        return new Epusta();
     }
 
 

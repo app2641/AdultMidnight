@@ -106,6 +106,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-epusta
+     */
+    public function Epustaプラグインの取得 ()
+    {
+        $plugin = $this->container->get('Epusta');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\Epusta', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-minna
      */
     public function Minnaプラグインの取得 ()
