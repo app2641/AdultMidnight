@@ -13,6 +13,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Download,
     Midnight\Crawler\Plugin\Epusta,
+    Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Youskbe;
 
@@ -88,6 +89,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildEpusta ()
     {
         return new Epusta();
+    }
+
+
+    /**
+     * @var Matome
+     **/
+    public function buildMatome ()
+    {
+        return new Matome();
     }
 
 
