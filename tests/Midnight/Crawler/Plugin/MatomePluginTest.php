@@ -117,7 +117,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @group matome-get-title
      * @group matome
      */
@@ -133,7 +133,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @group matome-get-eyecatch-url
      * @group matome
      */
@@ -149,7 +149,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @group matome-get-movies-url
      * @group matome
      */
