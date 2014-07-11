@@ -28,6 +28,9 @@ Plugins:
     Epusta:
         enable: true
 
+    Matome:
+        enable: true
+
     Minna:
         enable: true
 
