@@ -102,7 +102,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @group matome-fetch-html
      * @group matome
      */
