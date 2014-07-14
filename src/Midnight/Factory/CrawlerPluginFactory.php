@@ -15,6 +15,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Epusta,
     Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
+    Midnight\Crawler\Plugin\Muryo,
     Midnight\Crawler\Plugin\Youskbe;
 
 class CrawlerPluginFactory extends AbstractFactory
@@ -107,6 +108,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildMinna ()
     {
         return new Minna();
+    }
+
+
+    /**
+     * @var Muryo
+     **/
+    public function buildMuryo ()
+    {
+        return new Muryo();
     }
 
 
