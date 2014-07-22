@@ -118,7 +118,9 @@ class Crawl extends AbstractCommand implements CommandInterface
     {
         $manager = new ImageManager();
 
-        //var_dump($this->crawl_data);
-        //exit();
+        foreach ($this->crawl_data as $key => $data) {
+            $manager->execute($data->eyecatch, $data->title);
+            $data[$key]->image_src = $manager->getDownloadPath();
+        }
     }
 }
