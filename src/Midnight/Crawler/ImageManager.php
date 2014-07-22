@@ -43,6 +43,15 @@ class ImageManager
 
 
     /**
+     * @return string
+     */
+    public function getDownloadPath()
+    {
+        return $this->download_path;
+    }
+
+
+    /**
      * 画像を指定urlからダウンロードしてS3へアップロードする
      *
      * @param  string $url
@@ -155,6 +164,8 @@ class ImageManager
      **/
     private function _upload ()
     {
+        if (IS_EC2 === false) return;
+
         $upload_path = str_replace(ROOT.'/public_html/', '', $this->download_path);
         $this->S3->upload($this->download_path, $upload_path);
     }

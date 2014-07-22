@@ -18,6 +18,7 @@ composer.phar
 bin/coveralls
 data/config/aws.ini
 
+public_html/demo.html
 public_html/contents/*
 !public_html/contents/.gitkeep
 

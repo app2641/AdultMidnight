@@ -18,6 +18,10 @@ class EntryManager
         $format_data = array();
         foreach ($entry_data as $data) {
             if (is_array($data)) continue;
+            if (isset($data->disable)) continue;
+            if ($data->title == '') continue;
+            if ($data->eyecatch == '') continue;
+            if (count($data->movies) == 0) continue;
             
             $format_data[] = $data;
         }
