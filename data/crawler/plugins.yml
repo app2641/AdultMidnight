@@ -34,6 +34,18 @@ Plugins:
     Minna:
         enable: true
 
+    Muryo:
+        enable: true
+
+    Rakuen:
+        enable: true
+
+    Minna:
+        enable: true
+
+    Shikosen:
+        enable: true
+
     Youskbe:
         enable: true
 
