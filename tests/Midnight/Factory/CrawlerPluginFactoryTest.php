@@ -166,6 +166,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-shikosen
+     */
+    public function Shikosenプラグインの取得 ()
+    {
+        $plugin = $this->container->get('Shikosen');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\Shikosen', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-youskbe
      */
     public function Youskbeプラグインの取得 ()

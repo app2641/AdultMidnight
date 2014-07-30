@@ -17,6 +17,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Muryo,
     Midnight\Crawler\Plugin\Rakuen,
+    Midnight\Crawler\Plugin\Shikosen,
     Midnight\Crawler\Plugin\Youskbe;
 
 class CrawlerPluginFactory extends AbstractFactory
@@ -127,6 +128,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildRakuen ()
     {
         return new Rakuen();
+    }
+
+
+    /**
+     * @return Shikosen
+     **/
+    public function buildShikosen ()
+    {
+        return new Shikosen();
     }
 
 
