@@ -22,6 +22,13 @@ class Crawler
     private $crawl_data = array();
 
 
+    /**
+     * テスト用の処理かどうか
+     *
+     * @var boolean
+     **/
+    private $dry_run = false;
+
 
     /**
      * @param  $plugin
@@ -30,6 +37,16 @@ class Crawler
     public function setPlugin (PluginInterface $plugin)
     {
         $this->plugin = $plugin;
+    }
+
+
+    /**
+     * @param  boolean $dry_run
+     * @return void
+     **/
+    public function setDryRun ($dry_run)
+    {
+        $this->dry_run = $dry_run;
     }
 
 
@@ -85,8 +102,9 @@ class Crawler
     {
         $entry_date = $this->plugin->getEntryDate($entry);
 
-        // 今日の登録されたエントリでなければそのまま返す
-        if (date('Y-m-d') != $entry_date) return array();
+        // 今日の登録されたエントリまたはDryRunでなければそのまま返す
+        if (date('Y-m-d') != $entry_date &&
+            $this->dry_run === false) return array();
 
 
         $url  = $this->plugin->getEntryUrl($entry);

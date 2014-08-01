@@ -54,7 +54,7 @@ class EntryManagerTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->manager->format($this->entry_data);
         $this->assertTrue(is_array($result));
-        $this->assertEquals(40, count($result));
+        $this->assertEquals(16, count($result));
     }
 }
 

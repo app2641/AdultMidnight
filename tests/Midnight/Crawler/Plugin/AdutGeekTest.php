@@ -2,6 +2,7 @@
 
 
 use Midnight\Crawler\Plugin\AdultGeek;
+use Midnight\Crawler\Plugin\TestData\AdultGeekTestData;
 
 class AdultGeekTest extends PHPUnit_Framework_TestCase
 {
@@ -13,21 +14,9 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var AdultGeekTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'adult-geek/post_5459.html'
-    );
+    private $test_data;
 
 
     /**
@@ -37,8 +26,10 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
+        $this->test_data = new AdultGeekTestData();
+
         $this->plugin = new AdultGeek;
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/adult-geek.xml');
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -49,7 +40,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -61,7 +52,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -75,7 +66,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -91,7 +82,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -108,9 +99,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -123,8 +112,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【エロ動画】 真夏の海！水着ギャルをミラー号に乗せて猥褻本番マッサージ企画！', $title);
@@ -139,8 +127,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://www.adultgeek.net/upimg/1406/mmgouhiyake.jpg', $img_url);
@@ -155,8 +142,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));

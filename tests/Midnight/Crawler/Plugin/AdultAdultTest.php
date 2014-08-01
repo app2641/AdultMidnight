@@ -1,7 +1,8 @@
 <?php
 
 
-use Midnight\Crawler\Plugin\AdultAdult;
+use Midnight\Crawler\Plugin\AdultAdult,
+    Midnight\Crawler\Plugin\TestData\AdultAdultTestData;
 
 class AdultAdultTest extends PHPUnit_Framework_TestCase
 {
@@ -13,22 +14,9 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var AdultAdultTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'adult-adult/blog-entry-19719.html',
-        'adult-adult/blog-entry-19726.html'
-    );
+    private $test_data;
 
 
     /**
@@ -38,8 +26,10 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
-        $this->plugin = new AdultAdult;
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/adult-adult.xml');
+        $this->test_data = new AdultAdultTestData();
+
+        $this->plugin = new AdultAdult();
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -50,7 +40,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -62,7 +52,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -76,7 +66,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -92,7 +82,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -109,9 +99,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -124,8 +112,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【無修正】素顔の巨乳AV嬢とプライベート感たっぷりな主観中出しSEX♪', $title);
@@ -140,8 +127,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://blog-imgs-64-origin.fc2.com/t/i/f/tifer2/20140616083556451.jpg', $img_url);
@@ -156,8 +142,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
@@ -176,8 +161,7 @@ class AdultAdultTest extends PHPUnit_Framework_TestCase
      **/
     public function 広告ページで動画リンクを取得する場合 ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[1], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
