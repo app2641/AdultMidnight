@@ -2,6 +2,7 @@
 
 
 use Midnight\Crawler\Plugin\Baaaaaa;
+use Midnight\Crawler\Plugin\TestData\BaaaaaaTestData;
 
 class BaaaaaaTest extends PHPUnit_Framework_TestCase
 {
@@ -13,22 +14,9 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var BaaaaaaTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'baaaaaa/blog-entry-3883.html',
-        'baaaaaa/blog-entry-3879.html'
-    );
+    private $test_data;
 
 
     /**
@@ -38,8 +26,10 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
+        $this->test_data = new BaaaaaaTestData();
+
         $this->plugin = new Baaaaaa();
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/baaaaaa.xml');
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -50,7 +40,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -62,7 +52,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -76,7 +66,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -92,7 +82,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -109,9 +99,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -124,8 +112,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('激カワ美少女にオチ○チン突っ込みながらインタビュー', $title);
@@ -140,8 +127,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://blog-imgs-64.fc2.com/b/a/a/baaaaaa/3947.jpg', $img_url);
@@ -156,8 +142,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
@@ -173,8 +158,7 @@ class BaaaaaaTest extends PHPUnit_Framework_TestCase
      **/
     public function 広告ページで動画リンクを取得する場合 ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[1], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
