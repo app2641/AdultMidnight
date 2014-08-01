@@ -13,7 +13,37 @@ Plugins:
     AvSelection:
         enable: true
 
+    Baaaaaa:
+        enable: true
+
+    Bikyaku:
+        enable: true
+
+    Doesu:
+        enable: true
+
+    Download:
+        enable: true
+
+    Epusta:
+        enable: true
+
+    Matome:
+        enable: true
+
     Minna:
+        enable: true
+
+    Muryo:
+        enable: true
+
+    Rakuen:
+        enable: true
+
+    Minna:
+        enable: true
+
+    Shikosen:
         enable: true
 
     Youskbe:
