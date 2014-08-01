@@ -44,5 +44,41 @@ class CrawlerPluginTestDataFactoryTest extends PHPUnit_Framework_TestCase
         $test_data = $this->container->get('AdultGeek');
         $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\AdultGeekTestData', $test_data);
     }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-av-selection
+     */
+    public function AvSelectionプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('AvSelection');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\AvSelectionTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-baaaaaa
+     */
+    public function Baaaaaaプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Baaaaaa');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\BaaaaaaTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-bikyaku
+     */
+    public function Bikyakuプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Bikyaku');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\BikyakuTestData', $test_data);
+    }
 }
 

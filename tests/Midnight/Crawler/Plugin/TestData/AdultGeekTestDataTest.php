@@ -7,7 +7,7 @@ class AdultGeekTestDataTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-r    * @var AdultGeekTestDatt
+     * @var AdultGeekTestDatt
      **/
     private $test_data;
 
