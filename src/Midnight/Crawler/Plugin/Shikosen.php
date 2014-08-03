@@ -98,8 +98,8 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrlFromTopPage ($html)
     {
-        $link = str_replace('http://hikaritube.com/', '', $this->entry_url);
-        $query = sprintf('div#main div#cntArea div.cnt p.thumb a[href="%s"] img', $link);
+        $link   = str_replace('http://hikaritube.com/', '', $this->entry_url);
+        $query  = sprintf('div#main div#cntArea div.cnt p.thumb a[href="%s"] img', $link);
         $img_el = $html->find($query, 0);
 
         return $img_el->getAttribute('src');

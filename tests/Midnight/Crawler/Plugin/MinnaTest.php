@@ -2,6 +2,7 @@
 
 
 use Midnight\Crawler\Plugin\Minna;
+use Midnight\Crawler\Plugin\TestData\MinnaTestData;
 
 class MinnaTest extends PHPUnit_Framework_TestCase
 {
@@ -13,23 +14,9 @@ class MinnaTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var MinnaTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'minna/68166962.html',
-        'minna/68166006.html',
-        'minna/68164648.html'
-    );
+    private $test_data;
 
 
     /**
@@ -39,8 +26,10 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
+        $this->test_data = new MinnaTestData();
+
         $this->plugin = new Minna;
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/minna.xml');
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -51,7 +40,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -63,7 +52,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -77,7 +66,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -98,7 +87,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -120,9 +109,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -135,8 +122,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【エロ動画】頭良さそうなメガネっ子がフェラで口内射精', $title);
@@ -151,8 +137,7 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://livedoor.blogimg.jp/pinky015/imgs/1/7/1783b919.jpg', $img_url);
@@ -167,22 +152,21 @@ class MinnaTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://video.fc2.com/ja/a/content/20140518019MUw9N/', $movies_url[0]);
 
 
-        $html = $this->plugin->fetchHtml($this->html_paths[1], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://asg.to/contentsPage.html?mcd=lNl25A52tkqoweP2', $movies_url[0]);
 
 
-        $html = $this->plugin->fetchHtml($this->html_paths[2], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));

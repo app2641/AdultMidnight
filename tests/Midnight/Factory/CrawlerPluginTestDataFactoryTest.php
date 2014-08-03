@@ -80,5 +80,113 @@ class CrawlerPluginTestDataFactoryTest extends PHPUnit_Framework_TestCase
         $test_data = $this->container->get('Bikyaku');
         $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\BikyakuTestData', $test_data);
     }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-doesu
+     */
+    public function Doesuプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Doesu');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\DoesuTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-download
+     */
+    public function Downloadプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Download');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\DownloadTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-epusta
+     */
+    public function Epustaプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Epusta');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\EpustaTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-matome
+     */
+    public function Matomeプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Matome');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\MatomeTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-minna
+     */
+    public function Minnaプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Minna');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\MinnaTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-muryo
+     */
+    public function Muryoプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Muryo');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\MuryoTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-rakuen
+     */
+    public function Rakuenプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Rakuen');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\RakuenTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-shikosen
+     */
+    public function Shikosenプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Shikosen');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\ShikosenTestData', $test_data);
+    }
+
+
+    /**
+     * @test
+     * @group test_factory
+     * @group test_factory-get-youskbe
+     */
+    public function Youskbeプラグイン用テストデータの取得 ()
+    {
+        $test_data = $this->container->get('Youskbe');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\TestData\YouskbeTestData', $test_data);
+    }
 }
 
