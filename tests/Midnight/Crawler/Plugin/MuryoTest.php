@@ -2,6 +2,7 @@
 
 
 use Midnight\Crawler\Plugin\Muryo;
+use Midnight\Crawler\Plugin\TestData\MuryoTestData;
 
 class MuryoTest extends PHPUnit_Framework_TestCase
 {
@@ -13,23 +14,9 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var MuryoTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'muryo/71340.html',
-        'muryo/71370.html',
-        'muryo/71376.html'
-    );
+    private $test_data;
 
 
     /**
@@ -39,8 +26,10 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
+        $this->test_data = new MuryoTestData();
+
         $this->plugin = new Muryo();
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/muryo.xml');
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -51,7 +40,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -63,7 +52,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -77,7 +66,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -93,7 +82,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -110,9 +99,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -125,8 +112,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【素人】ただの友達同士だった大学生が初めて一線を越える瞬間', $title);
@@ -141,8 +127,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://muryouav.avximg.com/2014-07/2014_0713_1100_24.jpg', $img_url);
@@ -157,22 +142,21 @@ class MuryoTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://video.fc2.com/content/20140705SXr6nztN', $movies_url[0]);
 
 
-        $html = $this->plugin->fetchHtml($this->html_paths[1], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals(0, count($movies_url));
 
 
-        $html = $this->plugin->fetchHtml($this->html_paths[2], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
