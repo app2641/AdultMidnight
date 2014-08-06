@@ -33,6 +33,16 @@ class Crawler
 
 
     /**
+     * @param  boolean $dry_run
+     * @return void
+     **/
+    public function setDryRun ($dry_run)
+    {
+        $this->dry_run = $dry_run;
+    }
+
+
+    /**
      * クロール処理
      *
      * @return array
