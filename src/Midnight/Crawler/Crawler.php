@@ -23,30 +23,12 @@ class Crawler
 
 
     /**
-     * テスト用の処理かどうか
-     *
-     * @var boolean
-     **/
-    private $dry_run = false;
-
-
-    /**
      * @param  $plugin
      * @return void
      **/
     public function setPlugin (PluginInterface $plugin)
     {
         $this->plugin = $plugin;
-    }
-
-
-    /**
-     * @param  boolean $dry_run
-     * @return void
-     **/
-    public function setDryRun ($dry_run)
-    {
-        $this->dry_run = $dry_run;
     }
 
 
@@ -104,16 +86,18 @@ class Crawler
 
         // 今日の登録されたエントリまたはDryRunでなければそのまま返す
         if (date('Y-m-d') != $entry_date &&
-            $this->dry_run === false) return array();
+            $this->plugin->hasTestData() === false) return array();
 
 
         $url  = $this->plugin->getEntryUrl($entry);
         $html = $this->plugin->fetchHtml($url);
 
         return array(
-            'title' => $this->plugin->getEntryTitle($html),
-            'eyecatch' => $this->plugin->getEyeCatchUrl($html),
-            'movies' => $this->plugin->getMoviesUrl($html)
+            'title'     => $this->plugin->getEntryTitle($html),
+            'url'       => $url,
+            'eyecatch'  => $this->plugin->getEyeCatchUrl($html),
+            'image_src' => '',
+            'movies'    => $this->plugin->getMoviesUrl($html)
         );
     }
 }

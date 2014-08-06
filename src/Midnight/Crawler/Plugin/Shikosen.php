@@ -82,11 +82,27 @@ class Shikosen extends AbstractPlugin implements PluginInterface
     {
         // エントリページにアイキャッチ画像がないため
         // トップページから画像のurlを取得する
-        $html    = $this->fetchHtml('http://hikaritube.com');
+        $html    = $this->fetchHtml($this->getTopPageUrl());
         $img_url = $this->getEyeCatchUrlFromTopPage($html);
         $html->clear();
 
         return $img_url;
+    }
+
+
+    /**
+     * トップページのurlを取得する
+     * テストの場合はサンプルページを返す
+     *
+     * @return string
+     **/
+    public function getTopPageUrl ()
+    {
+        if (is_null($this->test_data)) {
+            return 'http://hikaritube.com';
+        } else {
+            return $this->test_data->getHtmlPaths()[1];
+        }
     }
 
 

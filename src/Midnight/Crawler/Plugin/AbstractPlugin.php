@@ -15,7 +15,7 @@ abstract class AbstractPlugin
      *
      * @var AbstractTestData
      **/
-    private $test_data;
+    protected $test_data;
 
 
     /**
@@ -27,6 +27,17 @@ abstract class AbstractPlugin
     public function setTestData (AbstractTestData $test_data)
     {
         $this->test_data = $test_data;
+    }
+
+
+    /**
+     * テストデータを所持しているかを判別する
+     *
+     * @return boolean
+     **/
+    public function hasTestData ()
+    {
+        return (is_null($this->test_data)) ? false: true;
     }
 
 
