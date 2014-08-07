@@ -21,4 +21,4 @@ data/config/aws.ini
 public_html/demo.html
 public_html/contents/*
 !public_html/contents/.gitkeep
-
+public_html/resources/sass/.sass-cache

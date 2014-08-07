@@ -117,6 +117,7 @@ class Crawl extends AbstractCommand implements CommandInterface
     private function _downloadEyeCatchImages ()
     {
         $manager = new ImageManager();
+        $manager->setS3(new S3());
 
         foreach ($this->crawl_data as $key => $data) {
             $manager->execute($data->eyecatch, $data->title);

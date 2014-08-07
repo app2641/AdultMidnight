@@ -33,7 +33,12 @@ class ContentsBuilder
      */
     private function _getLayout($file_name)
     {
-        return file_get_contents(ROOT.'/data/template/'.$file_name.'.html');
+        $layout_path = ROOT.'/data/template/'.$file_name.'.html';
+        if (! file_exists($layout_path)) {
+            throw new \Exception('レイアウトファイルが存在しません');
+        }
+
+        return file_get_contents($layout_path);
     }
 
 
@@ -66,11 +71,36 @@ class ContentsBuilder
      */
     private function _buildMainPage($page_name)
     {
-        $layout = $this->_buildMainLayout();
-        $entries = $this->_buildEntryLayout();
+        $layout    = $this->_buildMainLayout();
+        $entries   = $this->_buildEntryLayout();
+        $side_menu = $this->_buildSideMenuLayout();
+        $footer    = $this->_buildFooterLayout();
 
         $layout = str_replace('${contents}', $entries, $layout);
+        $layout = str_replace('${sidemenu}', $side_menu, $layout);
+        $layout = str_replace('${footer}', $footer, $layout);
         file_put_contents(ROOT.'/public_html/'.$page_name.'.html', $layout);
+    }
+
+
+    /**
+     * 管理人についてや注意点のページを構築する
+     *
+     * @param  string $page_name
+     * @return void
+     **/
+    private function _buildSubPage ($page_name)
+    {
+        $layout    = $this->_getLayout('layout');
+        $contents  = $this->_buildSubContentsLayout($page_name);
+        $side_menu = $this->_buildSideMenuLayout($page_name);
+        $footer    = $this->_buildFooterLayout();
+
+        $layout = str_replace('${contents}', $contents, $layout);
+        $layout = str_replace('${sidemenu}', $side_menu, $layout);
+        $layout = str_replace('${pager}', '', $layout);
+        $layout = str_replace('${footer}', $footer, $layout);
+        file_put_contents(ROOT.'/public_html/information/'.$page_name.'.html', $layout);
     }
 
 
@@ -110,12 +140,13 @@ class ContentsBuilder
             if ($key % 4 == 0) $entry = '<div class="row">'.$entry;
 
             $entry = str_replace('${title}', $data->title, $entry);
-            $entry = str_replace('${image_src}', $data->eyecatch, $entry);
+            $entry = str_replace('${image_src}', $data->image_src, $entry);
+            $entry = str_replace('${url}', $data->url, $entry);
 
             // 動画リンク部のレイアウト調整
             $star_el = '';
             foreach ($data->movies as $movie) {
-                $star_el .= sprintf($movie_layout, $movie);
+                $star_el .= str_replace('${movie_link}', $movie, $movie_layout);
             }
             $entry = str_replace('${movie_stars}', $star_el, $entry);
 
@@ -128,6 +159,51 @@ class ContentsBuilder
         if ($key % 4 != 3) $entries .= '</div>';
 
         return $entries;
+    }
+
+
+    /**
+     * サブページのレイアウトを構築する
+     *
+     * @param  string $page_name  whoやsiteが入る。構築するレイアウト名
+     * @return string
+     **/
+    private function _buildSubContentsLayout ($page_name)
+    {
+        $contents = $this->_getLayout($page_name.'_layout');
+        return $contents;
+    }
+
+
+    /**
+     * サイドメニューのレイアウトを構築する
+     *
+     * @param  string $activate  whoやsiteが入る。指定されたサイドメニューをactiveにする
+     * @return string
+     **/
+    private function _buildSideMenuLayout ($activate = false)
+    {
+        $side_menu = $this->_getLayout('side_menu_layout');
+
+        $who  = ($activate === 'who') ? 'active': '';
+        $site = ($activate === 'site') ? 'active': '';
+
+        $side_menu = str_replace('${who}', $who, $side_menu);
+        $side_menu = str_replace('${site}', $site, $side_menu);
+
+        return $side_menu;
+    }
+
+
+    /**
+     * フッターのレイアウトを構築する
+     *
+     * @return string
+     **/
+    private function _buildFooterLayout ()
+    {
+        $footer = $this->_getLayout('footer_layout');
+        return $footer;
     }
 }
 

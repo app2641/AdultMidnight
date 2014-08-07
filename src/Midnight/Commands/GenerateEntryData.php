@@ -7,6 +7,7 @@ use Midnight\Crawler\Crawler,
     Midnight\Crawler\PluginManager,
     Midnight\Crawler\ImageManager,
     Midnight\Crawler\EntryManager;
+use Midnight\Aws\S3;
 
 use Garnet\Container,
     Midnight\Factory\CrawlerPluginTestDataFactory;
@@ -66,6 +67,9 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
             $entry_data = $crawler->crawl();
             $this->crawl_data = array_merge($this->crawl_data, $entry_data);
         }
+
+        $entry_manager    = new EntryManager();
+        $this->crawl_data = $entry_manager->format($this->crawl_data);
     }
 
 
@@ -77,10 +81,11 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
     private function _downloadEyeCatchImages ()
     {
         $manager = new ImageManager();
+        $manager->setS3(new S3());
 
         foreach ($this->crawl_data as $key => $data) {
             $manager->execute($data->eyecatch, $data->title);
-            $data[$key]->image_src = $manager->getDownloadPath();
+            $this->crawl_data[$key]->image_src = $manager->getDownloadPath();
         }
     }
 
@@ -92,10 +97,7 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
      **/
     private function _saveJsonFile ()
     {
-        $manager    = new EntryManager();
-        $crawl_data = $manager->format($this->crawl_data);
-
-        $json = json_encode($crawl_data);
+        $json = json_encode($this->crawl_data);
         $file_path = ROOT.'/data/fixtures/entry_data.json';
         file_put_contents($file_path, $json);
     }

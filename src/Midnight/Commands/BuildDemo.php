@@ -4,12 +4,16 @@ use Emerald\Command\AbstractCommand;
 use Emerald\Command\CommandInterface;
 
 use Midnight\Crawler\EntryManager,
-    Midnight\Crawler\ImageManager,
     Midnight\Crawler\ContentsBuilder;
-use Midnight\Aws\S3;
 
 class BuildDemo extends AbstractCommand implements CommandInterface
 {
+
+    /**
+     * @var array
+     **/
+    private $params;
+
 
     /**
      * エントリデータ
@@ -28,17 +32,30 @@ class BuildDemo extends AbstractCommand implements CommandInterface
     public function execute (Array $params)
     {
         try {
+            $this->params = $params;
+            $this->_validateParameters();
+
             // エントリデータを初期化する
             $this->_initEntryData();
-
-            // 画像をダウンロードする
-            //$this->_downloadEyeCatchImages();
 
             // デモページの構築
             $this->_buildDemoPage();
 
         } catch (\Exception $e) {
             $this->errorLog($e->getMessage());
+        }
+    }
+
+
+    /**
+     * パラメータのバリデート
+     *
+     * @return void
+     **/
+    private function _validateParameters ()
+    {
+        if (! isset($this->params[1])) {
+            throw new \Exception('ビルドするページ名を指定してください');
         }
     }
 
@@ -59,23 +76,6 @@ class BuildDemo extends AbstractCommand implements CommandInterface
 
 
     /**
-     * アイキャッチ画像をダウンロードする
-     *
-     * @return void
-     **/
-    private function _downloadEyeCatchImages ()
-    {
-        $manager = new ImageManager();
-        $manager->setS3(new S3());
-
-        foreach ($this->entry_data as $key => $data) {
-            $manager->execute($data->eyecatch, $data->title);
-            $this->entry_data[$key]->image_src = $manager->getDownloadPath();
-        }
-    }
-
-
-    /**
      * デモページの構築
      *
      * @return void
@@ -84,7 +84,7 @@ class BuildDemo extends AbstractCommand implements CommandInterface
     {
         $builder = new ContentsBuilder();
         $builder->setEntryData($this->entry_data);
-        $builder->buildContents('demo');
+        $builder->buildContents($this->params[1]);
     }
 
 

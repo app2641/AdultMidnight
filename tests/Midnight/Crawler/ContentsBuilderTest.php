@@ -46,5 +46,23 @@ class ContentsBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(file_exists($demo_path));
     }
+
+
+    /**
+     * @test
+     *
+     * @group builder
+     * @group builder-build-who
+     **/
+    public function whoページを構築する ()
+    {
+        $who_path = ROOT.'/public_html/information/who.html';
+        if (file_exists($who_path)) {
+            unlink($who_path);
+        }
+
+        $this->builder->buildContents('who');
+        $this->assertTrue(file_exists($who_path));
+    }
 }
 

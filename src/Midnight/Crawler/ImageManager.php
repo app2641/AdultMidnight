@@ -47,7 +47,8 @@ class ImageManager
      */
     public function getDownloadPath()
     {
-        return $this->download_path;
+        $path = str_replace(ROOT.'/public_html', '', $this->download_path);
+        return $path;
     }
 
 
