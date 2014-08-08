@@ -18,6 +18,7 @@ class MinnaTestData extends AbstractTestData
     protected $html_paths = array(
         'minna/68166962.html',
         'minna/68166006.html',
-        'minna/68164648.html'
+        'minna/68164648.html',
+        'minna/68193503.html'
     );
 }

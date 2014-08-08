@@ -171,6 +171,13 @@ class MinnaTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://jp.xvideos.com/video7440211/', $movies_url[0]);
+
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $movies_url = $this->plugin->getMoviesUrl($html);
+
+        $this->assertTrue(is_array($movies_url));
+        $this->assertEquals('http://video.fc2.com/ja/a/content/20140511Jr7FHK6V/', $movies_url[0]);
     }
 }
 

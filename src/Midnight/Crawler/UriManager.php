@@ -32,6 +32,25 @@ class UriManager
 
 
     /**
+     * xvideos.comのURLかどうかを判別する
+     *
+     * @param  string $url
+     * @return boolean
+     **/
+    public function isXvideosUrl ($url)
+    {
+        $info = parse_url($url);
+
+        if (! isset($info['host'])) return false;
+        if (! in_array($info['host'], array('jp.xvideos.com', 'xvideos.com')))  {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
      * ホスト名によってメソッドをスイッチする
      * スイッチ先のメソッドでurlを解決し、返り値とする
      *
