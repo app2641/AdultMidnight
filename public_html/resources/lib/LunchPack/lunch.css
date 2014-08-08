@@ -1,0 +1,365 @@
+
+/* default */
+.lunch-button {
+    font-size: 0.9em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #ddd;
+    padding: 6px 15px;
+    cursor: pointer;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    /*background: -moz-linear-gradient(top, #fff, #ddd);*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));*/
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #555;
+    background-color: #eee;
+}
+
+.lunch-button:hover {
+    text-shadow: 0 1px 5px #ccc;
+    box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    /*color: #6CE26C;*/
+    color: black;
+    border: solid 1px #ccc;
+}
+
+
+/* caution */
+.lunch-button-caution {
+    font-size: 0.9em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #ec6d71;
+    padding: 6px 15px;
+    cursor: pointer;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #fdeff2;
+    background-color: #ec6d71;
+}
+
+.lunch-button-caution:hover {
+    box-shadow: 0px 2px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 0px 8px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    color: white;
+    border: solid 1px #e60033;
+}
+
+
+/* success */
+.lunch-button-success {
+    font-size: 0.9em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #69b076;
+    padding: 6px 15px;
+    cursor: pointer;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #f0fff0;
+    background-color: #69b076;
+}
+
+.lunch-button-success:hover {
+    box-shadow: 0px 2px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 0px 8px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    color: white;
+    border: solid 1px #3eb370;
+}
+
+
+/* info */
+.lunch-button-info {
+    font-size: 0.9em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #38a1db;
+    padding: 6px 15px;
+    cursor: pointer;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #eaedf7;
+    background-color: #38a1db;
+}
+
+.lunch-button-info:hover {
+    box-shadow: 0px 2px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 0px 8px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+    color: white;
+    border: solid 1px #007ad2;
+}
+
+
+input.lunch-field {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #ddd;
+    padding: 7px;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    -webkit-input-placeholder: #555;
+
+    color: #bbb;
+    outline: none;
+}
+
+
+input.lunch-field-caution {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #ec6d71;
+    padding: 7px;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #f2a0a1;
+    outline: none;
+}
+
+
+
+input.lunch-field-success {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+
+    border: solid 1px #69b076;
+    padding: 7px;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+
+    color: #98d98e;
+    outline: none;
+}
+
+
+/* success */
+span.lunch-label-success {
+    border: solid 1px #69b076;
+
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+
+    box-shadow: 0px 1px 4px #555;
+    -moz-box-shadow: 0px 1px 4px #555;
+    -webkit-box-shadow: 0px 1px 4px #555;
+
+    font-size: 0.8em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+    padding: 1px 5px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #69b076;
+    cursor: default;
+}
+
+
+/* caution */
+span.lunch-label-caution {
+    border: solid 1px #e9546b;
+
+    border-radius: 3px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+
+    box-shadow: 0px 1px 4px #555;
+    -moz-box-shadow: 0px 1px 4px #555;
+    -webkit-box-shadow: 0px 1px 4px #555;
+
+    font-size: 0.8em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+    padding: 1px 5px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #e9546b;
+    cursor: default;
+}
+
+
+/* warning */
+span.lunch-label-warning {
+    border: solid 1px #fbca4d;
+
+    border-radius: 3px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+
+    box-shadow: 0px 1px 4px #555;
+    -moz-box-shadow: 0px 1px 4px #555;
+    -webkit-box-shadow: 0px 1px 4px #555;
+
+    font-size: 0.8em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+    padding: 1px 5px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #fbca4d;
+    cursor: default;
+}
+
+
+/* note */
+span.lunch-label-note {
+    border: solid 1px #949495;
+
+    border-radius: 3px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+
+    box-shadow: 0px 1px 4px #555;
+    -moz-box-shadow: 0px 1px 4px #555;
+    -webkit-box-shadow: 0px 1px 4px #555;
+
+    font-size: 0.8em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+    padding: 1px 5px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #949495;
+    cursor: default;
+}
+
+
+div#lunch-window-owner {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
+div.lunch-window-mask {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0.5;
+}
+
+div.lunch-window-wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 100;
+    width: 400px;
+    background-color: #eee;
+
+    box-shadow: 0px 2px 8px #555;
+    -moz-box-shadow: 0px 2px 8px #555;
+    -webkit-box-shadow: 0px 2px 8px #555;
+
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+
+/* title */
+div.lunch-window-wrap div#lunch-window-title-info {
+    background-color: #69b076;
+    height: 30px;
+}
+
+div.lunch-window-wrap div#lunch-window-title-info p{
+    vertical-align: middle;
+    margin: 0px;
+    padding: 5px;
+    padding-left: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}
+
+
+div.lunch-window-wrap div#lunch-window-title-alert {
+    background-color: #ec6d71;
+    height: 30px;
+}
+
+div.lunch-window-wrap div#lunch-window-title-alert p{
+    vertical-align: middle;
+    margin: 0px;
+    padding: 5px;
+    padding-left: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}
+
+
+div.lunch-window-wrap div#lunch-window-title-confirm {
+    background-color: #38a1db;
+    height: 30px;
+}
+
+div.lunch-window-wrap div#lunch-window-title-confirm p{
+    vertical-align: middle;
+    margin: 0px;
+    padding: 5px;
+    padding-left: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}
+
+
+/* message */
+div.lunch-window-wrap div#lunch-window-msg {
+    padding: 15px;
+
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+div.lunch-window-wrap div#lunch-window-msg p {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}

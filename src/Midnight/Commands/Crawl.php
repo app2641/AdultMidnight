@@ -5,7 +5,10 @@ use Emerald\Command\CommandInterface;
 
 use Midnight\Crawler\Crawler,
     Midnight\Crawler\PluginManager,
+    Midnight\Crawler\EntryManager,
     Midnight\Crawler\ImageManager;
+use Midnight\Crawler\ContentsBuilder;
+use Midnight\Aws\S3;
 
 class Crawl extends AbstractCommand implements CommandInterface
 {
@@ -37,6 +40,10 @@ class Crawl extends AbstractCommand implements CommandInterface
             $this->_crawl($plugins);
 
             $this->_downloadEyeCatchImages();
+
+            $this->_build();
+
+            $this->log('build!', 'success');
 
         } catch (\Exception $e) {
             $this->errorLog($e->getMessage());
@@ -121,7 +128,20 @@ class Crawl extends AbstractCommand implements CommandInterface
 
         foreach ($this->crawl_data as $key => $data) {
             $manager->execute($data->eyecatch, $data->title);
-            $data[$key]->image_src = $manager->getDownloadPath();
+            $this->crawl_data[$key]->image_src = $manager->getDownloadPath();
         }
+    }
+
+
+    /**
+     * ページを構築する
+     *
+     * @return void
+     **/
+    private function _build ()
+    {
+        $builder = new ContentsBuilder();
+        $builder->setEntryData($this->crawl_data);
+        $builder->buildContents('index');
     }
 }

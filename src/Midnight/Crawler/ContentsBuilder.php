@@ -16,6 +16,14 @@ class ContentsBuilder
 
 
     /**
+     * 生成するページのtitleやdescriptionの値を記載した設定ファイル
+     *
+     * @var string
+     **/
+    private $site_ini_path = 'data/config/site.ini';
+
+
+    /**
      * @param  array $entry_data 
      * @return array
      */
@@ -79,6 +87,8 @@ class ContentsBuilder
         $layout = str_replace('${contents}', $entries, $layout);
         $layout = str_replace('${sidemenu}', $side_menu, $layout);
         $layout = str_replace('${footer}', $footer, $layout);
+        $layout = $this->_setMetaData($page_name, $layout);
+
         file_put_contents(ROOT.'/public_html/'.$page_name.'.html', $layout);
     }
 
@@ -93,13 +103,15 @@ class ContentsBuilder
     {
         $layout    = $this->_getLayout('layout');
         $contents  = $this->_buildSubContentsLayout($page_name);
-        $side_menu = $this->_buildSideMenuLayout($page_name);
+        $side_menu = $this->_buildSideMenuLayout();
         $footer    = $this->_buildFooterLayout();
 
         $layout = str_replace('${contents}', $contents, $layout);
         $layout = str_replace('${sidemenu}', $side_menu, $layout);
         $layout = str_replace('${pager}', '', $layout);
         $layout = str_replace('${footer}', $footer, $layout);
+        $layout = $this->_setMetaData($page_name, $layout);
+
         file_put_contents(ROOT.'/public_html/information/'.$page_name.'.html', $layout);
     }
 
@@ -156,6 +168,7 @@ class ContentsBuilder
             $entries .= $entry;
         }
         // 最後のdiv閉じタグを仕込む
+        if (! isset($key)) return $entries;
         if ($key % 4 != 3) $entries .= '</div>';
 
         return $entries;
@@ -178,19 +191,11 @@ class ContentsBuilder
     /**
      * サイドメニューのレイアウトを構築する
      *
-     * @param  string $activate  whoやsiteが入る。指定されたサイドメニューをactiveにする
      * @return string
      **/
-    private function _buildSideMenuLayout ($activate = false)
+    private function _buildSideMenuLayout ()
     {
         $side_menu = $this->_getLayout('side_menu_layout');
-
-        $who  = ($activate === 'who') ? 'active': '';
-        $site = ($activate === 'site') ? 'active': '';
-
-        $side_menu = str_replace('${who}', $who, $side_menu);
-        $side_menu = str_replace('${site}', $site, $side_menu);
-
         return $side_menu;
     }
 
@@ -204,6 +209,24 @@ class ContentsBuilder
     {
         $footer = $this->_getLayout('footer_layout');
         return $footer;
+    }
+
+
+    /**
+     * titleやdescriptionなどのメタデータを仕込む
+     *
+     * @param  string $page_name 生成するページ名
+     * @param  string $layout  レイアウトデータ
+     * @return string
+     **/
+    private function _setMetaData ($page_name, $layout)
+    {
+        $ini = parse_ini_file(ROOT.'/'.$this->site_ini_path, true)[$page_name];
+
+        $layout = str_replace('${title}', $ini['title'], $layout);
+        $layout = str_replace('${description}', $ini['description'], $layout);
+
+        return $layout;
     }
 }
 

@@ -51,6 +51,8 @@ abstract class AbstractPlugin
         try {
             if (! is_null($this->test_data)) {
                 $rss_xml = file_get_contents($this->test_data->getRssPath());
+            } else {
+                $rss_xml = file_get_contents($this->rss_url);
             }
 
             $dom = new \DOMDocument('1.0', 'UTF-8');

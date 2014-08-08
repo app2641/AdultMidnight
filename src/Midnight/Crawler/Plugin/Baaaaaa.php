@@ -21,7 +21,7 @@ class Baaaaaa extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = 'baaaaaa.blog.fc2.com/?xml';
+    protected $rss_url = 'http://baaaaaa.blog.fc2.com/?xml';
 
 
 

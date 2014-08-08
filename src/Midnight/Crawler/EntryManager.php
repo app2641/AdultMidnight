@@ -19,6 +19,9 @@ class EntryManager
         $url_stack   = array();
 
         foreach ($entry_data as $key => $data) {
+            if (count($data) == 0) continue;
+
+            // オブジェクトにキャスト
             if (is_array($data)) {
                 $entry_data[$key] = $data = (object) $data;
             }
