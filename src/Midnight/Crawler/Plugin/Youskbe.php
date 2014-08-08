@@ -108,7 +108,12 @@ class Youskbe extends AbstractPlugin implements PluginInterface
 
         // 動画はこちらテキストのリンクを取得する
         foreach ($movies_els as $movies_el) {
-            $movie_data[] = $manager->resolve($movies_el->getAttribute('href'));
+            $url  = $movies_el->getAttribute('href');
+            $text = $movies_el->innertext;
+
+            if ($url === $text) {
+                $movie_data[] = $manager->resolve($url);
+            }
         }
 
         return $movie_data;

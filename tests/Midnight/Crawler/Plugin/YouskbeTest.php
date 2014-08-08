@@ -148,6 +148,13 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://jp.xvideos.com/video7953646/', $movies_url[0]);
         $this->assertEquals('http://jp.xvideos.com/video7953677/', $movies_url[1]);
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $movies_url = $this->plugin->getMoviesUrl($html);
+
+        $this->assertTrue(is_array($movies_url));
+        $this->assertEquals('http://videomega.tv/?ref=EffeTZEYAQ', $movies_url[0]);
+
     }
 }
 
