@@ -143,5 +143,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         $builder = new ContentsBuilder();
         $builder->setEntryData($this->crawl_data);
         $builder->buildContents('index');
+        $builder->buildPastPager();
     }
 }

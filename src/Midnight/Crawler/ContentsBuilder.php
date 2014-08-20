@@ -1,6 +1,8 @@
 <?php
 
 
+use Midnight\Aws\S3;
+
 namespace Midnight\Crawler;
 
 class ContentsBuilder
@@ -13,6 +15,12 @@ class ContentsBuilder
      * @var array
      */
     private $entry_data = array();
+
+
+    /**
+     * @var S3
+     **/
+    private $S3;
 
 
     /**
@@ -30,6 +38,16 @@ class ContentsBuilder
     public function setEntryData($entry_data)
     {
         $this->entry_data = $entry_data;
+    }
+
+
+    /**
+     * @param  S3 $S3
+     * @return void
+     **/
+    public function setS3 (\Midnight\Aws\S3 $S3)
+    {
+        $this->S3 = $S3;
     }
 
 
@@ -68,6 +86,52 @@ class ContentsBuilder
                 $this->_buildSubPage($page_name);
                 break;
         }
+    }
+
+
+    /**
+     * 昨日、一昨日のコンテンツにページャを指定する
+     *
+     * @return void
+     **/
+    public function buildPastPager ()
+    {
+        if (IS_EC2 === false) return false;
+
+        $yesterday = date('Ymd', time() - (60 * 60 * 24));
+        $before_yesterday = date('Ymd', time() - (60 * 60 * 48));       
+
+        // 既に昨日用のコンテンツを生成している場合は処理を行わない
+        if ($this->S3->doesObjectExist('contents/'.$yesterday.'.html') === true) {
+            return false;
+        }
+
+
+        // 現在indexとなっているページを昨日のコンテンツに繰り下げる
+        $contents = $this->S3->download('index.html');
+        $pattern = '/<li class="next-page next"><a href="[^<]*<\/a><\/li>/';
+        $previous = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
+        $next = '<li class="next-page next"><a href="/contents/'.
+            $before_yesterday.'.html">Next &gt;</a></li>';
+        $contents = preg_replace($pattern, $previous.$next, $contents);
+
+        $path = '/tmp/'.$yesterday.'.html';
+        file_put_contents($path, $contents);
+        $this->S3->upload($path, 'contents/'.$yesterday.'.html');
+
+
+        // 一昨日のページャを更新する
+        $contents = $this->S3->download('contents/'.$before_yesterday.'.html');
+        $html = $response->body;
+
+        $pattern  = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
+        $previous = '<li class="previous preview-page"><a href="/contents/'.
+            $yesterday.'.html">&lt; Preview</a></li>';
+        $contents = str_replace($pattern, $previous, $contents);
+
+        $path = '/tmp/'.$before_yesterday.'.html';
+        file_put_contents($path, $contents);
+        $this->S3->upload($path, 'contents/'.$before_yesterday.'.html');
     }
 
 

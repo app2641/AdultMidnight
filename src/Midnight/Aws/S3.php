@@ -73,5 +73,46 @@ class S3
 
         return true;
     }
+
+
+    /**
+     * S3の指定パスのファイルをダウンロードする
+     *
+     * @param  string $path
+     * @return string
+     **/
+    public function download ($path)
+    {
+        try {
+            $result = $this->client->getObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $path
+            ));
+
+            $response = '';
+            $result['Body']->rewind();
+
+            while ($data = $result['Body']->read(1024)) {
+                $response .= $data;
+            }
+        
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return $response;
+    }
+
+
+    /**
+     * 指定パスのファイルがS3にあるかどうかを判別する
+     *
+     * @param  string $path
+     * @return boolean
+     **/
+    public function doesObjectExist ($path)
+    {
+        return $this->S3->doesObjectExist($this->bucket, $path);
+    }
 }
 

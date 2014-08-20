@@ -1,6 +1,7 @@
 <?php
 
 
+use Midnight\Aws\S3;
 use Midnight\Crawler\ContentsBuilder;
 use Midnight\Crawler\EntryManager;
 
@@ -19,10 +20,18 @@ class ContentsBuilderTest extends PHPUnit_Framework_TestCase
     private $manager;
 
 
+    /**
+     * @var S3
+     **/
+    private $S3;
+
+
     public function setUp()
     {
         $this->builder = new ContentsBuilder();
         $this->manager = new EntryManager();
+
+        $this->S3 = $this->getMock('Midnight\Aws\S3');
     }
 
 
@@ -63,6 +72,20 @@ class ContentsBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->builder->buildContents('who');
         $this->assertTrue(file_exists($who_path));
+    }
+
+
+    /**
+     * @test
+     *
+     * @group builder
+     * @group builder-build-past-pager
+     **/
+    public function 過去ページのページャを構築する ()
+    {
+        $this->builder->setS3($this->S3);
+        $result = $this->builder->buildPastPager();
+        $this->assertFalse($result);
     }
 }
 
