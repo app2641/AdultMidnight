@@ -2,6 +2,7 @@
 
 
 use Midnight\Crawler\Plugin\Youskbe;
+use Midnight\Crawler\Plugin\TestData\YouskbeTestData;
 
 class YouskbeTest extends PHPUnit_Framework_TestCase
 {
@@ -13,21 +14,9 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * RSSデータ
-     *
-     * @var string
+     * @var YouskbeTestData
      **/
-    private $xml_data;
-
-
-    /**
-     * HTMLテストデータのパス
-     *
-     * @var array
-     **/
-    private $html_paths = array(
-        'youskbe/11_161548.html'
-    );
+    private $test_data;
 
 
     /**
@@ -37,8 +26,10 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
+        $this->test_data = new YouskbeTestData();
+
         $this->plugin = new Youskbe;
-        $this->xml_data = file_get_contents(ROOT.'/data/fixtures/rss/youskbe.xml');
+        $this->plugin->setTestData($this->test_data);
     }
 
 
@@ -49,7 +40,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function RSSを取得する ()
     {
-        $dom = $this->plugin->fetchRss($this->xml_data);
+        $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
 
@@ -61,7 +52,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function コンテンツ要素を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
@@ -75,7 +66,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのURLを取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
@@ -91,7 +82,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function エントリの日付を取得する ()
     {
-        $dom     = $this->plugin->fetchRss($this->xml_data);
+        $dom     = $this->plugin->fetchRss();
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
@@ -108,9 +99,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function HTMLを取得する ()
     {
-        $dry_run = true;
-        $html = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
-
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
 
@@ -123,8 +112,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function エントリのタイトルを取得する ()
     {
-        $dry_run = true;
-        $html  = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【愛内希】萌えるコスプレ作品！【XVideos】', $title);
@@ -139,8 +127,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function アイキャッチ画像のURLを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://www.youskbe.com/img2/12/07/281121.jpg', $img_url);
@@ -155,13 +142,19 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
      */
     public function 動画へのリンクを取得する ()
     {
-        $dry_run = true;
-        $html    = $this->plugin->fetchHtml($this->html_paths[0], $dry_run);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://jp.xvideos.com/video7953646/', $movies_url[0]);
         $this->assertEquals('http://jp.xvideos.com/video7953677/', $movies_url[1]);
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $movies_url = $this->plugin->getMoviesUrl($html);
+
+        $this->assertTrue(is_array($movies_url));
+        $this->assertEquals('http://videomega.tv/?ref=EffeTZEYAQ', $movies_url[0]);
+
     }
 }
 

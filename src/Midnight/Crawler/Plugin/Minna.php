@@ -105,6 +105,7 @@ class Minna extends AbstractPlugin implements PluginInterface
                 if ($child_el->hasAttribute('url')) {
                     $movie_url = $child_el->getAttribute('url');
                     $movie_data[] = $manager->resolve($movie_url);
+                    continue;
                 }
 
                 // 主にasg.toの動画をembedしている場合
@@ -127,6 +128,10 @@ class Minna extends AbstractPlugin implements PluginInterface
             // iframeタグであった場合
             if ($child_el->tag == 'a') {
                 $url = $child_el->getAttribute('href');
+                if (! $manager->isXvideosUrl($url)) {
+                    continue;
+                }
+
                 $movie_data[] = $manager->resolve($url);
             }
         }

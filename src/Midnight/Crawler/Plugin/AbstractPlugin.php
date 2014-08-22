@@ -3,22 +3,55 @@
 
 namespace Midnight\Crawler\Plugin;
 
+use Midnight\Crawler\Plugin\TestData\AbstractTestData;
+
 require_once LIB.'/Library/SimpleHtmlDomParser/simple_html_dom.php';
 
 abstract class AbstractPlugin
 {
 
+    /**
+     * DryRun設定
+     *
+     * @var AbstractTestData
+     **/
+    protected $test_data;
+
+
+    /**
+     * DryRun設定を切り替える
+     *
+     * @param  AbstractTestData $test_data
+     * @return void
+     **/
+    public function setTestData (AbstractTestData $test_data)
+    {
+        $this->test_data = $test_data;
+    }
+
+
+    /**
+     * テストデータを所持しているかを判別する
+     *
+     * @return boolean
+     **/
+    public function hasTestData ()
+    {
+        return (is_null($this->test_data)) ? false: true;
+    }
+
 
     /**
      * RSSを取得する
      *
-     * @param  string $rss_xml  rssテキストの場合はこれを解析する
      * @return DOMDocument
      **/
-    public function fetchRss ($rss_xml = null)
+    public function fetchRss ()
     {
         try {
-            if (is_null($rss_xml)) {
+            if (! is_null($this->test_data)) {
+                $rss_xml = file_get_contents($this->test_data->getRssPath());
+            } else {
                 $rss_xml = file_get_contents($this->rss_url);
             }
 
@@ -102,14 +135,22 @@ abstract class AbstractPlugin
      * HTMLを取得する
      *
      * @param  string $url
-     * @param  boolean $dry_run
      * @return 
      **/
-    public function fetchHtml ($url, $dry_run = false)
+    public function fetchHtml ($url = false)
     {
-        if ($dry_run) {
-            $html_path = ROOT.'/data/fixtures/html/'.$url;
+        if (! is_null($this->test_data)) {
+            $html_paths = $this->test_data->getHtmlPaths();
+            $html_path  = ROOT.'/data/fixtures/html/';
+
+            // テストデータを示したurlかどうか
+            if (in_array($url, $html_paths)) {
+                $html_path .= $url;
+            } else {
+                $html_path .= $html_paths[0];
+            }
             $html = str_get_html(file_get_contents($html_path));
+
         } else {
             $html = file_get_html($url);
         }

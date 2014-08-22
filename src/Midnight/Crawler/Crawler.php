@@ -22,7 +22,6 @@ class Crawler
     private $crawl_data = array();
 
 
-
     /**
      * @param  $plugin
      * @return void
@@ -85,17 +84,20 @@ class Crawler
     {
         $entry_date = $this->plugin->getEntryDate($entry);
 
-        // 今日の登録されたエントリでなければそのまま返す
-        if (date('Y-m-d') != $entry_date) return array();
+        // 今日の登録されたエントリまたはDryRunでなければそのまま返す
+        if (date('Y-m-d') != $entry_date &&
+            $this->plugin->hasTestData() === false) return array();
 
 
         $url  = $this->plugin->getEntryUrl($entry);
         $html = $this->plugin->fetchHtml($url);
 
         return array(
-            'title' => $this->plugin->getEntryTitle($html),
-            'eyecatch' => $this->plugin->getEyeCatchUrl($html),
-            'movies' => $this->plugin->getMoviesUrl($html)
+            'title'     => $this->plugin->getEntryTitle($html),
+            'url'       => $url,
+            'eyecatch'  => $this->plugin->getEyeCatchUrl($html),
+            'image_src' => '',
+            'movies'    => $this->plugin->getMoviesUrl($html)
         );
     }
 }
