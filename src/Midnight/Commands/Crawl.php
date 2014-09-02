@@ -142,6 +142,7 @@ class Crawl extends AbstractCommand implements CommandInterface
     {
         $builder = new ContentsBuilder();
         $builder->setEntryData($this->crawl_data);
+        $builder->setS3(new S3());
         $builder->buildContents('index');
         $builder->buildPastPager();
     }

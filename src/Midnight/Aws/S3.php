@@ -64,7 +64,8 @@ class S3
         try {
             $this->client->putObject(array(
                 'Bucket' => $this->bucket,
-                'Body' => $body
+                'Key' => $to_path,
+                'Body' => EntityBody::factory(fopen($from_path, 'r'))
             ));
 
         } catch (\Exception $e) {
@@ -112,7 +113,7 @@ class S3
      **/
     public function doesObjectExist ($path)
     {
-        return $this->S3->doesObjectExist($this->bucket, $path);
+        return $this->client->doesObjectExist($this->bucket, $path);
     }
 }
 
