@@ -8,7 +8,11 @@ use Midnight\Crawler\Crawler,
     Midnight\Crawler\EntryManager,
     Midnight\Crawler\ImageManager;
 use Midnight\Crawler\ContentsBuilder;
+
 use Midnight\Aws\S3;
+use Midnight\Aws\Ses;
+
+use Midnight\Utility\Tracer;
 
 class Crawl extends AbstractCommand implements CommandInterface
 {
@@ -38,14 +42,17 @@ class Crawl extends AbstractCommand implements CommandInterface
 
             $plugins = $this->_getTragetPlugins();
             $this->_crawl($plugins);
-
             $this->_downloadEyeCatchImages();
-
             $this->_build();
 
             $this->log('build!', 'success');
 
         } catch (\Exception $e) {
+            $ses = new Ses();
+            $ses->setTitle('Crawl Error');
+            $ses->setBody(Tracer::getLog($e));
+            $ses->send();
+
             $this->errorLog($e->getMessage());
         }
     }
