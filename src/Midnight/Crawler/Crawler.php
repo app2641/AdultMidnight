@@ -4,6 +4,7 @@
 namespace Midnight\Crawler;
 
 use Midnight\Crawler\Plugin\PluginInterface;
+use Midnight\Utility\Logger;
 
 class Crawler
 {
@@ -92,12 +93,21 @@ class Crawler
         $url  = $this->plugin->getEntryUrl($entry);
         $html = $this->plugin->fetchHtml($url);
 
+        $title    = $this->plugin->getEntryTitle($html);
+        $eyecatch = $this->plugin->getEyeCatchUrl($html);
+        $movies   = $this->plugin->getMoviesUrl($html);
+
+        // ログの追記
+        Logger::addLog($title);
+        Logger::addLog($url);
+        Logger::addLog('エントリ解析をしました'.PHP_EOL);
+
         return array(
-            'title'     => $this->plugin->getEntryTitle($html),
+            'title'     => $title,
             'url'       => $url,
-            'eyecatch'  => $this->plugin->getEyeCatchUrl($html),
+            'eyecatch'  => $eyecatch,
             'image_src' => '',
-            'movies'    => $this->plugin->getMoviesUrl($html)
+            'movies'    => $movies
         );
     }
 }
