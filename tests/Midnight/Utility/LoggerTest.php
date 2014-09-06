@@ -10,10 +10,24 @@ class LoggerTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group logger
+     * @group logger-init
+     */
+    public function ログを初期化する ()
+    {
+        Logger::init();
+        $this->assertEquals('', Logger::getLog());
+    }
+
+
+
+    /**
+     * @test
+     * @group logger
      * @group logger-get-log
      */
     public function 現在のログを取得する ()
     {
+        Logger::init();
         $log = Logger::getLog();
         $this->assertEquals('', $log);
     }
@@ -26,6 +40,7 @@ class LoggerTest extends PHPUnit_Framework_TestCase
      **/
     public function ログを追記する ()
     {
+        Logger::init();
         Logger::addLog('test!');
 
         $log = Logger::getLog();

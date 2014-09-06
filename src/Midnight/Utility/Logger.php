@@ -9,6 +9,17 @@ class Logger
 {
 
     /**
+     * ログを初期化する
+     *
+     * @return void
+     */
+    public static function init ()
+    {
+        Registry::set('log', '');
+    }
+
+
+    /**
      * 現在のログを取得する
      *
      * @return string
@@ -18,14 +29,10 @@ class Logger
         $registry = Registry::getInstance();
 
         if (! $registry->ifKeyExists('log')) {
-            $log = '';
-            Registry::set('log', $log);
-
-        } else {
-            $log = Registry::get('log');
+            Logger::init();
         }
 
-        return $log;
+        return Registry::get('log');
     }
 
 

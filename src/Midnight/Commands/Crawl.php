@@ -39,6 +39,7 @@ class Crawl extends AbstractCommand implements CommandInterface
     {
         try {
             $this->params = $params;
+            Logger::init();
 
             $plugins = $this->_getTragetPlugins();
             $this->_crawl($plugins);
@@ -144,6 +145,8 @@ class Crawl extends AbstractCommand implements CommandInterface
      **/
     private function _build ()
     {
+        shuffle($this->crawl_data);
+
         $builder = new ContentsBuilder();
         $builder->setEntryData($this->crawl_data);
         $builder->setS3(new S3());
