@@ -48,7 +48,17 @@ class S3
             )
         );
 
-        $this->bucket = $ini['bucket'];
+        $this->setBucket($ini['bucket']);
+    }
+
+
+    /**
+     * @param  string $bucket
+     * @return void
+     */
+    public function setBucket ($bucket)
+    {
+        $this->bucket = $bucket;
     }
 
 
