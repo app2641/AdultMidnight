@@ -29,11 +29,20 @@ class S3 extends AbstractAws
      **/
     public function __construct ()
     {
-        $ini_path = ROOT.'/'.$this->aws_ini_path;
-        $ini = parse_ini_file($ini_path);
+        parent::__construct();
 
         $this->client = S3Client::factory($this->getConfig());
-        $this->bucket = $ini['bucket'];
+        $this->setBucket($this->ini['bucket']);
+    }
+
+
+    /**
+     * @param  string $bucket
+     * @return void
+     */
+    public function setBucket ($bucket)
+    {
+        $this->bucket = $bucket;
     }
 
 

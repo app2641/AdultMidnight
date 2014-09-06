@@ -47,6 +47,7 @@ class Ses extends AbstractAws
      **/
     public function __construct ()
     {
+        parent::__construct();
         $this->client = SesClient::factory($this->getConfig(Region::US_EAST_1));
     }
 

@@ -32,6 +32,28 @@ abstract class AbstractAws
 
 
     /**
+     * コンストラクタ
+     *
+     * @return void
+     */
+    public function __construct ()
+    {
+        $this->_initIniFile();
+    }
+
+
+    /**
+     * iniファイルを解析してメンバ変数に保存する
+     *
+     * @return void
+     */
+    private function _initIniFile ()
+    {
+        $this->ini = parse_ini_file($this->aws_ini_path);
+    }
+
+
+    /**
      * クライアントクラス生成に必要なコンフィグ値を配列で返す
      *
      * @param  string $region
@@ -39,8 +61,6 @@ abstract class AbstractAws
      **/
     public function getConfig ($region = Region::AP_NORTHEAST_1)
     {
-        $this->ini = parse_ini_file($this->aws_ini_path);
-
         return array(
             'key' => $this->ini['key'],
             'secret' => $this->ini['secret'],
