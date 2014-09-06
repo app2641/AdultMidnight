@@ -3,7 +3,7 @@
 
 namespace Midnight\Aws;
 
-use Aws\SES\SesClient;
+use Aws\Ses\SesClient;
 use Aws\Common\Enum\Region;
 use Guzzle\Http\EntityBody;
 

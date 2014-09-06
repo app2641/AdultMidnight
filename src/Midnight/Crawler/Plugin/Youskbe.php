@@ -85,7 +85,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div.container div.entry h1.entry_title';
+        $query = 'div.container article.entry h1.entry_title';
         $el = $html->find($query, 0);
         $img_el = $el->nextSibling()->firstChild()->firstChild();
 
@@ -101,7 +101,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div.entry div#more a';
+        $query = 'article.entry div#more a';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
