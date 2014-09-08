@@ -7,13 +7,13 @@ use Aws\S3\S3Client;
 use Aws\Common\Enum\Region;
 use Guzzle\Http\EntityBody;
 
-class S3
+class S3 extends AbstractAws
 {
 
     /**
      * @var S3Client
      **/
-    private $client;
+    protected $client;
 
 
     /**
@@ -23,32 +23,16 @@ class S3
 
 
     /**
-     * aws.iniへのパス
-     *
-     * @var string
-     **/
-    private $aws_ini_path = 'data/config/aws.ini';
-
-
-    /**
      * コンストラクタ
      *
      * @return void
      **/
     public function __construct ()
     {
-        $ini_path = ROOT.'/'.$this->aws_ini_path;
-        $ini = parse_ini_file($ini_path);
+        parent::__construct();
 
-        $this->client = S3Client::factory(
-            array(
-                'key' => $ini['key'],
-                'secret' => $ini['secret'],
-                'region' => Region::AP_NORTHEAST_1
-            )
-        );
-
-        $this->setBucket($ini['bucket']);
+        $this->client = S3Client::factory($this->getConfig());
+        $this->setBucket($this->ini['bucket']);
     }
 
 
@@ -74,7 +58,8 @@ class S3
         try {
             $this->client->putObject(array(
                 'Bucket' => $this->bucket,
-                'Body' => $body
+                'Key' => $to_path,
+                'Body' => EntityBody::factory(fopen($from_path, 'r'))
             ));
 
         } catch (\Exception $e) {
@@ -122,7 +107,7 @@ class S3
      **/
     public function doesObjectExist ($path)
     {
-        return $this->S3->doesObjectExist($this->bucket, $path);
+        return $this->client->doesObjectExist($this->bucket, $path);
     }
 }
 

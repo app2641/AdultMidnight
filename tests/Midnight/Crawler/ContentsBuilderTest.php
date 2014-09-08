@@ -73,19 +73,5 @@ class ContentsBuilderTest extends PHPUnit_Framework_TestCase
         $this->builder->buildContents('who');
         $this->assertTrue(file_exists($who_path));
     }
-
-
-    /**
-     * @test
-     *
-     * @group builder
-     * @group builder-build-past-pager
-     **/
-    public function 過去ページのページャを構築する ()
-    {
-        $this->builder->setS3($this->S3);
-        $result = $this->builder->buildPastPager();
-        $this->assertFalse($result);
-    }
 }
 
