@@ -74,7 +74,7 @@ class Deploy extends AbstractCommand implements CommandInterface
 
             $S3 = new S3();
             $S3->setBucket('app2641');
-            $S3->upload($this->zip_path, 'ModernAdultMidnight.zip');
+            $S3->upload($this->zip_path, 'Applications/ModernAdultMidnight.zip');
         
         } catch (\Exception $e) {
             throw $e;

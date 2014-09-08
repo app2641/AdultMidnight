@@ -1,9 +1,10 @@
 <?php
 
 
-use Midnight\Aws\S3;
-
 namespace Midnight\Crawler;
+
+use Midnight\Aws\S3;
+use Midnight\Utility\Logger;
 
 class ContentsBuilder
 {
@@ -90,52 +91,6 @@ class ContentsBuilder
 
 
     /**
-     * 昨日、一昨日のコンテンツにページャを指定する
-     *
-     * @return void
-     **/
-    public function buildPastPager ()
-    {
-        if (IS_EC2 === false) return false;
-
-        $yesterday = date('Ymd', time() - (60 * 60 * 24));
-        $before_yesterday = date('Ymd', time() - (60 * 60 * 48));       
-
-        // 既に昨日用のコンテンツを生成している場合は処理を行わない
-        if ($this->S3->doesObjectExist('contents/'.$yesterday.'.html') === true) {
-            return false;
-        }
-
-
-        // 現在indexとなっているページを昨日のコンテンツに繰り下げる
-        $contents = $this->S3->download('index.html');
-        $pattern = '/<li class="next-page next"><a href="[^<]*<\/a><\/li>/';
-        $previous = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
-        $next = '<li class="next-page next"><a href="/contents/'.
-            $before_yesterday.'.html">Next &gt;</a></li>';
-        $contents = preg_replace($pattern, $previous.$next, $contents);
-
-        $path = '/tmp/'.$yesterday.'.html';
-        file_put_contents($path, $contents);
-        $this->S3->upload($path, 'contents/'.$yesterday.'.html');
-
-
-        // 一昨日のページャを更新する
-        $contents = $this->S3->download('contents/'.$before_yesterday.'.html');
-        $html = $response->body;
-
-        $pattern  = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
-        $previous = '<li class="previous preview-page"><a href="/contents/'.
-            $yesterday.'.html">&lt; Preview</a></li>';
-        $contents = str_replace($pattern, $previous, $contents);
-
-        $path = '/tmp/'.$before_yesterday.'.html';
-        file_put_contents($path, $contents);
-        $this->S3->upload($path, 'contents/'.$before_yesterday.'.html');
-    }
-
-
-    /**
      * メインページまたはデモページを構築する
      *
      * @param  string $page_name ページ名
@@ -153,7 +108,75 @@ class ContentsBuilder
         $layout = str_replace('${footer}', $footer, $layout);
         $layout = $this->_setMetaData($page_name, $layout);
 
-        file_put_contents(ROOT.'/public_html/'.$page_name.'.html', $layout);
+        $path = ROOT.'/public_html/'.$page_name.'.html';
+        file_put_contents($path, $layout);
+
+        // 過去ページのページャを更新する
+        $this->_buildPastPager();
+
+        // S3へコンテンツをアップロードする
+        if ($page_name == 'demo') return false;
+        $this->_uploadConents($path, $page_name.'.html');
+    }
+
+
+    /**
+     * 昨日、一昨日のコンテンツにページャを指定する
+     *
+     * @return void
+     **/
+    private function _buildPastPager ()
+    {
+        if (IS_EC2 === false) return false;
+
+        $yesterday = date('Ymd', time() - (60 * 60 * 24));
+        $before_yesterday = date('Ymd', time() - (60 * 60 * 48));       
+
+        // 既に昨日用のコンテンツを生成している場合は処理を行わない
+        if ($this->S3->doesObjectExist('contents/'.$yesterday.'.html') === true) {
+            return false;
+        }
+
+
+        // 現在indexとなっているページを昨日のコンテンツに繰り下げる
+        try {
+            $contents = $this->S3->download('index.html');
+            $pattern = '/<li class="next-page next"><a href="[^<]*<\/a><\/li>/';
+            $previous = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
+            $next = '<li class="next-page next"><a href="/contents/'.
+                $before_yesterday.'.html">Next &gt;</a></li>';
+            $contents = preg_replace($pattern, $previous.$next, $contents);
+
+            $path = '/tmp/'.$yesterday.'.html';
+            file_put_contents($path, $contents);
+            $this->S3->upload($path, 'contents/'.$yesterday.'.html');
+
+        } catch (\Exception $e) {
+            Logger::addLog($e->getFile().' on line '.$e->getLine());
+            Logger::addLog($e->getMessage());
+            Logger::addLog('現在のindex.htmlを昨日のコンテンツにするの失敗した'.PHP_EOL);
+        }
+
+
+        // 一昨日のページャを更新する
+        try {
+            $contents = $this->S3->download('contents/'.$before_yesterday.'.html');
+            $html = $response->body;
+
+            $pattern  = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
+            $previous = '<li class="previous preview-page"><a href="/contents/'.
+                $yesterday.'.html">&lt; Preview</a></li>';
+            $contents = str_replace($pattern, $previous, $contents);
+
+            $path = '/tmp/'.$before_yesterday.'.html';
+            file_put_contents($path, $contents);
+            $this->S3->upload($path, 'contents/'.$before_yesterday.'.html');
+
+        } catch (\Exception $e) {
+            Logger::addLog($e->getFile().' on line '.$e->getLine());
+            Logger::addLog($e->getMessage());
+            Logger::addLog('一昨日のページャがindex.html指してたのを更新するのに失敗した'.PHP_EOL);
+        }
     }
 
 
@@ -176,7 +199,32 @@ class ContentsBuilder
         $layout = str_replace('${footer}', $footer, $layout);
         $layout = $this->_setMetaData($page_name, $layout);
 
-        file_put_contents(ROOT.'/public_html/information/'.$page_name.'.html', $layout);
+        $path = ROOT.'/public_html/information/'.$page_name.'.html';
+        file_put_contents($path, $layout);
+
+        // S3へコンテンツをアップロードする
+        $this->_uploadConents($path, 'information/'.$page_name.'.html');
+    }
+
+
+    /**
+     * 指定パスのファイルをS3の指定パスへアップロードする
+     *
+     * @param  string $from_path
+     * @param  string $to_path
+     * @return void
+     **/
+    private function _uploadConents ($from_path, $to_path)
+    {
+        if (IS_EC2 === false) return false;
+
+        try {
+            $this->S3->upload($from_path, $to_path);
+        
+        } catch (\Exception $e) {
+            Logger::addLog($from_path.' -> '.$to_path);
+            Logger::addLog('S3へのアップロードに失敗した'.PHP_EOL);
+        }
     }
 
 

@@ -8,7 +8,11 @@ use Midnight\Crawler\Crawler,
     Midnight\Crawler\EntryManager,
     Midnight\Crawler\ImageManager;
 use Midnight\Crawler\ContentsBuilder;
+
 use Midnight\Aws\S3;
+use Midnight\Aws\Ses;
+
+use Midnight\Utility\Logger;
 
 class Crawl extends AbstractCommand implements CommandInterface
 {
@@ -35,17 +39,18 @@ class Crawl extends AbstractCommand implements CommandInterface
     {
         try {
             $this->params = $params;
+            Logger::init();
 
             $plugins = $this->_getTragetPlugins();
             $this->_crawl($plugins);
-
             $this->_downloadEyeCatchImages();
-
             $this->_build();
 
+            $this->_sendLog();
             $this->log('build!', 'success');
 
         } catch (\Exception $e) {
+            $this->_sendErrorLog($e);
             $this->errorLog($e->getMessage());
         }
     }
@@ -140,9 +145,40 @@ class Crawl extends AbstractCommand implements CommandInterface
      **/
     private function _build ()
     {
+        shuffle($this->crawl_data);
+
         $builder = new ContentsBuilder();
         $builder->setEntryData($this->crawl_data);
+        $builder->setS3(new S3());
         $builder->buildContents('index');
-        $builder->buildPastPager();
+    }
+
+
+    /**
+     * クロールのログをメール送信する
+     *
+     * @return void
+     **/
+    private function _sendLog ()
+    {
+        $ses = new Ses();
+        $ses->setTitle('Crawl Logger');
+        $ses->setBody(Logger::getLog());
+        $ses->send();
+    }
+
+
+    /**
+     * クロール中に発生したエラーログをメール送信する
+     *
+     * @param  Exception $e
+     * @return void
+     **/
+    private function _sendErrorLog ($e)
+    {
+        $ses = new Ses();
+        $ses->setTitle('Crawl Error!');
+        $ses->setBody(Logger::getStackTrace($e));
+        $ses->send();
     }
 }
