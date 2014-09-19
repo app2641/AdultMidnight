@@ -157,6 +157,7 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
         $options = array(
             'LaunchConfigurationName' => $name,
             'ImageId' => $this->ami_id,
+            'UserData' => ROOT.'/data/config/CrawlerCloudConfig.txt',
             'SecurityGroup' => array('AdultMidnightCrawler'),
             'InstanceType' => Aws\Ec2\Enum\InstanceType::T2_MICRO
         );

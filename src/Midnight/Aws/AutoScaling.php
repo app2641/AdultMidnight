@@ -112,5 +112,22 @@ class AutoScaling extends AbstractAws
             throw $e;
         }
     }
+
+
+    /**
+     * ScheduledActionを更新する
+     *
+     * @param  array $options
+     * @return void
+     **/
+    public function UpdateScheduledAction ($options)
+    {
+        try {
+            $this->client->putScheduledUpdateGroupAction($options);
+        
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
 

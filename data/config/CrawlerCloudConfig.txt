@@ -1,0 +1,7 @@
+#cloud-config
+
+runcmd:
+- [git, clone, https://github.com/app2641/AdultMidnight.git, /home/ec2-user/AdultMidnight]
+- [/home/ec2-user/AdultMidnight/bin/midnight, Crawl]
+- [/home/ec2-user/AdultMidnight/bin/midnight, TerminateCrawler]
+
