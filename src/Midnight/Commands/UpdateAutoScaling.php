@@ -21,6 +21,12 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
 
 
     /**
+     * @var AutoScaling
+     **/
+    private $as;
+
+
+    /**
      * コマンドの実行
      *
      * @param  array $params  パラメータ配列
@@ -33,6 +39,7 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
             $this->_validateParams();
             $this->_validateAmiId();
 
+            $this->as = new AutoScaling();
             $this->_updateAutoScalingGroup();
 
         } catch (\Exception $e) {
@@ -77,8 +84,84 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
      */
     private function _updateAutoScalingGroup ()
     {
-        $as = new AutoScaling();
-        $configs = $as->getLaunchConfigurations();
+        // 使用するLaunchConfigurationの取得
+        $config_name = $this->_getLaunchConfiguration();
+
+        // 使用するAutoScalingGroupの更新
+        try {
+            $options = array(
+                'AutoScalingGroupName' => 'ModernAdultMidnightCrawlerGroup',
+                'LaunchConfigurationName' => $config_name,
+                'MinSize' => 0,
+                'MaxSize' => 0,
+                'AvailabilityZones' => array(Aws\Common\Enum\Region::AP_NORTHEAST_1)
+            );
+            $this->as->updateAutoScalingGroup($options);
+        
+        } catch (\Exception $e) {
+            $this->as->createAutoScalingGroup($options);
+        }
+    }
+
+
+    /**
+     * AutoScalingに使用するLaunchConfigurationを生成して返す
+     * 既にconfigが三つ存在していた場合は古いものを削除してから生成を行う
+     *
+     * @return string
+     **/
+    private function _getLaunchConfiguration ()
+    {
+        $configs = $this->as->getLaunchConfigurations();
+        $names   = array();
+        $base_name = 'ModernAdultMidnightCrawlerLaunchConfigVer';
+
+        foreach ($configs['LaunchConfigurations'] as $config) {
+            $name = $config['LaunchConfigurationName'];
+            if (preg_match('/'.$base_name.'[0-9]*/', $name)) {
+                $names[] = $name;
+            }
+        }
+
+        // 配列の昇順化
+        asort($names);
+
+        // ModernAdultMidnightCrawlerLaunchConfigが三つ以上存在した場合は一番古いものを削除する
+        if (count($names) >= 3) {
+            $this->as->deleteLaunchConfiguration(array_shift($names));
+        }
+
+        // 生成したいLaunchConfiguration名を作る
+        if (count($names) == 0) {
+            $name = $base_name.'1';
+        } else {
+            $ver = intval(str_replace($base_name, '', array_pop($names)));
+            $name = $base_name.strval($ver + 1);
+        }
+
+        // 新しいLaunchConfiguration生成
+        $this->_createLaunchConfiguration($name);
+
+        return $name;
+    }
+
+
+    /**
+     * 新しいLaunchConfigurationを生成する
+     *
+     * @param  string $name
+     * @return void
+     **/
+    private function _createLaunchConfiguration ($name)
+    {
+        $options = array(
+            'LaunchConfigurationName' => $name,
+            'ImageId' => $this->ami_id,
+            'SecurityGroup' => array('AdultMidnightCrawler'),
+            'InstanceType' => Aws\Ec2\Enum\InstanceType::T2_MICRO
+        );
+
+        $this->as->createLaunchConfiguration($options);
     }
 
 
