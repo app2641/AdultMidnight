@@ -63,6 +63,6 @@ class UpdateScheduledAction extends AbstractCommand implements CommandInterface
      **/
     public static function help ()
     {
-        return 'ModernAdultMidnigtCrawlerGroupのScheduledActionを更新する';
+        return 'ModernAdultMidnightCrawlerGroupのScheduledActionを更新する';
     }
 }
