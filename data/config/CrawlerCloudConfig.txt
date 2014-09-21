@@ -2,6 +2,9 @@
 
 runcmd:
 - [git, clone, https://github.com/app2641/AdultMidnight.git, /home/ec2-user/AdultMidnight]
+- [cd, /home/ec2-user/AdultMidnight]
+- [composer.phar, self-update]
+- [composer.phar, install]
 - [/home/ec2-user/AdultMidnight/bin/midnight, Crawl]
 - [/home/ec2-user/AdultMidnight/bin/midnight, TerminateCrawler]
 

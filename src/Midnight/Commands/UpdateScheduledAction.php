@@ -43,7 +43,7 @@ class UpdateScheduledAction extends AbstractCommand implements CommandInterface
             $options = array(
                 'AutoScalingGroupName' => 'ModernAdultMidnightCrawlerGroup',
                 'ScheduledActionName' => 'ModernAdultMidnightCrawlerSchedule',
-                'Recurrence' => '55 * * * *',
+                'Recurrence' => '55 10-14 * * *',
                 'MinSize' => 1,
                 'MaxSize' => 1
             );
