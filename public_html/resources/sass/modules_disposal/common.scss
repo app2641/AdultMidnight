@@ -1,0 +1,78 @@
+/* common.scss */
+
+* {
+    font-family: "mplus-1c-regular", "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}
+
+body {
+    padding: 20px 30px;
+}
+
+div.clear {
+    clear: both;
+}
+
+
+h1#site-title {
+    margin: 10px 0px;
+}
+
+h1#site-title a {
+    font-family: 'Bilbo Swash Caps';
+    //color: #efefef;
+    font-size: 2.5em;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+h1#site-title a:hover {
+    color: #ccc;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+
+div.row-container {
+    margin: 20px;
+}
+
+
+ul.side-menu li {
+    line-height: 30px;
+}
+
+ul.side-menu {
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+
+div.contents-container {
+    padding: 0px 10px;
+}
+
+div.contents-container dl dt {
+    margin-bottom: 5px;
+}
+
+div.contents-container dl dt span {
+    font-size: 0.87em;
+}
+
+div.contents-container dl dd {
+    margin-bottom: 20px;
+}
+
+
+/* wish-list */
+div.wish-list {
+    padding: 30px 0px;
+    padding-left: 10px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+}

@@ -1,0 +1,86 @@
+/* common.scss */
+
+* {
+    font-family: "mplus-1c-regular", "Lucida Grande", "Lucida Sans Unicode", Tahoma, "HiraMaruPro-W4", "ヒラギノ丸ゴ Pro W4", "Hiragino Kaku Gothic Pro", "HG丸ゴシックM-PRO", sans-serif;
+}
+
+body {
+    padding: 20px 30px;
+    padding-top: 0px;
+    background-color: #f7efef;
+}
+
+div.clear {
+    clear: both;
+}
+
+a {
+    color: #b04f5e;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #b04f5e;
+}
+
+
+h1#site-title {
+    margin: 10px 0px;
+
+    a {
+        font-family: 'Bilbo Swash Caps';
+        font-size: 2.5em;
+        font-weight: normal;
+    }
+
+    a:hover {
+        color: #ccc;
+        text-decoration: none;
+    }
+}
+
+
+div.contents-container {
+    padding: 0px 10px;
+
+    dl {
+        dt {
+            margin-bottom: 5px;
+            span {
+                font-size: 0.87em;
+            }
+        }
+
+        dd {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+div#side-menu-container {
+    padding-left: 25px;
+
+    h3.side-menu-header {
+        font-size: 1.5em;
+        color: #b04f5e;
+        padding-left: 10px;
+    }
+
+    div.side-menu {
+        a.list-group-item {
+            color: #b04f5e;
+            font-size: 0.9em;
+        }
+    }
+
+    div.wish-list {
+        padding: 35px 0px;
+        padding-left: 10px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: center;
+    }
+}

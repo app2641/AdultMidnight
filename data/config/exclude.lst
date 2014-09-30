@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+README.md
+
+data/fixtures/*
+
+public_html/index.html
+public_html/demo.html
+public_html/.htaccess
+public_html/robots.txt
+public_html/contents/*
+public_html/resources/sass/*
+
+tests/*
+vendor/*
+
