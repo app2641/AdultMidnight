@@ -94,7 +94,8 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
                 'LaunchConfigurationName' => $config_name,
                 'MinSize' => 0,
                 'MaxSize' => 0,
-                'AvailabilityZones' => array(Aws\Common\Enum\Region::AP_NORTHEAST_1)
+                'AvailabilityZones' => array(Aws\Common\Enum\Region::AP_NORTHEAST_1.'a'),
+                'VPCZoneIdentifier' => 'subnet-b2ed03c5'
             );
             $this->as->updateAutoScalingGroup($options);
         
@@ -112,37 +113,38 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
      **/
     private function _getLaunchConfiguration ()
     {
-        $configs = $this->as->getLaunchConfigurations();
-        $names   = array();
+        $configs   = $this->as->getLaunchConfigurations();
+        $versions  = array();
         $base_name = 'ModernAdultMidnightCrawlerLaunchConfigVer';
 
         foreach ($configs['LaunchConfigurations'] as $config) {
             $name = $config['LaunchConfigurationName'];
-            if (preg_match('/'.$base_name.'[0-9]*/', $name)) {
-                $names[] = $name;
+            if (preg_match('/'.$base_name.'([0-9]+)/', $name, $matches)) {
+                $versions[] = $matches[1];
             }
         }
 
         // 配列の昇順化
-        asort($names);
+        asort($versions);
 
         // ModernAdultMidnightCrawlerLaunchConfigが三つ以上存在した場合は一番古いものを削除する
-        if (count($names) >= 3) {
-            $this->as->deleteLaunchConfiguration(array_shift($names));
+        if (count($versions) >= 3) {
+            $config_name = $base_name.array_shift($versions);
+            $this->as->deleteLaunchConfiguration($config_name);
         }
 
         // 生成したいLaunchConfiguration名を作る
-        if (count($names) == 0) {
-            $name = $base_name.'1';
+        if (count($versions) == 0) {
+            $config_name = $base_name.'1';
         } else {
-            $ver = intval(str_replace($base_name, '', array_pop($names)));
-            $name = $base_name.strval($ver + 1);
+            $ver = intval(array_pop($versions));
+            $config_name = $base_name.strval($ver + 1);
         }
 
         // 新しいLaunchConfiguration生成
-        $this->_createLaunchConfiguration($name);
+        $this->_createLaunchConfiguration($config_name);
 
-        return $name;
+        return $config_name;
     }
 
 
@@ -154,11 +156,14 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
      **/
     private function _createLaunchConfiguration ($name)
     {
+        $user_data = file_get_contents(ROOT.'/data/config/CrawlerCloudConfig.txt');
+        $user_data = base64_encode($user_data);
+
         $options = array(
             'LaunchConfigurationName' => $name,
             'ImageId' => $this->ami_id,
-            'UserData' => ROOT.'/data/config/CrawlerCloudConfig.txt',
-            'SecurityGroup' => array('AdultMidnightCrawler'),
+            'UserData' => $user_data,
+            'SecurityGroups' => array('sg-e8b77b8d'),
             'InstanceType' => Aws\Ec2\Enum\InstanceType::T2_MICRO
         );
 
