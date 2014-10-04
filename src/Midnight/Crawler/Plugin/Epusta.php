@@ -59,8 +59,9 @@ class Epusta extends AbstractPlugin implements PluginInterface
     {
         $query = 'div#center div.ently_outline h2.ently_title a';
         $title_el = $html->find($query, 0);
-        $title = trim(str_replace('&nbsp;', '', $title_el->plaintext));
+        if (is_null($title_el)) throw new \Exception('タイトルを取得できませんでした');
 
+        $title = trim(str_replace('&nbsp;', '', $title_el->plaintext));
         return $title;
     }
 
@@ -75,6 +76,9 @@ class Epusta extends AbstractPlugin implements PluginInterface
     {
         $query = 'div.ently_body div.ently_text table tbody tr td table tbody tr td a img';
         $img_el = $html->find($query, 0);
+
+        if (is_null($img_el)) throw new \Exception('アイキャッチを取得できませんでした');
+        if (!$img_el->hasAttribute('src')) throw new \Exception('src属性が見つかりませんでした');
 
         return $img_el->getAttribute('src');
     }

@@ -63,11 +63,11 @@ class Logger
             $e->getFile().' on line '.$e->getLine().PHP_EOL.PHP_EOL;
 
         foreach ($e->getTrace() as $error) {
-
             if (isset($error['class'])) {
                 $text .= 'Class: '.$error['class'].PHP_EOL;
             }
-            $text .= 'Function: '.$error['function'].PHP_EOL.PHP_EOL;
+            $text .= 'Function: '.$error['function'].
+                ' on '.$error['line'].PHP_EOL.PHP_EOL;
         }
 
         return $text;

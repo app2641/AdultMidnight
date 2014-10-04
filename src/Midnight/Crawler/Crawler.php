@@ -50,8 +50,16 @@ class Crawler
             $entries = $this->plugin->getEntries($rss_dom);
 
             foreach ($entries as $entry) {
-                // エントリを解析して必要データを取得する
-                $this->crawl_data[] = $this->_parseEntry($entry);
+                try {
+                    // エントリを解析して必要データを取得する
+                    $this->crawl_data[] = $this->_parseEntry($entry);
+                
+                } catch (\Exception $e) {
+                    Logger::addLog(Logger::getStackTrace($e));
+                    var_dump(Logger::getLog());
+                    exit();
+                    Logger::addLog($e->getMessage().PHP_EOL);
+                }
             }
         
         } catch (\Exception $e) {

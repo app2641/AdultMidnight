@@ -88,6 +88,7 @@ abstract class AbstractPlugin
     public function getNodeValueByTagName ($element, $tag_name)
     {
         $elements = $element->getElementsByTagName($tag_name);
+        if ($elements->length === 0) throw new \Exception($tag_name.'要素は見つかりませんでした');
         return $elements->item(0)->nodeValue;
     }
 

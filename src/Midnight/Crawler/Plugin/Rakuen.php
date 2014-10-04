@@ -59,6 +59,7 @@ class Rakuen extends AbstractPlugin implements PluginInterface
     {
         $query = 'div#container div#main div.post div#content div#postheading h1';
         $title_el = $html->find($query, 0);
+        if (is_null($title_el)) throw new \Exception('タイトルを取得できませんでした');
 
         return $title_el->plaintext;
     }
@@ -74,6 +75,9 @@ class Rakuen extends AbstractPlugin implements PluginInterface
     {
         $query = 'div#container div#main div.post div#content div.kiji-l img';
         $img_el = $html->find($query, 0);
+
+        if (is_null($img_el)) throw new \Exception('アイキャッチを取得できませんでした');
+        if (!$img_el->hasAttribute('src')) throw new \Exception('src属性が見つかりませんでした');
 
         return $img_el->getAttribute('src');
     }

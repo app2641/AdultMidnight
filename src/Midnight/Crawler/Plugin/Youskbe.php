@@ -72,6 +72,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
     {
         $query = 'h1.entry_title';
         $title_el = $html->find($query, 0);
+        if (is_null($title_el)) throw new \Exception('タイトルを取得できませんでした');
 
         return $title_el->plaintext;
     }
@@ -87,7 +88,10 @@ class Youskbe extends AbstractPlugin implements PluginInterface
     {
         $query = 'div.container article.entry h1.entry_title';
         $el = $html->find($query, 0);
+        if (is_null($el)) throw new \Exception('アイキャッチを取得できませんでした');
+
         $img_el = $el->nextSibling()->firstChild()->firstChild();
+        if (!$img_el->hasAttribute('src')) throw new \Exception('src属性が見つかりませんでした');
 
         return $img_el->getAttribute('src');
     }
