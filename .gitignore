@@ -13,5 +13,13 @@ build/*
 vendor/*
 composer.phar
 
+
+.DS_Store
+bin/coveralls
 data/config/aws.ini
 
+public_html/index.html
+public_html/demo.html
+public_html/contents/*
+!public_html/contents/.gitkeep
+public_html/resources/sass/.sass-cache

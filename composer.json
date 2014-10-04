@@ -11,5 +11,11 @@
         "psr-4":{
             "Adult\\Midnight\\": "src/"
         }
+    },
+    "require": {
+        "app2641/garnet-beans": "*",
+        "aws/aws-sdk-php": "*",
+        "satooshi/php-coveralls": "*",
+        "zendframework/zend-config": "*"
     }
 }

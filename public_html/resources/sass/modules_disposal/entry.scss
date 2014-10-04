@@ -1,0 +1,50 @@
+/* entry.scss */
+
+div.entry-item {
+    padding: 10px 5px;
+    background-color: #fff;
+}
+
+div.eyecatch-container {
+    width: 130px;
+    height: 90px;
+    overflow: hidden;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+div.entry-item div.eyecatch-container img {
+    width: 130px;
+    border: solid 1px #ccc;
+    opacity: 0.8;
+
+    margin-top: 7px;
+}
+
+div.entry-item:hover div.eyecatch-container img {
+    opacity: 1.0;
+}
+
+
+div.entry-item div.caption h5 {
+    font-weight: bold;
+    font-size: 0.9em;
+
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+div.entry-item div.caption p {
+    font-size: 0.9em;
+    line-height: 17px;
+}
+
+div.entry-item div.caption a img.movie-star {
+    opacity: 0.75;
+}
+
+div.entry-item div.caption a img.movie-star:hover {
+    opacity: 1.0;
+}
