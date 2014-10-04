@@ -66,8 +66,12 @@ class Logger
             if (isset($error['class'])) {
                 $text .= 'Class: '.$error['class'].PHP_EOL;
             }
-            $text .= 'Function: '.$error['function'].
-                ' on '.$error['line'].PHP_EOL.PHP_EOL;
+            $text .= 'Function: '.$error['function'];
+            
+            if (isset($error['line'])) {
+                $text .= ' on '.$error['line'];
+            }
+            $text .= PHP_EOL.PHP_EOL;
         }
 
         return $text;
