@@ -56,8 +56,6 @@ class Crawler
                 
                 } catch (\Exception $e) {
                     Logger::addLog(Logger::getStackTrace($e));
-                    var_dump(Logger::getLog());
-                    exit();
                     Logger::addLog($e->getMessage().PHP_EOL);
                 }
             }
