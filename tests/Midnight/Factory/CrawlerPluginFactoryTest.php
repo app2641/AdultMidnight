@@ -118,6 +118,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-hentai-anime
+     */
+    public function HentaiAnimeプラグインの取得 ()
+    {
+        $plugin = $this->container->get('HentaiAnime');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\HentaiAnime', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-matome
      */
     public function Matomeプラグインの取得 ()

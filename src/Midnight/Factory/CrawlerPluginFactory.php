@@ -13,6 +13,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Download,
     Midnight\Crawler\Plugin\Epusta,
+    Midnight\Crawler\Plugin\HentaiAnime,
     Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Muryo,
@@ -92,6 +93,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildEpusta ()
     {
         return new Epusta();
+    }
+
+
+    /**
+     * @var HentaiAnime
+     */
+    public function buildHentaiAnime ()
+    {
+        return new HentaiAnime();
     }
 
 
