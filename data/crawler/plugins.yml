@@ -28,6 +28,9 @@ Plugins:
     Epusta:
         enable: true
 
+    HentaiAnime:
+        enable: true
+
     Matome:
         enable: true
 
