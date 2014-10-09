@@ -5,7 +5,7 @@ namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
 
-class ${name} extends AbstractPlugin implements PluginInterface
+class HentaiAnime extends AbstractPlugin implements PluginInterface
 {
 
     /**
@@ -13,7 +13,7 @@ class ${name} extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $site_name = '';
+    protected $site_name = 'HENTAIアニメちゃんねる';
 
 
     /**
@@ -21,7 +21,7 @@ class ${name} extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = '';
+    protected $rss_url = 'hentaianimechannel.blog.fc2.com/?xml';
 
 
 
@@ -45,7 +45,7 @@ class ${name} extends AbstractPlugin implements PluginInterface
      */
     public function getEntryDate ($entry)
     {
-        return $this->getDateByPubDate($entry);
+        return $this->getDateByDcDate($entry);
     }
 
 
@@ -57,7 +57,7 @@ class ${name} extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = '';
+        $query = 'div.entry h2';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new \Exception('タイトルを取得できませんでした');
 
@@ -73,7 +73,7 @@ class ${name} extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = '';
+        $query = 'div.entry div.textBody div.centeringtext p.image img';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new \Exception('アイキャッチを取得できませんでした');
@@ -91,13 +91,21 @@ class ${name} extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = '';
+        $query = 'div.entry div.textBody div.centeringtext p a button.button-default';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
 
         // 動画はこちらテキストのリンクを取得する
         foreach ($movies_els as $movies_el) {
+            // 親要素のaタグを取得する
+            $parent = $movies_el->parentNode();
+            if ($parent->nodeName() === 'a') {
+                $url = $manager->resolve($parent->getAttribute('href'));
+                if ($url) {
+                    $movie_data[] = $url;
+                }
+            }
         }
 
         return $movie_data;
