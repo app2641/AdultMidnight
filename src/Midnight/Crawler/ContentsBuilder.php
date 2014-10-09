@@ -161,7 +161,6 @@ class ContentsBuilder
         // 一昨日のページャを更新する
         try {
             $contents = $this->S3->download('contents/'.$before_yesterday.'.html');
-            $html = $response->body;
 
             $pattern  = '<li class="previous preview-page"><a href="/">&lt; Previous</a></li>';
             $previous = '<li class="previous preview-page"><a href="/contents/'.
