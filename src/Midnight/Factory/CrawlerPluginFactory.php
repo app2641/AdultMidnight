@@ -7,6 +7,7 @@ use Garnet\Factory\AbstractFactory;
 
 use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\AdultGeek,
+    Midnight\Crawler\Plugin\AdultVideo,
     Midnight\Crawler\Plugin\AvSelection,
     Midnight\Crawler\Plugin\Baaaaaa,
     Midnight\Crawler\Plugin\Bikyaku,
@@ -39,6 +40,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildAdultGeek ()
     {
         return new AdultGeek();
+    }
+
+
+    /**
+     * @return AdultVideo
+     **/
+    public function buildAdultVideo ()
+    {
+        return new AdultVideo();
     }
 
 

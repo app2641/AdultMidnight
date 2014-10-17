@@ -46,6 +46,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-adult-video
+     */
+    public function AdultVideoプラグインの取得 ()
+    {
+        $plugin = $this->container->get('AdultVideo');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\AdultVideo', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-avselection
      */
     public function AvSelectionプラグインの取得 ()
