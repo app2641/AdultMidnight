@@ -10,6 +10,9 @@ Plugins:
     AdultGeek:
         enable: true
 
+    AdultVideo:
+        enable: true
+
     AvSelection:
         enable: true
 
