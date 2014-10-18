@@ -35,6 +35,29 @@ class ShikosenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group shikosen
+     * @group shikosen-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\ShikosenTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group shikosen
      * @group shikosen-fetch-rss
      */
@@ -101,6 +124,23 @@ class ShikosenTest extends PHPUnit_Framework_TestCase
     {
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group shikosen-not-get-title
+     * @group shikosen
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEntryTitle($html);
     }
 
 

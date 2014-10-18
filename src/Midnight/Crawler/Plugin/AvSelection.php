@@ -4,6 +4,7 @@
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
+use Midnight\Utility\CrawlerException;
 
 class AvSelection extends AbstractPlugin implements PluginInterface
 {
@@ -59,7 +60,7 @@ class AvSelection extends AbstractPlugin implements PluginInterface
     {
         $query = 'div#articlebody div.titlebody h3.title a';
         $title_el = $html->find($query, 0);
-        if (is_null($title_el)) throw new \Exception('タイトルを取得できませんでした');
+        if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
         return $title_el->plaintext;
     }
@@ -76,8 +77,8 @@ class AvSelection extends AbstractPlugin implements PluginInterface
         $query = 'div#articlebody div.mov_time img';
         $img_el = $html->find($query, 0);
 
-        if (is_null($img_el)) throw new \Exception('アイキャッチを取得できませんでした');
-        if (!$img_el->hasAttribute('src')) throw new \Exception('src属性が見つかりませんでした');
+        if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
+        if (!$img_el->hasAttribute('src')) throw new CrawlerException('src属性が見つかりませんでした');
 
         return $img_el->getAttribute('src');
     }

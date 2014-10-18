@@ -4,6 +4,8 @@
 namespace Midnight\Crawler;
 
 use Midnight\Crawler\Plugin\PluginInterface;
+
+use Midnight\Utility\CrawlerException;
 use Midnight\Utility\Logger;
 
 class Crawler
@@ -50,14 +52,7 @@ class Crawler
             $entries = $this->plugin->getEntries($rss_dom);
 
             foreach ($entries as $entry) {
-                try {
-                    // エントリを解析して必要データを取得する
-                    $this->crawl_data[] = $this->_parseEntry($entry);
-                
-                } catch (\Exception $e) {
-                    Logger::addLog(Logger::getStackTrace($e));
-                    Logger::addLog($e->getMessage().PHP_EOL);
-                }
+                $this->crawl_data[] = $this->_parseEntry($entry);
             }
         
         } catch (\Exception $e) {
@@ -89,31 +84,44 @@ class Crawler
      **/
     private function _parseEntry ($entry)
     {
-        $entry_date = $this->plugin->getEntryDate($entry);
+        try {
+            $entry_date = $this->plugin->getEntryDate($entry);
 
-        // 今日の登録されたエントリまたはDryRunでなければそのまま返す
-        if (date('Y-m-d') != $entry_date &&
-            $this->plugin->hasTestData() === false) return array();
+            // 今日の登録されたエントリではない、またはTestData使用でなければそのまま返す
+            if (date('Y-m-d') != $entry_date &&
+                $this->plugin->hasTestData() === false) return array();
 
 
-        $url  = $this->plugin->getEntryUrl($entry);
-        $html = $this->plugin->fetchHtml($url);
+            $url  = $this->plugin->getEntryUrl($entry);
+            Logger::addLog($url);
 
-        $title    = $this->plugin->getEntryTitle($html);
-        $eyecatch = $this->plugin->getEyeCatchUrl($html);
-        $movies   = $this->plugin->getMoviesUrl($html);
+            $html     = $this->plugin->fetchHtml($url);
+            $title    = $this->plugin->getEntryTitle($html);
+            $eyecatch = $this->plugin->getEyeCatchUrl($html);
+            $movies   = $this->plugin->getMoviesUrl($html);
 
-        // ログの追記
-        Logger::addLog($title);
-        Logger::addLog($url);
-        Logger::addLog('エントリ解析をしました'.PHP_EOL);
+            // ログの追記
+            Logger::addLog($title);
+            Logger::addLog('エントリ解析をしました'.PHP_EOL);
 
-        return array(
-            'title'     => $title,
-            'url'       => $url,
-            'eyecatch'  => $eyecatch,
-            'image_src' => '',
-            'movies'    => $movies
-        );
+            $result = array(
+                'title'     => $title,
+                'url'       => $url,
+                'eyecatch'  => $eyecatch,
+                'image_src' => '',
+                'movies'    => $movies
+            );
+
+        } catch (CrawlerException $e) {
+            Logger::addLog($e->getMessage());
+            Logger::addLog($this->plugin->getSiteName().PHP_EOL);
+            $result = array();
+        
+        } catch (\Exception $e) {
+            Logger::addLog($e->getMessage());
+            Logger::addLog(Logger::getStackTrace($e).PHP_EOL);
+            $result = array();
+        }
+        return $result;
     }
 }

@@ -16,6 +16,8 @@ class DownloadTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'download/60188.html'
+        'download/60188.html',
+        'download/error.html',
+        'download/error2.html'
     );
 }

@@ -17,7 +17,9 @@ class BaaaaaaTestData extends AbstractTestData
      **/
     protected $html_paths = array(
         'baaaaaa/blog-entry-3883.html',
-        'baaaaaa/blog-entry-3879.html'
+        'baaaaaa/blog-entry-3879.html',
+        'baaaaaa/error.html',
+        'baaaaaa/error2.html'
     );
 }
 

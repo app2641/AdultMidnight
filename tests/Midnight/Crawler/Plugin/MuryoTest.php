@@ -35,6 +35,29 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group muryo
+     * @group muryo-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\MuryoTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group muryo
      * @group muryo-fetch-rss
      */
@@ -106,6 +129,23 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group muryo-not-get-title
+     * @group muryo
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
      * @large
      * @group muryo-get-title
      * @group muryo
@@ -116,6 +156,40 @@ class MuryoTest extends PHPUnit_Framework_TestCase
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【素人】ただの友達同士だった大学生が初めて一線を越える瞬間', $title);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group muryo-not-get-eyecatch-img-el
+     * @group muryo
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group muryo-not-get-img-src
+     * @group muryo
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[4]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

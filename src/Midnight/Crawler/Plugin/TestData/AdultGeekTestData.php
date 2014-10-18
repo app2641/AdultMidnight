@@ -16,7 +16,13 @@ class AdultGeekTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'adult-geek/post_5459.html'
+        'adult-geek/post_5459.html',
+
+        // タイトルクエリの不正、画像クエリの不正
+        'adult-geek/error.html',
+
+        // 画像src属性の不正
+        'adult-geek/error2.html'
     );
 }
 

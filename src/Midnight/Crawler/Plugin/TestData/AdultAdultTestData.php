@@ -17,7 +17,13 @@ class AdultAdultTestData extends AbstractTestData
      **/
     protected $html_paths = array(
         'adult-adult/blog-entry-19719.html',
-        'adult-adult/blog-entry-19726.html'
+        'adult-adult/blog-entry-19726.html',
+
+        // タイトルクエリの不正、画像クエリの不正
+        'adult-adult/error.html',
+
+        // 画像srcの不正
+        'adult-adult/error2.html'
     );
 }
 

@@ -4,6 +4,7 @@
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\Plugin\TestData\AbstractTestData;
+use Midnight\Utility\CrawlerException;
 
 require_once LIB.'/Library/SimpleHtmlDomParser/simple_html_dom.php';
 
@@ -11,11 +12,28 @@ abstract class AbstractPlugin
 {
 
     /**
+     * サイト名
+     *
+     * @var string
+     **/
+    protected $site_name;
+
+
+    /**
      * DryRun設定
      *
      * @var AbstractTestData
      **/
     protected $test_data;
+
+
+    /**
+     * @return string
+     **/
+    public function getSiteName ()
+    {
+        return $this->site_name;
+    }
 
 
     /**
@@ -59,7 +77,7 @@ abstract class AbstractPlugin
             $dom->loadXML($rss_xml);
         
         } catch (\Exception $e) {
-            throw $e;
+            throw new CrawlerException('RSSを取得出来ませんでした');
         }
 
         return $dom;
@@ -88,7 +106,8 @@ abstract class AbstractPlugin
     public function getNodeValueByTagName ($element, $tag_name)
     {
         $elements = $element->getElementsByTagName($tag_name);
-        if ($elements->length === 0) throw new \Exception($tag_name.'要素は見つかりませんでした');
+        if ($elements->length === 0) throw new CrawlerException($tag_name.'要素は見つかりませんでした');
+
         return $elements->item(0)->nodeValue;
     }
 
@@ -155,6 +174,8 @@ abstract class AbstractPlugin
         } else {
             $html = file_get_html($url);
         }
+
+        if ($html === false) throw new CrawlerException('htmlが取得出来ませんでした');
 
         return $html;
     }

@@ -16,6 +16,8 @@ class DoesuTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'doesu/8992.html'
+        'doesu/8992.html',
+        'doesu/error.html',
+        'doesu/error2.html'
     );
 }
