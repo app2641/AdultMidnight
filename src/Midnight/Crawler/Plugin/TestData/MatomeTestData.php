@@ -16,6 +16,8 @@ class MatomeTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'matome/blog-entry-3641.html'
+        'matome/blog-entry-3641.html',
+        'matome/error.html',
+        'matome/error2.html'
     );
 }

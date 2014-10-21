@@ -35,6 +35,29 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group youskbe
+     * @group youskbe-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\YouskbeTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group youskbe
      * @group youskbe-fetch-rss
      */
@@ -107,6 +130,23 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group youskbe-not-get-title
+     * @group youskbe
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
      * @group youskbe-get-title
      * @group youskbe
      */
@@ -116,6 +156,40 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【愛内希】萌えるコスプレ作品！【XVideos】', $title);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group youskbe-not-get-eyecatch-img-el
+     * @group youskbe
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group youskbe-not-get-img-src
+     * @group youskbe
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

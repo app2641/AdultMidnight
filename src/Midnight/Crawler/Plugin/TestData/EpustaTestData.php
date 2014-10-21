@@ -16,6 +16,8 @@ class EpustaTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'epusta/blog-entry-47054.html'
+        'epusta/blog-entry-47054.html',
+        'epusta/error.html',
+        'epusta/error2.html'
     );
 }

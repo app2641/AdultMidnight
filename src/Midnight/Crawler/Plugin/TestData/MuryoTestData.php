@@ -18,6 +18,8 @@ class MuryoTestData extends AbstractTestData
     protected $html_paths = array(
         'muryo/71340.html',
         'muryo/71370.html',
-        'muryo/71376.html'
+        'muryo/71376.html',
+        'muryo/error.html',
+        'muryo/error2.html'
     );
 }

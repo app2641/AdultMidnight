@@ -35,12 +35,12 @@ class AvSelectionTestDataTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group adult-test
-     * @group adult-test-get-html-paths
+     * @group selection-test
+     * @group selection-test-get-html-paths
      */
     public function テスト用Htmlデータのパスを取得する ()
     {
         $html_paths = $this->test_data->getHtmlPaths();
-        $this->assertEquals(1, count($html_paths));
+        $this->assertEquals(3, count($html_paths));
     }
 }

@@ -17,7 +17,9 @@ class AdultVideoTestData extends AbstractTestData
      **/
     protected $html_paths = array(
         'adult-video/blog-entry-13160.html',
-        'adult-video/blog-entry-13159.html'
+        'adult-video/blog-entry-13159.html',
+        'adult-video/error.html',
+        'adult-video/error2.html'
     );
 }
 

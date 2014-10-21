@@ -41,6 +41,6 @@ class ShikosenTestDataTest extends PHPUnit_Framework_TestCase
     public function テスト用Htmlデータのパスを取得する ()
     {
         $html_paths = $this->test_data->getHtmlPaths();
-        $this->assertEquals(2, count($html_paths));
+        $this->assertEquals(3, count($html_paths));
     }
 }

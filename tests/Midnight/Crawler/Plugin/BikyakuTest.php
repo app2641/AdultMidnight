@@ -35,6 +35,29 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group bikyaku
+     * @group bikyaku-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\BikyakuTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group bikyaku
      * @group bikyaku-fetch-rss
      */
@@ -107,6 +130,23 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group bikyaku-not-get-title
+     * @group bikyaku
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
      * @group bikyaku-get-title
      * @group bikyaku
      */
@@ -116,6 +156,40 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('ミニスカ黒パンストお姉さん達に蒸れた匂いを嗅がされ足責めされるM男(FC2Adult)', $title);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group bikyaku-not-get-eyecatch-img-el
+     * @group bikyaku
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group bikyaku-not-get-img-src
+     * @group bikyaku
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

@@ -35,6 +35,29 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group geek
+     * @group geek-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\AdultGeekTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group geek
      * @group geek-fetch-rss
      */
@@ -122,6 +145,23 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group geek-not-get-title
+     * @group geek
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
      * @group geek-get-eyecatch-url
      * @group geek
      */
@@ -131,6 +171,40 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals('http://www.adultgeek.net/upimg/1406/mmgouhiyake.jpg', $img_url);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group geek-not-get-eyecatch-img-el
+     * @group geek
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group geek-not-get-img-src
+     * @group geek
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

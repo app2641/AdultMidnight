@@ -16,6 +16,8 @@ class RakuenTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'rakuen/6640.html'
+        'rakuen/6640.html',
+        'rakuen/error.html',
+        'rakuen/error2.html'
     );
 }
