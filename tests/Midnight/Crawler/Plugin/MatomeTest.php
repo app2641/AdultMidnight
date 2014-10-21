@@ -129,7 +129,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    タイトルを取得出来ませんでした
      * @group matome-not-get-title
@@ -161,7 +161,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
      * @group matome-not-get-eyecatch-img-el
@@ -178,7 +178,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    src属性が見つかりませんでした
      * @group matome-not-get-img-src
