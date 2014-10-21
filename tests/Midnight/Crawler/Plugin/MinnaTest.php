@@ -35,6 +35,29 @@ class MinnaTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group minna
+     * @group minna-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\MinnaTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group minna
      * @group minna-fetch-rss
      */
@@ -117,6 +140,23 @@ class MinnaTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group minna-not-get-title
+     * @group minna
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[4]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
      * @group minna-get-title
      * @group minna
      */
@@ -126,6 +166,40 @@ class MinnaTest extends PHPUnit_Framework_TestCase
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('【エロ動画】頭良さそうなメガネっ子がフェラで口内射精', $title);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group minna-not-get-eyecatch-img-el
+     * @group minna
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[4]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group minna-not-get-img-src
+     * @group minna
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[5]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

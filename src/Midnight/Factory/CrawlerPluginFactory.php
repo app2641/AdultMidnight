@@ -7,12 +7,14 @@ use Garnet\Factory\AbstractFactory;
 
 use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\AdultGeek,
+    Midnight\Crawler\Plugin\AdultVideo,
     Midnight\Crawler\Plugin\AvSelection,
     Midnight\Crawler\Plugin\Baaaaaa,
     Midnight\Crawler\Plugin\Bikyaku,
     Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Download,
     Midnight\Crawler\Plugin\Epusta,
+    Midnight\Crawler\Plugin\HentaiAnime,
     Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Muryo,
@@ -38,6 +40,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildAdultGeek ()
     {
         return new AdultGeek();
+    }
+
+
+    /**
+     * @return AdultVideo
+     **/
+    public function buildAdultVideo ()
+    {
+        return new AdultVideo();
     }
 
 
@@ -92,6 +103,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildEpusta ()
     {
         return new Epusta();
+    }
+
+
+    /**
+     * @var HentaiAnime
+     */
+    public function buildHentaiAnime ()
+    {
+        return new HentaiAnime();
     }
 
 

@@ -35,6 +35,29 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    RSSを取得出来ませんでした
+     * @group rakuen
+     * @group rakuen-valid-rss
+     */
+    public function RSSが取得出来なかった場合 ()
+    {
+        $test_data = $this->getMock(
+            'Midnight\Crawler\Plugin\TestData\RakuenTestData',
+            array('getRssPath')
+        );
+        $test_data->expects($this->any())
+            ->method('getRssPath')->will($this->returnValue('valid path'));
+
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $this->plugin->setTestData($test_data);
+        $this->plugin->fetchRss();
+    }
+
+
+    /**
+     * @test
      * @group rakuen
      * @group rakuen-fetch-rss
      */
@@ -106,6 +129,23 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    タイトルを取得出来ませんでした
+     * @group rakuen-not-get-title
+     * @group rakuen
+     */
+    public function エントリのタイトルを取得出来なかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $this->plugin->getEntryTitle($html);
+    }
+
+
+    /**
+     * @test
      * @large
      * @group rakuen-get-title
      * @group rakuen
@@ -116,6 +156,40 @@ class RakuenTest extends PHPUnit_Framework_TestCase
         $title = $this->plugin->getEntryTitle($html);
 
         $this->assertEquals('おさげ頭の黒髪少女と父が繰り広げる変態相姦調教セクロスがエロすぎｗｗｗ', $title);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
+     * @group rakuen-not-get-eyecatch-img-el
+     * @group rakuen
+     */
+    public function アイキャッチの画像要素が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $this->plugin->getEyeCatchUrl($html);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @expectedException           CrawlerException
+     * @expectedExceptionMessage    src属性が見つかりませんでした
+     * @group rakuen-not-get-img-src
+     * @group rakuen
+     */
+    public function src属性が見つからなかった場合 ()
+    {
+        $this->setExpectedException('Midnight\Utility\CrawlerException');
+
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $this->plugin->getEyeCatchUrl($html);
     }
 
 

@@ -17,6 +17,7 @@ class ShikosenTestData extends AbstractTestData
      **/
     protected $html_paths = array(
         'shikosen/36152.html',
-        'shikosen/toppage.html'
+        'shikosen/toppage.html',
+        'shikosen/error.html'
     );
 }

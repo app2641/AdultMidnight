@@ -16,7 +16,9 @@ class AvSelectionTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'av-selection/38476794.html'
+        'av-selection/38476794.html',
+        'av-selection/error.html',
+        'av-selection/error2.html'
     );
 }
 

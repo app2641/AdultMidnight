@@ -17,6 +17,8 @@ class BikyakuTestData extends AbstractTestData
      **/
     protected $html_paths = array(
         'bikyaku/blog-entry-1957.html',
-        'bikyaku/blog-entry-1954.html'
+        'bikyaku/blog-entry-1954.html',
+        'bikyaku/error.html',
+        'bikyaku/error2.html'
     );
 }

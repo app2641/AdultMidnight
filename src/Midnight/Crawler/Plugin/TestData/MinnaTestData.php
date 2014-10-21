@@ -19,6 +19,8 @@ class MinnaTestData extends AbstractTestData
         'minna/68166962.html',
         'minna/68166006.html',
         'minna/68164648.html',
-        'minna/68193503.html'
+        'minna/68193503.html',
+        'minna/error.html',
+        'minna/error2.html'
     );
 }

@@ -26,7 +26,7 @@ $ bin/midnight Crawl
 $ composer.phar install
 ```
 
-次に Aws 接続の設定を aws.ini ファイルに記載します。
+次に Aws への接続設定を aws.ini ファイルに記載します。
 
 ```
 $ cp data/config/aws.ini.orig data/config/aws.ini

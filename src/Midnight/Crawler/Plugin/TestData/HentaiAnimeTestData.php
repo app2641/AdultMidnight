@@ -18,7 +18,9 @@ class HentaiAnimeTestData extends AbstractTestData
     protected $html_paths = array(
         'hentai-anime/blog-entry-317.html',
         'hentai-anime/blog-entry-466.html',
-        'hentai-anime/blog-entry-464.html'
+        'hentai-anime/blog-entry-464.html',
+        'hentai-anime/error.html',
+        'hentai-anime/error2.html'
     );
 }
 
