@@ -74,13 +74,13 @@ class Rakuen extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div#container div#main div.post div#content div.kiji-l img';
+        $query = 'div#container div#main div.post div#content div.kiji-l img.img01';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
-        if (!$img_el->hasAttribute('src')) throw new CrawlerException('src属性が見つかりませんでした');
+        if (!$img_el->hasAttribute('data-lazy-src')) throw new CrawlerException('src属性が見つかりませんでした');
 
-        return $img_el->getAttribute('src');
+        return $img_el->getAttribute('data-lazy-src');
     }
 
 
