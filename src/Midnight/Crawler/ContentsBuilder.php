@@ -12,7 +12,7 @@ class ContentsBuilder
     /**
      * メインページあるいはデモページを生成する際に、
      * コンテンツのエントリ情報となるデータ配列 
-
+     *
      * @var array
      */
     private $entry_data = array();
@@ -332,10 +332,11 @@ class ContentsBuilder
      **/
     private function _setMetaData ($page_name, $layout)
     {
-        $ini = parse_ini_file(ROOT.'/'.$this->site_ini_path, true)[$page_name];
+        $ini = parse_ini_file(ROOT.'/'.$this->site_ini_path, true);
 
-        $layout = str_replace('${title}', $ini['title'], $layout);
-        $layout = str_replace('${description}', $ini['description'], $layout);
+        $layout = str_replace('${title}', $ini[$page_name]['title'], $layout);
+        $layout = str_replace('${description}', $ini[$page_name]['description'], $layout);
+        $layout = str_replace('${version}', $ini['common']['version'], $layout);
 
         return $layout;
     }

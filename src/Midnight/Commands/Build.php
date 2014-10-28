@@ -6,7 +6,7 @@ use Emerald\Command\CommandInterface;
 use Midnight\Crawler\EntryManager,
     Midnight\Crawler\ContentsBuilder;
 
-class BuildDemo extends AbstractCommand implements CommandInterface
+class Build extends AbstractCommand implements CommandInterface
 {
 
     /**
