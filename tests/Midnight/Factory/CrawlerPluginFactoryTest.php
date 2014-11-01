@@ -118,6 +118,18 @@ class CrawlerPluginFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group p_factory
+     * @group p_factory-get-eroero
+     */
+    public function EroEroプラグインの取得 ()
+    {
+        $plugin = $this->container->get('EroEro');
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\EroEro', $plugin);
+    }
+
+
+    /**
+     * @test
+     * @group p_factory
      * @group p_factory-get-hentai-anime
      */
     public function HentaiAnimeプラグインの取得 ()
