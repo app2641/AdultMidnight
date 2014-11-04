@@ -3,6 +3,8 @@
 
 namespace Midnight\Crawler;
 
+use Midnight\Utility\CrawlerException;
+
 class UriManager
 {
 
@@ -76,6 +78,14 @@ class UriManager
             case 'video.fc2.com':
                 $url = $this->_resolveFc2Url();
                 break;
+
+            case 'www.google.com':
+                $url = $this->_resolveGoogleUrl();
+                break;
+
+            case 'hqq.tv':
+                $url = false;
+                break;
         }
 
         return $url;
@@ -127,7 +137,7 @@ class UriManager
      *
      * @return string
      **/
-    public function _resolveFc2Url ()
+    private function _resolveFc2Url ()
     {
         // ja/a/content あるいは content を url に含む場合、
         // それが既に動画のurlとなっている為、そのまま返す
@@ -146,6 +156,31 @@ class UriManager
         if (! isset($matches[1])) return $base_url;
 
         return $base_url.'/content/'.$matches[1];
+    }
+
+
+    /**
+     * Googleのurlを解決する
+     * 主にEroEroプラグインで使用する
+     * クエリに動画urlが含まれてそれを抽出する
+     *
+     * e.g.
+     * https://www.google.com/webhp?hl=all#safe=off&hl=all&q=http:%2F%2Fwww.pornhub.com%2Fview_video.php%3Fviewkey%3D1947857414
+     *
+     * @return string
+     */
+    private function _resolveGoogleUrl ()
+    {
+        preg_match('/(http.*)/', $this->parse_data['fragment'], $matches);
+        if (! isset($matches[1])) {
+            throw new CrawlException($this->raw_url.' urlをパース出来ませんでした');
+        }
+
+        $url = str_replace('%2F', '/', $matches[1]);
+        $url = str_replace('%3F', '?', $url);
+        $url = str_replace('%3D', '=', $url);
+
+        return $url;
     }
 }
 
