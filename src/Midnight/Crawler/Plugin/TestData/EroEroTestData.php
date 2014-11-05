@@ -22,7 +22,9 @@ class EroEroTestData extends AbstractTestData
         'ero-ero/blog-entry-2220.html',
         'ero-ero/blog-entry-3532.html',
         'ero-ero/blog-entry-2664.html',
-        'ero-ero/blog-entry-3528.html'
+        'ero-ero/blog-entry-3528.html',
+        'ero-ero/error.html',
+        'ero-ero/error2.html'
     );
 }
 

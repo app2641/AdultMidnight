@@ -31,6 +31,9 @@ Plugins:
     Epusta:
         enable: true
 
+    EroEro:
+        enable: true
+
     HentaiAnime:
         enable: true
 
