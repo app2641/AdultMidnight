@@ -4,8 +4,6 @@ runcmd:
 - [git, clone, "https://github.com/app2641/AdultMidnight.git", /home/ec2-user/AdultMidnight]
 - [cd, /home/ec2-user/AdultMidnight]
 - [git, fetch, --all]
-- [git, checkout, develop]
-- [git, pull, origin, develop]
 - [cp, /home/ec2-user/aws_config/aws.ini, /home/ec2-user/AdultMidnight/data/config/aws.ini]
 - [export, COMPOSER_HOME="/home/ec2-user/AdultMidnight"]
 - [/usr/bin/composer.phar, self-update]
