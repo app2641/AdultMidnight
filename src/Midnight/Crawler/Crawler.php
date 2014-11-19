@@ -92,17 +92,13 @@ class Crawler
                 $this->plugin->hasTestData() === false) return array();
 
 
-            $url  = $this->plugin->getEntryUrl($entry);
-            Logger::addLog($url);
+            $url = false;
+            $url = $this->plugin->getEntryUrl($entry);
 
             $html     = $this->plugin->fetchHtml($url);
             $title    = $this->plugin->getEntryTitle($html);
             $eyecatch = $this->plugin->getEyeCatchUrl($html);
             $movies   = $this->plugin->getMoviesUrl($html);
-
-            // ログの追記
-            Logger::addLog($title);
-            Logger::addLog('エントリ解析をしました'.PHP_EOL);
 
             $result = array(
                 'title'     => $title,
@@ -113,11 +109,13 @@ class Crawler
             );
 
         } catch (CrawlerException $e) {
+            if ($url !== false) Logger::addLog($url);
             Logger::addLog($e->getMessage());
             Logger::addLog($this->plugin->getSiteName().PHP_EOL);
             $result = array();
         
         } catch (\Exception $e) {
+            if ($url !== false) Logger::addLog($url);
             Logger::addLog($e->getMessage());
             Logger::addLog(Logger::getStackTrace($e).PHP_EOL);
             $result = array();
