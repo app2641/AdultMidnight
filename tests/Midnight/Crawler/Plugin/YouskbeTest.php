@@ -94,7 +94,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://www.youskbe.com/blog/archives/2014/06/11_161548.php', $url);
+        $this->assertEquals('http://www.youskbe.com/blog/archives/025386/', $url);
     }
 
 
@@ -110,7 +110,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-06-11', $date);
+        $this->assertEquals('2014-11-19', $date);
     }
 
 
@@ -139,7 +139,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $this->plugin->getEntryTitle($html);
     }
 
@@ -155,7 +155,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
         $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('【愛内希】萌えるコスプレ作品！【XVideos】', $title);
+        $this->assertEquals('【佐伯奈々】ガンギマリアナルFUCK！【RedTube】', $title);
     }
 
 
@@ -171,7 +171,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $this->plugin->getEyeCatchUrl($html);
     }
 
@@ -188,7 +188,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $this->plugin->getEyeCatchUrl($html);
     }
 
@@ -204,7 +204,7 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('http://www.youskbe.com/img2/12/07/281121.jpg', $img_url);
+        $this->assertEquals('http://www.youskbe.com/img2/14/11/181130.jpg', $img_url);
     }
 
 
@@ -220,15 +220,10 @@ class YouskbeTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video7953646/', $movies_url[0]);
-        $this->assertEquals('http://jp.xvideos.com/video7953677/', $movies_url[1]);
-
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
-        $movies_url = $this->plugin->getMoviesUrl($html);
-
-        $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://videomega.tv/?ref=EffeTZEYAQ', $movies_url[0]);
-
+        $this->assertEquals('http://www.redtube.com/695927', $movies_url[0]);
+        $this->assertEquals('http://www.redtube.com/695921', $movies_url[1]);
+        $this->assertEquals('http://www.redtube.com/695920', $movies_url[2]);
+        $this->assertEquals('http://www.redtube.com/695941', $movies_url[3]);
     }
 }
 

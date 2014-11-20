@@ -22,7 +22,7 @@ class Bikyaku extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = 'http://bikyakukiss.blog40.fc2.com/?xml';
+    protected $rss_url = 'http://bikyakukiss.com/?xml';
 
 
 
