@@ -7,12 +7,15 @@ use Garnet\Factory\AbstractFactory;
 
 use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
     Midnight\Crawler\Plugin\TestData\AdultGeekTestData,
+    Midnight\Crawler\Plugin\TestData\AdultVideoTestData,
     Midnight\Crawler\Plugin\TestData\AvSelectionTestData,
     Midnight\Crawler\Plugin\TestData\BaaaaaaTestData,
     Midnight\Crawler\Plugin\TestData\BikyakuTestData,
     Midnight\Crawler\Plugin\TestData\DoesuTestData,
     Midnight\Crawler\Plugin\TestData\DownloadTestData,
     Midnight\Crawler\Plugin\TestData\EpustaTestData,
+    Midnight\Crawler\Plugin\TestData\EroEroTestData,
+    Midnight\Crawler\Plugin\TestData\HentaiAnimeTestData,
     Midnight\Crawler\Plugin\TestData\MatomeTestData,
     Midnight\Crawler\Plugin\TestData\MinnaTestData,
     Midnight\Crawler\Plugin\TestData\MuryoTestData,
@@ -38,6 +41,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildAdultGeek ()
     {
         return new AdultGeekTestData();
+    }
+
+
+    /**
+     * @return AdultVideoTestData
+     **/
+    public function buildAdultVideo ()
+    {
+        return new AdultVideoTestData();
     }
 
 
@@ -92,6 +104,24 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildEpusta ()
     {
         return new EpustaTestData();
+    }
+
+
+    /**
+     * @return EroEroTestData
+     **/
+    public function buildEroEro ()
+    {
+        return new EroEroTestData();
+    }
+
+
+    /**
+     * @return HentaiAnimeTestData
+     **/
+    public function buildHentaiAnime ()
+    {
+        return new HentaiAnimeTestData();
     }
 
 
