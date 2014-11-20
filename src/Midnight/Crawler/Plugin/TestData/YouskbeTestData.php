@@ -16,8 +16,7 @@ class YouskbeTestData extends AbstractTestData
      * @var array
      **/
     protected $html_paths = array(
-        'youskbe/11_161548.html',
-        'youskbe/08_081651.html',
+        'youskbe/025386.html',
         'youskbe/error.html',
         'youskbe/error2.html'
     );

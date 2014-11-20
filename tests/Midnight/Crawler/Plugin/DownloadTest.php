@@ -94,7 +94,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://xvideos-field.com/archives/60188', $url);
+        $this->assertEquals('http://xvideos-field.com/archives/88690', $url);
     }
 
 
@@ -110,7 +110,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-07-03', $date);
+        $this->assertEquals('2014-11-19', $date);
     }
 
 
@@ -155,7 +155,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
         $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('【美藤れん】イイ女たちの美しきレズPLAY DUAL BOX 駆け引きの無しの愛撫で淫れ合う真のエロス', $title);
+        $this->assertEquals('【山田和歌子】オモチャを挿入しながら接客してるのをお客にバレて手マンでマジイキ潮吹きしちゃう', $title);
     }
 
 
@@ -205,8 +205,9 @@ class DownloadTest extends PHPUnit_Framework_TestCase
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
         $this->assertEquals(
-            'http://img100-937.xvideos.com/videos/thumbslll/34/f7/0c/'.
-            '34f70c8ec830ecbfa81496c54dd6d0f2/34f70c8ec830ecbfa81496c54dd6d0f2.2.jpg', $img_url
+            'http://lln-img.uliza.jp/2/Thumbnails/899/'.
+            'f5a8a2d4d1c7b9d4066698865cb9ce1b/899_2325_f5a8a2d4d1c7b9d4066698865cb9ce1b_4845429_1563_00056_l.jpg',
+            $img_url
         );
     }
 
@@ -223,7 +224,6 @@ class DownloadTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video1764937', $movies_url[0]);
-        $this->assertEquals('http://jp.xvideos.com/video1764995', $movies_url[1]);
+        $this->assertEquals('http://www.pipii.tv/player?id=2325&#038;embed=1&#038;width=512', $movies_url[0]);
     }
 }

@@ -87,7 +87,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div.container article.entry h1.entry_title';
+        $query = 'div.entry article h1.entry_title';
         $el = $html->find($query, 0);
         if (is_null($el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
 
@@ -106,7 +106,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'article.entry div#more a';
+        $query = 'div.entry article div#more a';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
