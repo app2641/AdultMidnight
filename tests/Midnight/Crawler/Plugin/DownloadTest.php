@@ -129,7 +129,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @medium
+     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    タイトルを取得出来ませんでした
      * @group download-not-get-title

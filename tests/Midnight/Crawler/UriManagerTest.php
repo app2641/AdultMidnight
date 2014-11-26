@@ -104,6 +104,11 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://video.fc2.com/content/20130827LybYzuyu', $url);
 
         // 正しい動画url
+        $url = 'http://video.fc2.com/a/content/20141117CSbF4p7a/';
+        $url = $this->manager->resolve($url);
+        $this->assertEquals('http://video.fc2.com/a/content/20141117CSbF4p7a/', $url);
+
+        // 正しい動画url
         $url = 'http://video.fc2.com/ja/a/content/20140518019MUw9N/';
         $url = $this->manager->resolve($url);
         $this->assertEquals('http://video.fc2.com/ja/a/content/20140518019MUw9N/', $url);

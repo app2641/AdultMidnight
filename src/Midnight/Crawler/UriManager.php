@@ -142,7 +142,7 @@ class UriManager
         // ja/a/content あるいは content を url に含む場合、
         // それが既に動画のurlとなっている為、そのまま返す
         // pattern: http://video.fc2.com/(ja/a/|)content
-        $pattern = $this->parse_data['scheme'].':\/\/'.$this->parse_data['host'].'(\/ja\/a|)\/content';
+        $pattern = $this->parse_data['scheme'].':\/\/'.$this->parse_data['host'].'(\/ja|\/a)+\/content';
         if (preg_match('/^'.$pattern.'/', $this->raw_url)) {
             return $this->raw_url;
         }
