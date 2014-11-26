@@ -154,7 +154,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $this->plugin->getEntryTitle($html);
     }
 
@@ -186,7 +186,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $this->plugin->getEyeCatchUrl($html);
     }
 
@@ -203,7 +203,7 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Midnight\Utility\CrawlerException');
 
-        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
+        $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[3]);
         $this->plugin->getEyeCatchUrl($html);
     }
 
@@ -221,6 +221,22 @@ class AdultGeekTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals('http://vid.bz/watch/yW8Xp5', $movies_url[0]);
+    }
+
+
+    /**
+     * @test
+     * @medium
+     * @group geek-get-movies-url2
+     * @group geek
+     */
+    public function 動画へのリンクを取得する2 ()
+    {
+        $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
+        $movies_url = $this->plugin->getMoviesUrl($html);
+
+        $this->assertTrue(is_array($movies_url));
+        $this->assertEquals('http://video.fc2.com/a/content/20141117CSbF4p7a/', $movies_url[0]);
     }
 }
 
