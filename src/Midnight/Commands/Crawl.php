@@ -161,9 +161,12 @@ class Crawl extends AbstractCommand implements CommandInterface
      **/
     private function _sendLog ()
     {
+        $log = Logger::getLog();
+        if ($log === '') return false;
+
         $ses = new Ses();
         $ses->setTitle('Crawl Logger');
-        $ses->setBody(Logger::getLog());
+        $ses->setBody($log);
         $ses->send();
     }
 
