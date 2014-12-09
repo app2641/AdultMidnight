@@ -104,7 +104,7 @@ class UriManager
 
         // embed用かどうか
         if (preg_match('/embedframe/', $path)) {
-            $url .= str_replace('embedframe/', 'video', $path);
+            $url = $this->raw_url;
         } else {
             $url .= $path;
         }
