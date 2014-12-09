@@ -220,7 +220,7 @@ class AdultVideoTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video2960239', $movies_url[0]);
+        $this->assertEquals('http://flashservice.xvideos.com/embedframe/2960239', $movies_url[0]);
     }
 
 
