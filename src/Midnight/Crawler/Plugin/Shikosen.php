@@ -147,7 +147,7 @@ class Shikosen extends AbstractPlugin implements PluginInterface
             $video_id = $movies_el->getAttribute('flashvars');
             $video_id = str_replace('id_video=', '', $video_id);
 
-            $url = sprintf('http://jp.xvideos.com/video%s', $video_id);
+            $url = sprintf('http://flashservice.xvideos.com/embedframe/%s', $video_id);
             $movie_data[] = $url;
         }
 
