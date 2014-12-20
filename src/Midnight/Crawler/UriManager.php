@@ -99,12 +99,13 @@ class UriManager
      **/
     private function _resolveXvideosUrl ()
     {
-        $url  = 'http://jp.xvideos.com';
+        $url = 'http://jp.xvideos.com';
         $path = $this->parse_data['path'];
 
         // embed用かどうか
         if (preg_match('/embedframe/', $path)) {
-            $url = $this->raw_url;
+            $url .= str_replace('embedframe/', 'video', $path);
+            $url .= '/';
         } else {
             $url .= $path;
         }
