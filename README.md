@@ -12,7 +12,8 @@ PHP >= 5.4
 ## Usage
 
 Crawl コマンドを実行するのみです。  
-ロボットがクロールを始め、コンテンツ生成後 AmazonS3 へ保存をします。
+ロボットがクロールを始め、コンテンツ収集後 public_html/index.html を更新します。  
+バーチャルホストなどでコンテンツを閲覧出来ます。  
 
 ```
 $ bin/midnight Crawl
@@ -20,13 +21,19 @@ $ bin/midnight Crawl
 
 ## Install
 
-まず、Composer で必要なライブラリを取得します。
+Composer で必要なライブラリを取得するのみです。
 
 ```
 $ composer.phar install
 ```
 
-次に Aws への接続設定を aws.ini ファイルに記載します。
+## How to use Aws?
+
+AdultMidnight は Aws でコンテンツを公開出来る機能を備えています。  
+仕組みは簡単で、クローラーが集めたコンテンツを S3 で静的ページとして公開しているのみです。  
+
+
+まず、Aws 用の設定ファイルを生成します。
 
 ```
 $ cp data/config/aws.ini.orig data/config/aws.ini
@@ -38,20 +45,21 @@ secret=your_aws_secret_key
 bucket=s3_bucket_name
 ```
 
-必要リソース(cssやimgなど)を AmazonS3 に同期します。
+必要なリソース(cssやimgなど)を S3 に同期します。
 
 ```
 $ bin/midnight S3sync public_html/
 ```
 
-同期が完了したら Crawl コマンドを使ってクロールを開始します。  
-クロール完了後、収集したコンテンツは AmazonS3 に保存されます。
+同期が完了したら適当な EC2 インスタンスを立ち上げ、 Crawl コマンドを実行します。  
+EC2 上で収集したコンテンツは S3 に自動的に保存されます。  
+EC2 以外の場所で実行しても S3 には保存されません。
 
 ```
 $ bin/midnight Crawl
 ```
 
-なお、クロールは Aws のオートスケールで行うのがベストです。  
+なお、定期的にクロールしたい場合は Aws のオートスケールを使うのがベストです。  
 AdultMidnight ではオートスケールの設定を容易に行うコマンドも揃っています。
 
 UpdateAutoScaling コマンドでは指定した AMI-ID で AutoScalingGroup を更新します。  
