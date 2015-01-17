@@ -214,7 +214,7 @@ class HentaiAnimeTest extends PHPUnit_Framework_TestCase
      * @group hentai-get-movies-url
      * @group hentai
      */
-    public function 動画へのリンクを取得する ()
+    public function 動画リンクを取得する ()
     {
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $movies_url = $this->plugin->getMoviesUrl($html);
@@ -235,7 +235,7 @@ class HentaiAnimeTest extends PHPUnit_Framework_TestCase
      * @group hentai-get-movies-url2
      * @group hentai
      */
-    public function 動画リンクの取得 ()
+    public function 動画リンクを取得する2 ()
     {
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $movies_url = $this->plugin->getMoviesUrl($html);
@@ -259,13 +259,13 @@ class HentaiAnimeTest extends PHPUnit_Framework_TestCase
      * @group hentai-get-movies-url3
      * @group hentai
      */
-    public function 動画リンクを取得する ()
+    public function 動画リンクを取得する3 ()
     {
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[2]);
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video7221606', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video7221606/', $movies_url[0]);
         $this->assertEquals('http://www.drtuber.com/video/86891/cougar-trap-ep-2-final', $movies_url[1]);
         $this->assertEquals(
             'http://myvi.tv/embed/html/ozATb8X10940rYjKtpS62pE9PqQ7rNPcb_MskTNo75D-R7IMrA5Z79ES1He8Waz9h0', $movies_url[2]

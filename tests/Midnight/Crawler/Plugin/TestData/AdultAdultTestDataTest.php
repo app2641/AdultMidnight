@@ -1,7 +1,8 @@
 <?php
 
 
-use Midnight\Crawler\Plugin\TestData\AdultAdultTestData;
+use Garnet\Container,
+    Midnight\Factory\CrawlerPluginTestDataFactory;
 
 class AdultAdultTestDataTest extends PHPUnit_Framework_TestCase
 {
@@ -17,7 +18,8 @@ class AdultAdultTestDataTest extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
-        $this->test_data = new AdultAdultTestData();
+        $container = new Container(new CrawlerPluginTestDataFactory);
+        $this->test_data = $container->get('AdultAdult');
     }
 
 

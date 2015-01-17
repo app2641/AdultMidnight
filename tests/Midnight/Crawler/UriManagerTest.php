@@ -47,7 +47,8 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
         $url = 'http://flashservice.xvideos.com/embedframe/7953646';
         $url = $this->manager->resolve($url);
 
-        $this->assertEquals('http://jp.xvideos.com/video7953646', $url);
+        //$this->assertEquals('http://flashservice.xvideos.com/embedframe/7953646', $url);
+        $this->assertEquals('http://jp.xvideos.com/video7953646/', $url);
     }
 
 
@@ -102,6 +103,11 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
             '&movie_stop=off&no_progressive=1&otag=1&sj=17&rel=0&tk=TXpNeE1EVXpOVEU9';
         $url = $this->manager->resolve($url);
         $this->assertEquals('http://video.fc2.com/content/20130827LybYzuyu', $url);
+
+        // 正しい動画url
+        $url = 'http://video.fc2.com/a/content/20141117CSbF4p7a/';
+        $url = $this->manager->resolve($url);
+        $this->assertEquals('http://video.fc2.com/a/content/20141117CSbF4p7a/', $url);
 
         // 正しい動画url
         $url = 'http://video.fc2.com/ja/a/content/20140518019MUw9N/';

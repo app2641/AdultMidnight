@@ -220,7 +220,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video8236196', $movies_url[0]);
-        $this->assertEquals('http://jp.xvideos.com/video8236299', $movies_url[1]);
+        $this->assertEquals('http://jp.xvideos.com/video8236196/', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video8236299/', $movies_url[1]);
     }
 }

@@ -7,15 +7,19 @@ use Garnet\Factory\AbstractFactory;
 
 use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
     Midnight\Crawler\Plugin\TestData\AdultGeekTestData,
+    Midnight\Crawler\Plugin\TestData\AdultVideoTestData,
     Midnight\Crawler\Plugin\TestData\AvSelectionTestData,
     Midnight\Crawler\Plugin\TestData\BaaaaaaTestData,
     Midnight\Crawler\Plugin\TestData\BikyakuTestData,
     Midnight\Crawler\Plugin\TestData\DoesuTestData,
     Midnight\Crawler\Plugin\TestData\DownloadTestData,
     Midnight\Crawler\Plugin\TestData\EpustaTestData,
+    Midnight\Crawler\Plugin\TestData\EroEroTestData,
+    Midnight\Crawler\Plugin\TestData\HentaiAnimeTestData,
     Midnight\Crawler\Plugin\TestData\MatomeTestData,
     Midnight\Crawler\Plugin\TestData\MinnaTestData,
     Midnight\Crawler\Plugin\TestData\MuryoTestData,
+    Midnight\Crawler\Plugin\TestData\MuryoEroTestData,
     Midnight\Crawler\Plugin\TestData\RakuenTestData,
     Midnight\Crawler\Plugin\TestData\ShikosenTestData,
     Midnight\Crawler\Plugin\TestData\YouskbeTestData;
@@ -38,6 +42,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildAdultGeek ()
     {
         return new AdultGeekTestData();
+    }
+
+
+    /**
+     * @return AdultVideoTestData
+     **/
+    public function buildAdultVideo ()
+    {
+        return new AdultVideoTestData();
     }
 
 
@@ -96,6 +109,24 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
 
 
     /**
+     * @return EroEroTestData
+     **/
+    public function buildEroEro ()
+    {
+        return new EroEroTestData();
+    }
+
+
+    /**
+     * @return HentaiAnimeTestData
+     **/
+    public function buildHentaiAnime ()
+    {
+        return new HentaiAnimeTestData();
+    }
+
+
+    /**
      * @return MatomeTestData
      */
     public function buildMatome ()
@@ -119,6 +150,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildMuryo ()
     {
         return new MuryoTestData();
+    }
+
+
+    /**
+     * @return MuryoEroTestData
+     */
+    public function buildMuryoEro ()
+    {
+        return new MuryoEroTestData();
     }
 
 

@@ -94,7 +94,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://bikyakukiss.blog40.fc2.com/blog-entry-1957.html', $url);
+        $this->assertEquals('http://bikyakukiss.com/blog-entry-2186.html', $url);
     }
 
 
@@ -110,7 +110,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-06-30', $date);
+        $this->assertEquals('2014-11-19', $date);
     }
 
 
@@ -155,7 +155,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('ミニスカ黒パンストお姉さん達に蒸れた匂いを嗅がされ足責めされるM男(FC2Adult)', $title);
+        $this->assertEquals('街で見かけた黒タイツ女子校生についていったら匂いを嗅がされ爪先も舐めさせられた(FC2Adult)', $title);
     }
 
 
@@ -204,7 +204,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('http://blog-imgs-70-origin.fc2.com/b/i/k/bikyakukiss/b20140630_2_1.jpg', $img_url);
+        $this->assertEquals('http://blog-imgs-49.fc2.com/b/i/k/bikyakukiss/b20141119_1_1.jpg', $img_url);
     }
 
 
@@ -220,7 +220,7 @@ class BikyakuTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://video.fc2.com/ja/a/content/20121211fMQyW6NQ/', $movies_url[0]);
+        $this->assertEquals('http://video.fc2.com/ja/a/content/201212120BE3WK14/', $movies_url[0]);
 
 
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);

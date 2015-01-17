@@ -99,8 +99,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group adult-get-entry-date
-     * @group adult
+     * @group ${group}-get-entry-date
+     * @group ${group}
      */
     public function エントリの日付を取得する ()
     {
@@ -115,8 +115,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group adult-fetch-html
-     * @group adult
+     * @group ${group}-fetch-html
+     * @group ${group}
      */
     public function HTMLを取得する ()
     {
