@@ -19,6 +19,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Muryo,
+    Midnight\Crawler\Plugin\MuryoEro,
     Midnight\Crawler\Plugin\Rakuen,
     Midnight\Crawler\Plugin\Shikosen,
     Midnight\Crawler\Plugin\Youskbe;
@@ -149,6 +150,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildMuryo ()
     {
         return new Muryo();
+    }
+
+
+    /**
+     * @var MuryoEro
+     **/
+    public function buildMuryoEro ()
+    {
+        return new MuryoEro();
     }
 
 

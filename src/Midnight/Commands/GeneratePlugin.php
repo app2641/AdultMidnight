@@ -180,7 +180,9 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         $skeleton_path = ROOT.'/data/crawler/skeleton/PluginTestSkeleton.php';
         $skeleton = file_get_contents($skeleton_path);
 
+        $group = strtolower($this->name);
         $skeleton = str_replace('${name}', $this->name, $skeleton);
+        $skeleton = str_replace('${group}', $group, $skeleton);
         file_put_contents($this->_getPluginTestPath(), $skeleton);
 
         $this->copied_plugin_test = true;
@@ -200,7 +202,9 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         $skeleton_path = ROOT.'/data/crawler/skeleton/PluginTestDataSkeleton.php';
         $skeleton = file_get_contents($skeleton_path);
 
+        $group = strtolower($this->name);
         $skeleton = str_replace('${name}', $this->name, $skeleton);
+        $skeleton = str_replace('${group}', $group, $skeleton);
         file_put_contents($this->_getTestDataPath(), $skeleton);
 
         $this->copied_test_data = true;
@@ -220,8 +224,11 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         $skeleton_path = ROOT.'/data/crawler/skeleton/PluginTestDataTestSkeleton.php';
         $skeleton = file_get_contents($skeleton_path);
 
+        $group = strtolower($this->name);
         $skeleton = str_replace('${name}', $this->name, $skeleton);
+        $skeleton = str_replace('${group}', $group, $skeleton);
         file_put_contents($this->_getTestDataTestPath(), $skeleton);
+
 
         $this->copied_test_data_test = true;
     }

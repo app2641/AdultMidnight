@@ -1,20 +1,20 @@
 <?php
 
 
-use Midnight\Crawler\Plugin\${name},
-    Midnight\Crawler\Plugin\TestData\${name}TestData;
+use Midnight\Crawler\Plugin\MuryoEro,
+    Midnight\Crawler\Plugin\TestData\MuryoEroTestData;
 
-class ${name}Test extends PHPUnit_Framework_TestCase
+class MuryoEroTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var ${name}
+     * @var MuryoEro
      **/
     private $plugin;
 
 
     /**
-     * @var ${name}TestData
+     * @var MuryoEroTestData
      **/
     private $test_data;
 
@@ -26,9 +26,9 @@ class ${name}Test extends PHPUnit_Framework_TestCase
      **/
     public function setUp ()
     {
-        $this->test_data = new ${name}TestData();
+        $this->test_data = new MuryoEroTestData();
 
-        $this->plugin = new ${name}();
+        $this->plugin = new MuryoEro();
         $this->plugin->setTestData($this->test_data);
     }
 
@@ -37,13 +37,13 @@ class ${name}Test extends PHPUnit_Framework_TestCase
      * @test
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    RSSを取得出来ませんでした
-     * @group ${group}
-     * @group ${group}-valid-rss
+     * @group muryoero
+     * @group muryoero-valid-rss
      */
     public function RSSが取得出来なかった場合 ()
     {
         $test_data = $this->getMock(
-            'Midnight\Crawler\Plugin\TestData\${name}TestData',
+            'Midnight\Crawler\Plugin\TestData\MuryoEroTestData',
             array('getRssPath')
         );
         $test_data->expects($this->any())
@@ -58,8 +58,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group ${group}
-     * @group ${group}-fetch-rss
+     * @group muryoero
+     * @group muryoero-fetch-rss
      */
     public function RSSを取得する ()
     {
@@ -70,8 +70,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group ${group}
-     * @group ${group}-get-entries
+     * @group muryoero
+     * @group muryoero-get-entries
      */
     public function コンテンツ要素を取得する ()
     {
@@ -84,8 +84,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group ${group}
-     * @group ${group}-get-entry-url
+     * @group muryoero
+     * @group muryoero-get-entry-url
      */
     public function エントリのURLを取得する ()
     {
@@ -93,14 +93,14 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
-        $this->assertEquals('', $url);
+        $this->assertEquals('http://muryouerodouga.net/archives/15535', $url);
     }
 
 
     /**
      * @test
-     * @group ${group}-get-entry-date
-     * @group ${group}
+     * @group muryoero-get-entry-date
+     * @group muryoero
      */
     public function エントリの日付を取得する ()
     {
@@ -108,15 +108,15 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $entries = $this->plugin->getEntries($dom);
 
         $date = $this->plugin->getEntryDate($entries->item(0));
-        $this->assertEquals('', $date);
+        $this->assertEquals('2015-01-16', $date);
     }
 
 
     /**
      * @test
      * @medium
-     * @group ${group}-fetch-html
-     * @group ${group}
+     * @group muryoero-fetch-html
+     * @group muryoero
      */
     public function HTMLを取得する ()
     {
@@ -128,15 +128,15 @@ class ${name}Test extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group ${group}-get-title
-     * @group ${group}
+     * @group muryoero-get-title
+     * @group muryoero
      */
     public function エントリのタイトルを取得する ()
     {
         $html  = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('', $title);
+        $this->assertEquals('エロオヤジにローションまみれにされて性感マッサージを受ける女！', $title);
     }
 
 
@@ -145,8 +145,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
      * @medium
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    タイトルを取得出来ませんでした
-     * @group ${group}-not-get-title
-     * @group ${group}
+     * @group muryoero-not-get-title
+     * @group muryoero
      */
     public function エントリのタイトルを取得出来なかった場合 ()
     {
@@ -160,15 +160,15 @@ class ${name}Test extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group ${group}-get-eyecatch-url
-     * @group ${group}
+     * @group muryoero-get-eyecatch-url
+     * @group muryoero
      */
     public function アイキャッチ画像のURLを取得する ()
     {
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('', $img_url);
+        $this->assertEquals('http://img-l3.xvideos.com/videos/thumbslll/7f/71/52/7f71529706fda7432fc849cf0f1357b7/7f71529706fda7432fc849cf0f1357b7.16.jpg', $img_url);
     }
 
 
@@ -177,8 +177,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
      * @medium
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
-     * @group ${group}-not-get-eyecatch-img-el
-     * @group ${group}
+     * @group muryoero-not-get-eyecatch-img-el
+     * @group muryoero
      */
     public function アイキャッチの画像要素が見つからなかった場合 ()
     {
@@ -194,8 +194,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
      * @medium
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    src属性が見つかりませんでした
-     * @group ${group}-not-get-img-src
-     * @group ${group}
+     * @group muryoero-not-get-img-src
+     * @group muryoero
      */
     public function src属性が見つからなかった場合 ()
     {
@@ -209,8 +209,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @medium
-     * @group ${group}-get-movies-url1
-     * @group ${group}
+     * @group muryoero-get-movies-url1
+     * @group muryoero
      */
     public function 動画へのリンクを取得する1 ()
     {
@@ -218,7 +218,8 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video9401271/', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video9401309/', $movies_url[1]);
     }
 }
 

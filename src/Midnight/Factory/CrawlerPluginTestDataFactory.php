@@ -19,6 +19,7 @@ use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
     Midnight\Crawler\Plugin\TestData\MatomeTestData,
     Midnight\Crawler\Plugin\TestData\MinnaTestData,
     Midnight\Crawler\Plugin\TestData\MuryoTestData,
+    Midnight\Crawler\Plugin\TestData\MuryoEroTestData,
     Midnight\Crawler\Plugin\TestData\RakuenTestData,
     Midnight\Crawler\Plugin\TestData\ShikosenTestData,
     Midnight\Crawler\Plugin\TestData\YouskbeTestData;
@@ -149,6 +150,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildMuryo ()
     {
         return new MuryoTestData();
+    }
+
+
+    /**
+     * @return MuryoEroTestData
+     */
+    public function buildMuryoEro ()
+    {
+        return new MuryoEroTestData();
     }
 
 
