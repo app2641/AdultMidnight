@@ -94,7 +94,7 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://xvideo-jp.com/archives/71376', $url);
+        $this->assertEquals('http://xvideo-jp.com/archives/71340', $url);
     }
 
 

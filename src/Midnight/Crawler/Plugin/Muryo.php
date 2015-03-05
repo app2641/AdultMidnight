@@ -58,7 +58,7 @@ class Muryo extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div#content div.post h2 a';
+        $query = 'div#content div.post h2.title a';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
@@ -74,7 +74,7 @@ class Muryo extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div.entry-content p img';
+        $query = 'div.entry-content img';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
@@ -92,7 +92,7 @@ class Muryo extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div.entry-content p object embed';
+        $query = 'div.entry-content object embed';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
