@@ -85,7 +85,7 @@ class Crawl extends AbstractCommand implements CommandInterface
                 throw new \Exception('有効化されていないプラグインです');
             }
             $plugins = array($this->params[1]);
-        
+
         } else {
             $plugins = $manager->getEnablePluginNames();
         }
@@ -132,6 +132,7 @@ class Crawl extends AbstractCommand implements CommandInterface
         $manager->setS3(new S3());
 
         foreach ($this->crawl_data as $key => $data) {
+            if (count($data) == 0) continue;
             $manager->execute($data->eyecatch, $data->title);
             $this->crawl_data[$key]->image_src = $manager->getDownloadPath();
         }

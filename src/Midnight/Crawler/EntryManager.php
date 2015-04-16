@@ -31,7 +31,7 @@ class EntryManager
             if ($this->_validateValue($data->eyecatch) === false) continue;
             if (count($data->movies) == 0) continue;
             if (count($data->movies) > 7) continue;
-            
+
             if (! in_array($data->url, $url_stack)) {
                 $format_data[] = $data;
                 $url_stack[]   = $data->url;
