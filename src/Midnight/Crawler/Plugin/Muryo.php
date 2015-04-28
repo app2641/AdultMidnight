@@ -58,7 +58,7 @@ class Muryo extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div#content div.post h2.title a';
+        $query = 'div#content div.post h1.title a';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
