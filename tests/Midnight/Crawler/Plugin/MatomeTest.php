@@ -116,7 +116,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group matome-fetch-html
      * @group matome
      */
@@ -129,7 +128,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    タイトルを取得出来ませんでした
      * @group matome-not-get-title
@@ -146,7 +144,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group matome-get-title
      * @group matome
      */
@@ -161,7 +158,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    アイキャッチを取得出来ませんでした
      * @group matome-not-get-eyecatch-img-el
@@ -178,7 +174,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @expectedException           CrawlerException
      * @expectedExceptionMessage    src属性が見つかりませんでした
      * @group matome-not-get-img-src
@@ -195,7 +190,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group matome-get-eyecatch-url
      * @group matome
      */
@@ -210,7 +204,6 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group matome-get-movies-url
      * @group matome
      */

@@ -116,7 +116,6 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group muryo-fetch-html
      * @group muryo
      */
@@ -146,7 +145,6 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group muryo-get-title
      * @group muryo
      */
@@ -195,9 +193,8 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group muryo-get-eyecatch-url
-     * @group muryo 
+     * @group muryo
      */
     public function アイキャッチ画像のURLを取得する ()
     {
@@ -210,7 +207,6 @@ class MuryoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @large
      * @group muryo-get-movies-url
      * @group muryo
      */

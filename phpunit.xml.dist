@@ -5,7 +5,8 @@
     backupStaticAttributes="false"
     strict="true"
     verbose="true"
-    colors="true">
+    colors="true"
+    timeoutForSmallTests="120">
     <testsuites>
         <testsuite name="Adult.Midnight">
             <directory suffix="Test.php">tests</directory>
