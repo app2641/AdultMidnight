@@ -1,0 +1,15 @@
+
+dependencies:
+  pre:
+    - cp data/config/aws.ini.orig data/config/aws.ini
+
+test:
+  override:
+    - phpunit --coverage-text
+  post:
+    - php bin/coveralls -v
+
+machine:
+  php:
+    version: 5.5.21
+

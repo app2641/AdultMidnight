@@ -16,6 +16,7 @@
         "app2641/garnet-beans": "*",
         "aws/aws-sdk-php": "*",
         "satooshi/php-coveralls": "*",
+        "sunra/php-simple-html-dom-parser": "*",
         "zendframework/zend-config": "*"
     }
 }
