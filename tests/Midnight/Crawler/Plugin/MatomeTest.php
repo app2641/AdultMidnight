@@ -210,6 +210,7 @@ class MatomeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group matome-get-movies-url
      * @group matome
      */

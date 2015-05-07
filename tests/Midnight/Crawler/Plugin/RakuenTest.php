@@ -116,6 +116,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group rakuen-fetch-html
      * @group rakuen
      */
@@ -145,6 +146,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group rakuen-get-title
      * @group rakuen
      */
@@ -193,6 +195,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group rakuen-get-eyecatch-url
      * @group rakuen
      */
@@ -207,6 +210,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group rakuen-get-movies-url
      * @group rakuen
      */
