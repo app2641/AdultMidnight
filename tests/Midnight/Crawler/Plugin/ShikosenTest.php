@@ -145,6 +145,7 @@ class ShikosenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group shikosen-get-title
      * @group shikosen
      */
@@ -159,6 +160,7 @@ class ShikosenTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group shikosen-get-eyecatch-url
      * @group shikosen
      */
