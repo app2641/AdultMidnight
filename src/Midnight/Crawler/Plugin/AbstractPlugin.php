@@ -75,7 +75,7 @@ abstract class AbstractPlugin
 
             $dom = new \DOMDocument('1.0', 'UTF-8');
             $dom->loadXML($rss_xml);
-        
+
         } catch (\Exception $e) {
             throw new CrawlerException('RSSを取得出来ませんでした');
         }
@@ -155,7 +155,7 @@ abstract class AbstractPlugin
      * HTMLを取得する
      *
      * @param  string $url
-     * @return 
+     * @return
      **/
     public function fetchHtml ($url = false)
     {
