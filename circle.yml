@@ -3,12 +3,18 @@ dependencies:
   pre:
     - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
     - cp data/config/aws.ini.orig data/config/aws.ini
+  override:
+    - mkdir -p build/logs
+    - composer install --dev --no-interaction
+    - pecl install xdebug
+    - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini | sed -e "s/;//" > xdebug.ini
+    - mv xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 
 test:
   override:
-    - phpunit --coverage-text
-  post:
-    - php bin/coveralls -v
+    - phpunit -c phpunit.xml.dist
+
+deployment:
 
 machine:
   php:
