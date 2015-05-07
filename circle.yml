@@ -2,7 +2,6 @@
 dependencies:
   pre:
     - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
-    - composer self-update
     - cp data/config/aws.ini.orig data/config/aws.ini
 
 test:
