@@ -116,6 +116,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group download-fetch-html
      * @group download
      */
@@ -144,6 +145,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group download-get-title
      * @group download
      */
@@ -192,6 +194,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group download-get-eyecatch-url
      * @group download
      */
@@ -210,6 +213,7 @@ class DownloadTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @large
      * @group download-get-movies-url
      * @group download
      */
