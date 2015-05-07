@@ -1,8 +1,12 @@
 
 dependencies:
-  override:
+  pre:
     - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
     - cp data/config/aws.ini.orig data/config/aws.ini
+
+test:
+  override:
+    - phpunit --coverage-text
 
 machine:
   php:
