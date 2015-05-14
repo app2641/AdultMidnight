@@ -8,7 +8,7 @@ Plugins:
     enable: true
 
   AdultGeek:
-    enable: true
+    enable: false
 
   AdultVideo:
     enable: true
