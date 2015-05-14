@@ -57,7 +57,7 @@ class PluginManagerTest extends PHPUnit_Framework_TestCase
      */
     public function 有効化されているプラグインの場合 ()
     {
-        $p_name = 'AdultGeek';
+        $p_name = 'AdultAdult';
         $result = $this->manager->ifEnablePlugin($p_name);
         $this->assertTrue($result);
     }
@@ -96,8 +96,8 @@ class PluginManagerTest extends PHPUnit_Framework_TestCase
      */
     public function 指定名のプラグインを取得する ()
     {
-        $p_name = 'AdultGeek';
+        $p_name = 'AdultAdult';
         $plugin = $this->manager->getPlugin($p_name);
-        $this->assertInstanceOf('Midnight\Crawler\Plugin\AdultGeek', $plugin);
+        $this->assertInstanceOf('Midnight\Crawler\Plugin\AdultAdult', $plugin);
     }
 }

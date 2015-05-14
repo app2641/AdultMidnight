@@ -17,6 +17,7 @@ use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
     Midnight\Crawler\Plugin\TestData\EroEroTestData,
     Midnight\Crawler\Plugin\TestData\EromonTestData,
     Midnight\Crawler\Plugin\TestData\HentaiAnimeTestData,
+    Midnight\Crawler\Plugin\TestData\IchizenTestData,
     Midnight\Crawler\Plugin\TestData\MatomeTestData,
     Midnight\Crawler\Plugin\TestData\MinnaTestData,
     Midnight\Crawler\Plugin\TestData\MuryoTestData,
@@ -133,6 +134,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildHentaiAnime ()
     {
         return new HentaiAnimeTestData();
+    }
+
+
+    /**
+     * @return IchizenTestData
+     **/
+    public function buildIchizen ()
+    {
+        return new IchizenTestData();
     }
 
 
