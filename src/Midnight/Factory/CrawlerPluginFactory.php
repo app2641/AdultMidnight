@@ -17,6 +17,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\EroEro,
     Midnight\Crawler\Plugin\Eromon,
     Midnight\Crawler\Plugin\HentaiAnime,
+    Midnight\Crawler\Plugin\Ichizen,
     Midnight\Crawler\Plugin\Matome,
     Midnight\Crawler\Plugin\Minna,
     Midnight\Crawler\Plugin\Muryo,
@@ -133,6 +134,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildHentaiAnime ()
     {
         return new HentaiAnime();
+    }
+
+
+    /**
+     * @var Ichizen
+     */
+    public function buildIchizen ()
+    {
+        return new Ichizen();
     }
 
 
