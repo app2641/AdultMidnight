@@ -14,7 +14,7 @@
     },
     "require": {
         "app2641/garnet-beans": "*",
-        "aws/aws-sdk-php": "*",
+        "aws/aws-sdk-php": "2.*",
         "satooshi/php-coveralls": "*",
         "sunra/php-simple-html-dom-parser": "*",
         "zendframework/zend-config": "*"
