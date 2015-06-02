@@ -1,66 +1,69 @@
 Plugins:
-    # UnitTest用プラグイン
-    TestDisablePlugin:
-        enable: false
+  # UnitTest用プラグイン
+  TestDisablePlugin:
+    enable: false
 
 
-    AdultAdult:
-        enable: true
+  AdultAdult:
+    enable: true
 
-    AdultGeek:
-        enable: false
+  AdultGeek:
+    enable: false
 
-    AdultVideo:
-        enable: true
+  AdultVideo:
+    enable: true
 
-    AvSelection:
-        enable: true
+  AvSelection:
+    enable: true
 
-    Baaaaaa:
-        enable: true
+  Baaaaaa:
+    enable: true
 
-    Bikyaku:
-        enable: true
+  Bikyaku:
+    enable: true
 
-    Doesu:
-        enable: true
+  Doesu:
+    enable: true
 
-    Download:
-        enable: true
+  Download:
+    enable: true
 
-    Epusta:
-        enable: true
+  Epusta:
+    enable: true
 
-    EroEro:
-        enable: true
+  EroEro:
+    enable: true
 
-    Eromon:
-        enable: true
+  Eromon:
+    enable: true
 
-    HentaiAnime:
-        enable: true
+  HentaiAnime:
+    enable: true
 
-    Matome:
-        enable: true
+  Ichizen:
+    enable: true
 
-    Minna:
-        enable: true
+  Matome:
+    enable: true
 
-    Muryo:
-        enable: true
+  Minna:
+    enable: true
 
-    MuryoEro:
-        enable: true
+  Muryo:
+    enable: true
 
-    Rakuen:
-        enable: true
+  MuryoEro:
+    enable: true
 
-    Minna:
-        enable: true
+  Minna:
+    enable: true
 
-    Shikosen:
-        enable: true
+  Rakuen:
+    enable: true
 
-    Youskbe:
-        enable: true
+  Shikosen:
+    enable: true
+
+  Youskbe:
+    enable: true
 
