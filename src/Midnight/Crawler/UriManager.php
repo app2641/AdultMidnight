@@ -79,6 +79,10 @@ class UriManager
                 $url = $this->_resolveFc2Url();
                 break;
 
+            case 'javynow.com':
+                $url = $this->_resolveJavyNowUrl();
+                break;
+
             case 'www.google.com':
                 $url = $this->_resolveGoogleUrl();
                 break;
@@ -157,6 +161,15 @@ class UriManager
         if (! isset($matches[1])) return $base_url;
 
         return $base_url.'/content/'.$matches[1];
+    }
+
+
+    /**
+     * @return string
+     **/
+    private function _resolveJavyNowUrl ()
+    {
+        return str_replace('player.php', 'video.php', $this->raw_url);
     }
 
 

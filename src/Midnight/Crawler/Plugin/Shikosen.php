@@ -22,7 +22,7 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = 'http://hikaritube.com/atom.rdf';
+    protected $rss_url = 'http://hikaritube.com/feed.xml';
 
 
     /**
@@ -54,7 +54,7 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      */
     public function getEntryDate ($entry)
     {
-        return $this->getDateByDcDate($entry);
+        return $this->getDateByPubDate($entry);
     }
 
 
@@ -66,7 +66,7 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div#wrapper div#main h1';
+        $query = 'section#main_video article header h1';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
@@ -135,20 +135,17 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div#player div.section object embed[src="http://static.xvideos.com/swf/flv_player_site_v4.swf"]';
+        $query = 'ul#player li iframe';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
 
         // 動画はこちらテキストのリンクを取得する
         foreach ($movies_els as $movies_el) {
-            if (! $movies_el->hasAttribute('flashvars')) continue;
+            if (! $movies_el->hasAttribute('src')) continue;
 
-            $video_id = $movies_el->getAttribute('flashvars');
-            $video_id = str_replace('id_video=', '', $video_id);
-
-            $url = sprintf('http://jp.xvideos.com/video%s/', $video_id);
-            $movie_data[] = $url;
+            $url = $movies_el->getAttribute('src');
+            $movie_data[] = $manager->resolve($url);
         }
 
         return $movie_data;

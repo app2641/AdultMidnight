@@ -6,7 +6,7 @@ namespace Midnight\Crawler\Plugin;
 use Midnight\Crawler\UriManager;
 use Midnight\Utility\CrawlerException;
 
-class Ichizen extends AbstractPlugin implements PluginInterface
+class EroOna extends AbstractPlugin implements PluginInterface
 {
 
     /**
@@ -14,7 +14,7 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $site_name = '一日一善';
+    protected $site_name = 'えろおな';
 
 
     /**
@@ -22,7 +22,7 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = 'http://eroichizen.com/?xml';
+    protected $rss_url = 'http://eroona07.blog.fc2.com/?xml';
 
 
 
@@ -58,7 +58,7 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div.entry_d div.entry h2.entryTitle a';
+        $query = 'div.entry-title h2';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
@@ -74,7 +74,7 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div.entry div.entryBody center img';
+        $query = 'div.entry-body div[align="center"] a img';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
@@ -92,31 +92,16 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div.entryBody div.topmore a img';
+        $query = 'div#more div[align="center"] iframe';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
 
         // 動画はこちらテキストのリンクを取得する
         foreach ($movies_els as $movies_el) {
-            if (! preg_match('/^動画.+/', $movies_el->getAttribute('alt'))) continue;
-
-            // 親のaタグからリンクを取得する
-            $parent_el = $next_el = $movies_el->parentNode();
-            $i = 0;
-            while ($i < 3) {
-                $next_el = $next_el->nextSibling();
-                if (is_null($next_el)) break;
-                $i++;
-            }
-            if ($next_el->nodeName() == 'span') {
-                $movie_data = [];
-                break;
-            }
-
-            if ($parent_el->nodeName() == 'a') {
-                $movie_data[] = $manager->resolve($parent_el->getAttribute('href'));
-            }
+            if (! $movies_el->getAttribute('src')) continue;
+            $url = htmlspecialchars_decode($movies_el->getAttribute('src'));
+            $movie_data[] = $manager->resolve($url);
         }
 
         return $movie_data;

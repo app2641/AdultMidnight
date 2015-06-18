@@ -16,6 +16,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Epusta,
     Midnight\Crawler\Plugin\EroEro,
     Midnight\Crawler\Plugin\Eromon,
+    Midnight\Crawler\Plugin\EroOna,
     Midnight\Crawler\Plugin\HentaiAnime,
     Midnight\Crawler\Plugin\Ichizen,
     Midnight\Crawler\Plugin\Matome,
@@ -125,6 +126,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildEromon ()
     {
         return new Eromon();
+    }
+
+
+    /**
+     * @var EroOna
+     **/
+    public function buildEroOna ()
+    {
+        return new EroOna();
     }
 
 
