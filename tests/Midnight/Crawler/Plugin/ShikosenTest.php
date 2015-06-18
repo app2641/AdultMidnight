@@ -110,7 +110,7 @@ class ShikosenTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-07-29', $date);
+        $this->assertEquals('2015-05-22', $date);
     }
 
 

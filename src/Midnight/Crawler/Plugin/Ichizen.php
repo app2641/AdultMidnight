@@ -74,7 +74,7 @@ class Ichizen extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div.entryBody a center img';
+        $query = 'div.entry div.entryBody center img';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');

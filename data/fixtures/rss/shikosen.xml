@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:syn="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel rdf:about="http://hikaritube.com/">
-    <title>エロ動画が無料 シコセン</title>
-    <link>http://hikaritube.com/</link>
-    <description>無料エロ動画まとめの決定版！</description>
-    <dc:language>ja</dc:language>
-    <atom:link rel="hub" href="http://pubsubhubbub.appspot.com"/>
-    <items>
-      <rdf:Seq>
-        <rdf:li rdf:resource="http://hikaritube.com/video.php?id=36152"/>
-      </rdf:Seq>
-    </items>
-  </channel>
-  <item rdf:about="http://hikaritube.com/video.php?id=36152">
-    <title>超巨乳お姉ちゃんが集団ブリーフ隊に次から次へとぶっかけられるｗｗｗｗ</title>
-    <link>http://hikaritube.com/video.php?id=36152</link>
-    <description>超巨乳お姉ちゃんが集団ブリーフ隊に次から次へとぶっかけられるｗｗｗｗ</description>
-    <dc:creator>hikaritube.com</dc:creator>
-    <dc:date>2014-07-29T12:46:00+09:00</dc:date>
-    <dc:subject/>
-    <content:encoded><![CDATA[<a href="http://hikaritube.com/video.php?id=36152"><img src="http://img100-646.xvideos.com/videos/thumbslll/1e/d9/28/1ed928e9400ac87e900dcbd1327c8630/1ed928e9400ac87e900dcbd1327c8630.16.jpg" width="160" height="120" alt="" /></a><br />超巨乳お姉ちゃんが集団ブリーフ隊に次から次へとぶっかけられるｗｗｗｗ]]></content:encoded>
-  </item>
-  
-</rdf:RDF>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0" xml:lang="ja">
+    <channel>
+        <title>エロ動画が無料 シコセン</title>
+        <link>http://hikaritube.com/</link>
+        <description>無料エロ動画まとめの決定版！</description>
+        <item>
+            <title>超巨乳お姉ちゃんが集団ブリーフ隊に次から次へとぶっかけられるｗｗｗｗ</title>
+            <link>http://hikaritube.com/video.php?id=36152</link>
+            <description>
+                <![CDATA[
+                <a href="http://hikaritube.com/video.php?id=42528"><img src="http://img.javynow.com/2/NDI1Mjg-_1.jpg"></a><br />スレンダーパイパン黒髪ギャルとハメ撮りSEX開始！
+                    ]]>
+            </description>
+            <pubDate>Fri, 22 May 2015 12:13:30 +0900</pubDate>
+        </item>
+    </channel>
+</rss>
+

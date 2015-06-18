@@ -44,7 +44,7 @@ Plugins:
     enable: true
 
   Ichizen:
-    enable: true
+    enable: false
 
   Matome:
     enable: true
@@ -58,14 +58,11 @@ Plugins:
   MuryoEro:
     enable: true
 
-  Minna:
-    enable: true
-
   Rakuen:
     enable: true
 
   Shikosen:
-    enable: true
+    enable: false
 
   Youskbe:
     enable: true
