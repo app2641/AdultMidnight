@@ -124,6 +124,19 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @group uri
+     * @group uri-javynow
+     **/
+    public function JavyNowのurlを整形する場合 ()
+    {
+        $url = 'http://javynow.com/player.php?id=MzYzMTYz&n=1&s=1&h=700';
+        $url = $this->manager->resolve($url);
+        $this->assertEquals('http://javynow.com/video.php?id=MzYzMTYz&n=1&s=1&h=700', $url);
+    }
+
+
+    /**
+     * @test
+     * @group uri
      * @group uri-unrelated-url
      */
     public function AdultMidnightに関係のないurlの場合 ()

@@ -16,6 +16,7 @@ use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
     Midnight\Crawler\Plugin\TestData\EpustaTestData,
     Midnight\Crawler\Plugin\TestData\EroEroTestData,
     Midnight\Crawler\Plugin\TestData\EromonTestData,
+    Midnight\Crawler\Plugin\TestData\EroOnaTestData,
     Midnight\Crawler\Plugin\TestData\HentaiAnimeTestData,
     Midnight\Crawler\Plugin\TestData\IchizenTestData,
     Midnight\Crawler\Plugin\TestData\MatomeTestData,
@@ -125,6 +126,15 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     public function buildEromon ()
     {
         return new EromonTestData();
+    }
+
+
+    /**
+     * @return EroOnaTestData
+     **/
+    public function buildEroOna ()
+    {
+        return new EroOnaTestData();
     }
 
 

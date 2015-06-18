@@ -37,6 +37,9 @@ Plugins:
   Eromon:
     enable: true
 
+  EroOna:
+    enable: true
+
   HentaiAnime:
     enable: true
 
