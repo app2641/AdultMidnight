@@ -31,6 +31,9 @@ Plugins:
   Epusta:
     enable: true
 
+  EroAnime:
+    enable: true
+
   EroEro:
     enable: true
 

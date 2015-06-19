@@ -14,6 +14,7 @@ use Midnight\Crawler\Plugin\AdultAdult,
     Midnight\Crawler\Plugin\Doesu,
     Midnight\Crawler\Plugin\Download,
     Midnight\Crawler\Plugin\Epusta,
+    Midnight\Crawler\Plugin\EroAnime,
     Midnight\Crawler\Plugin\EroEro,
     Midnight\Crawler\Plugin\Eromon,
     Midnight\Crawler\Plugin\EroOna,
@@ -108,6 +109,15 @@ class CrawlerPluginFactory extends AbstractFactory
     public function buildEpusta ()
     {
         return new Epusta();
+    }
+
+
+    /**
+     * @var EroAnime
+     **/
+    public function buildEroAnime ()
+    {
+        return new EroAnime();
     }
 
 
