@@ -94,7 +94,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
         $this->assertTrue(is_string($url));
-        $this->assertEquals('http://rakuero-douga.com/archives/6640', $url);
+        $this->assertEquals('http://rakuero-douga.com/archives/880', $url);
     }
 
 
@@ -110,7 +110,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
 
         $date = $this->plugin->getEntryDate($entries->item(0));
         $this->assertTrue(is_string($date));
-        $this->assertEquals('2014-07-17', $date);
+        $this->assertEquals('2015-10-04', $date);
     }
 
 
@@ -155,7 +155,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $title = $this->plugin->getEntryTitle($html);
 
-        $this->assertEquals('おさげ頭の黒髪少女と父が繰り広げる変態相姦調教セクロスがエロすぎｗｗｗ', $title);
+        $this->assertEquals('素人巨乳OLにチンコしゃぶらせバックから着衣のままでチンコ挿入してみた結果ｗｗｗ', $title);
     }
 
 
@@ -204,7 +204,7 @@ class RakuenTest extends PHPUnit_Framework_TestCase
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
 
-        $this->assertEquals('http://rakuero-douga.com/wp-content/uploads/2014/07/20ab46020e29eac11be2080c373bb780.jpg', $img_url);
+        $this->assertEquals('http://img100-093.xvideos.com/videos/thumbslll/51/46/eb/5146ebb56f70f233bbaab57fe82fc00e/5146ebb56f70f233bbaab57fe82fc00e.6.jpg', $img_url);
     }
 
 
@@ -220,6 +220,6 @@ class RakuenTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video5895407/', $movies_url[0]);
+        $this->assertEquals('http://jp.xvideos.com/video9475093/', $movies_url[0]);
     }
 }
