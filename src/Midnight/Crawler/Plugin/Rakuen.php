@@ -58,11 +58,11 @@ class Rakuen extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div#container div#main div.post div#content div#postheading h1';
+        $query = 'div.article h1.entry-title';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
-        return $title_el->plaintext;
+        return trim($title_el->plaintext);
     }
 
 
@@ -74,13 +74,13 @@ class Rakuen extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div#container div#main div.post div#content div.kiji-l img.img01';
+        $query = 'div#the-content div.kiji-l img.img01';
         $img_el = $html->find($query, 0);
 
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
-        if (!$img_el->hasAttribute('data-lazy-src')) throw new CrawlerException('src属性が見つかりませんでした');
+        if (!$img_el->hasAttribute('src')) throw new CrawlerException('src属性が見つかりませんでした');
 
-        return $img_el->getAttribute('data-lazy-src');
+        return $img_el->getAttribute('src');
     }
 
 
@@ -92,7 +92,7 @@ class Rakuen extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div#container div#main div.post div#content div.kiji-r iframe';
+        $query = 'div#the-content div.kiji-r iframe';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
