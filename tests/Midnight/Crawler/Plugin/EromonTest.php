@@ -6,18 +6,15 @@ use Midnight\Crawler\Plugin\Eromon,
 
 class EromonTest extends PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Eromon
      **/
     private $plugin;
 
-
     /**
      * @var EromonTestData
      **/
     private $test_data;
-
 
     /**
      * セットアップ
@@ -31,7 +28,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->plugin = new Eromon();
         $this->plugin->setTestData($this->test_data);
     }
-
 
     /**
      * @test
@@ -55,7 +51,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->plugin->fetchRss();
     }
 
-
     /**
      * @test
      * @group eromon
@@ -66,7 +61,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
-
 
     /**
      * @test
@@ -80,7 +74,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
     }
-
 
     /**
      * @test
@@ -96,7 +89,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://erovi0.blog.fc2.com/blog-entry-4370.html', $url);
     }
 
-
     /**
      * @test
      * @group eromon-get-entry-date
@@ -111,7 +103,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('2015-03-03', $date);
     }
 
-
     /**
      * @test
      * @medium
@@ -123,7 +114,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
-
 
     /**
      * @test
@@ -138,7 +128,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('メルシーボークー DV 16 放課後Hなアルバイト : 尾上若葉', $title);
     }
-
 
     /**
      * @test
@@ -155,7 +144,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[4]);
         $this->plugin->getEntryTitle($html);
     }
-
 
     /**
      * @test
@@ -176,7 +164,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://blog-imgs-75-origin.fc2.com/e/r/o/erovi0/apak088sops.jpg', $img_url);
     }
 
-
     /**
      * @test
      * @medium
@@ -193,7 +180,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $this->plugin->getEyeCatchUrl($html);
     }
 
-
     /**
      * @test
      * @medium
@@ -209,7 +195,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[5]);
         $this->plugin->getEyeCatchUrl($html);
     }
-
 
     /**
      * @test
@@ -229,7 +214,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
         );
     }
 
-
     /**
      * @test
      * @medium
@@ -246,7 +230,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
             'http://jp.xvideos.com/video10683385/', $movies_url[0]
         );
     }
-
 
     /**
      * @test
@@ -265,7 +248,6 @@ class EromonTest extends PHPUnit_Framework_TestCase
             $movies_url[0]
         );
     }
-
 
     /**
      * @test

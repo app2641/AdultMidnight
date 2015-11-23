@@ -12,7 +12,6 @@ class EromonTestDataTest extends PHPUnit_Framework_TestCase
      **/
     private $test_data;
 
-
     /**
      * @return void
      **/
@@ -21,7 +20,6 @@ class EromonTestDataTest extends PHPUnit_Framework_TestCase
         $container = new Container(new CrawlerPluginTestDataFactory);
         $this->test_data = $container->get('Eromon');
     }
-
 
     /**
      * @test
@@ -33,7 +31,6 @@ class EromonTestDataTest extends PHPUnit_Framework_TestCase
         $rss_path = $this->test_data->getRssPath();
         $this->assertEquals(ROOT.'/data/fixtures/rss/eromon.xml', $rss_path);
     }
-
 
     /**
      * @test
