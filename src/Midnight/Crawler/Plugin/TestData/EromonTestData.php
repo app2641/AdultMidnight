@@ -5,12 +5,10 @@ namespace Midnight\Crawler\Plugin\TestData;
 
 class EromonTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'eromon.xml';
-
 
     /**
      * @var array
