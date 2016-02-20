@@ -92,6 +92,7 @@ class Youskbe extends AbstractPlugin implements PluginInterface
         if (is_null($el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
 
         $img_el = $el->nextSibling()->firstChild()->firstChild();
+        if (!$img_el) throw new CrawlerException('img要素が見つかりませんでした');
         if (!$img_el->hasAttribute('src')) throw new CrawlerException('src属性が見つかりませんでした');
 
         return $img_el->getAttribute('src');
