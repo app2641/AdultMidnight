@@ -219,7 +219,7 @@ class ContentsBuilder
 
         try {
             $this->S3->upload($from_path, $to_path);
-        
+
         } catch (\Exception $e) {
             Logger::addLog($from_path.' -> '.$to_path);
             Logger::addLog('S3へのアップロードに失敗した'.PHP_EOL);
