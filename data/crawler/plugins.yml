@@ -44,7 +44,7 @@ Plugins:
     enable: true
 
   HentaiAnime:
-    enable: true
+    enable: false
 
   Ichizen:
     enable: false
@@ -59,7 +59,7 @@ Plugins:
     enable: true
 
   MuryoEro:
-    enable: true
+    enable: false
 
   Rakuen:
     enable: true
