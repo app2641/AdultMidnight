@@ -44,7 +44,7 @@ class UriManager
         $info = parse_url($url);
 
         if (! isset($info['host'])) return false;
-        if (! in_array($info['host'], array('jp.xvideos.com', 'xvideos.com')))  {
+        if (! in_array($info['host'], array('jp.xvideos.com', 'www.xvideos.com', 'xvideos.com')))  {
             return false;
         }
 
@@ -103,7 +103,7 @@ class UriManager
      **/
     private function _resolveXvideosUrl ()
     {
-        $url = 'http://jp.xvideos.com';
+        $url = 'http://www.xvideos.com';
         $path = $this->parse_data['path'];
 
         // embed用かどうか
