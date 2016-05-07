@@ -48,7 +48,7 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
         $url = $this->manager->resolve($url);
 
         //$this->assertEquals('http://flashservice.xvideos.com/embedframe/7953646', $url);
-        $this->assertEquals('http://jp.xvideos.com/video7953646/', $url);
+        $this->assertEquals('http://www.xvideos.com/video7953646/', $url);
     }
 
 
@@ -62,7 +62,7 @@ class UriManagerTest extends PHPUnit_Framework_TestCase
         $url = 'http://www.xvideos.com/video7953646/bmw012';
         $url = $this->manager->resolve($url);
 
-        $this->assertEquals('http://jp.xvideos.com/video7953646/bmw012', $url);
+        $this->assertEquals('http://www.xvideos.com/video7953646/bmw012', $url);
     }
 
 

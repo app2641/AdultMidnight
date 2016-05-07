@@ -224,10 +224,10 @@ class DoesuTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video7395344/', $movies_url[0]);
-        $this->assertEquals('http://jp.xvideos.com/video7395350/', $movies_url[1]);
-        $this->assertEquals('http://jp.xvideos.com/video7395352/', $movies_url[2]);
-        $this->assertEquals('http://jp.xvideos.com/video7395354/', $movies_url[3]);
+        $this->assertEquals('http://www.xvideos.com/video7395344/', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video7395350/', $movies_url[1]);
+        $this->assertEquals('http://www.xvideos.com/video7395352/', $movies_url[2]);
+        $this->assertEquals('http://www.xvideos.com/video7395354/', $movies_url[3]);
     }
 }
 

@@ -7,24 +7,20 @@ use Midnight\Aws\S3;
 
 class S3Sync extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      */
     private $params;
-
 
     /**
      * @var array
      */
     private $exclude_files = array();
 
-
     /**
      * @var S3
      */
     private $s3;
-
 
     /**
      * コマンドの実行
@@ -50,7 +46,6 @@ class S3Sync extends AbstractCommand implements CommandInterface
             $this->errorLog($e->getMessage());
         }
     }
-
 
     /**
      * 同期対象のディレクトリパスを取得する
@@ -78,7 +73,6 @@ class S3Sync extends AbstractCommand implements CommandInterface
         return $target.'/';
     }
 
-
     /**
      * data/config/sync_exclude.txtから除外ファイルを配列化させる
      *
@@ -91,7 +85,6 @@ class S3Sync extends AbstractCommand implements CommandInterface
 
         $this->exclude_files = $files;
     }
-
 
     /**
      * S3に対象ディレクトリを同期する
@@ -115,7 +108,6 @@ class S3Sync extends AbstractCommand implements CommandInterface
             }
         }
     }
-
 
     /**
      * ヘルプメッセージの表示

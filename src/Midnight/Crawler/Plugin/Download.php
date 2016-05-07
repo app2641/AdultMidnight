@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -8,7 +7,6 @@ use Midnight\Utility\CrawlerException;
 
 class Download extends AbstractPlugin implements PluginInterface
 {
-
     /**
      * サイト名
      *
@@ -16,15 +14,12 @@ class Download extends AbstractPlugin implements PluginInterface
      **/
     protected $site_name = '無料エロ動画 xvideosダウンロード';
 
-
     /**
      * RSSフィードのURL
      *
      * @var string
      **/
     protected $rss_url = 'http://xvideos-field.com/feed';
-
-
 
     /**
      * DOMElementからエントリのURLを返す
@@ -36,7 +31,6 @@ class Download extends AbstractPlugin implements PluginInterface
     {
         return $this->getNodeValueByTagName($entry, 'link');
     }
-
 
     /**
      * エントリの登録された日付を取得する
@@ -55,7 +49,6 @@ class Download extends AbstractPlugin implements PluginInterface
         return date('Y-m-d', strtotime($date));
     }
 
-
     /**
      * エントリのタイトルを取得する
      *
@@ -70,7 +63,6 @@ class Download extends AbstractPlugin implements PluginInterface
 
         return $title_el->plaintext;
     }
-
 
     /**
      * アイキャッチ画像のURLを取得する
@@ -88,7 +80,6 @@ class Download extends AbstractPlugin implements PluginInterface
 
         return $img_el->getAttribute('src');
     }
-
 
     /**
      * 動画のURLを取得する
@@ -111,4 +102,3 @@ class Download extends AbstractPlugin implements PluginInterface
         return $movie_data;
     }
 }
-

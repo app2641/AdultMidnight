@@ -10,4 +10,3 @@ defined('IS_EC2') || define('IS_EC2', $is_ec2);
 
 $loader = require_once ROOT.'/vendor/autoload.php';
 $loader->set('Midnight', LIB);
-

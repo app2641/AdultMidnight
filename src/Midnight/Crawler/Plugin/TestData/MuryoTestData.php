@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class MuryoTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'muryo.xml';
-
 
     /**
      * @var array

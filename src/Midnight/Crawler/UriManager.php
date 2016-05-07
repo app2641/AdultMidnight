@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Midnight\Utility\CrawlerException;
 
 class UriManager
 {
-
     /**
      * @var string
      **/
@@ -21,7 +19,6 @@ class UriManager
      **/
     private $parse_data;
 
-
     /**
      * ベースのurlを取得する
      *
@@ -31,7 +28,6 @@ class UriManager
     {
         return $this->parse_data['scheme'].'://'.$this->parse_data['host'];
     }
-
 
     /**
      * xvideos.comのURLかどうかを判別する
@@ -44,13 +40,12 @@ class UriManager
         $info = parse_url($url);
 
         if (! isset($info['host'])) return false;
-        if (! in_array($info['host'], array('jp.xvideos.com', 'xvideos.com')))  {
+        if (! in_array($info['host'], array('jp.xvideos.com', 'www.xvideos.com', 'xvideos.com')))  {
             return false;
         }
 
         return true;
     }
-
 
     /**
      * ホスト名によってメソッドをスイッチする
@@ -68,6 +63,7 @@ class UriManager
         switch ($this->parse_data['host']) {
             case 'flashservice.xvideos.com':
             case 'www.xvideos.com':
+            case 'jp.xvideos.com':
                 $url = $this->_resolveXvideosUrl();
                 break;
 
@@ -95,7 +91,6 @@ class UriManager
         return $url;
     }
 
-
     /**
      * xvideos.comのurlを解決する
      *
@@ -103,7 +98,7 @@ class UriManager
      **/
     private function _resolveXvideosUrl ()
     {
-        $url = 'http://jp.xvideos.com';
+        $url = 'http://www.xvideos.com';
         $path = $this->parse_data['path'];
 
         // embed用かどうか
@@ -116,7 +111,6 @@ class UriManager
 
         return $url;
     }
-
 
     /**
      * asg.to (アゲサゲ) の動画urlを解決する
@@ -135,7 +129,6 @@ class UriManager
 
         return $base_url.'/contentsPage.html?mcd='.$matches[1];
     }
-
 
     /**
      * FC2動画のurlを解決する
@@ -163,7 +156,6 @@ class UriManager
         return $base_url.'/content/'.$matches[1];
     }
 
-
     /**
      * @return string
      **/
@@ -171,7 +163,6 @@ class UriManager
     {
         return str_replace('player.php', 'video.php', $this->raw_url);
     }
-
 
     /**
      * Googleのurlを解決する
@@ -197,4 +188,3 @@ class UriManager
         return $url;
     }
 }
-

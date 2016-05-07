@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class AvSelectionTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'av-selection.xml';
-
 
     /**
      * @var array
@@ -21,4 +18,3 @@ class AvSelectionTestData extends AbstractTestData
         'av-selection/error2.html'
     );
 }
-

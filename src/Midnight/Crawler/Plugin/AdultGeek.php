@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -8,7 +7,6 @@ use Midnight\Utility\CrawlerException;
 
 class AdultGeek extends AbstractPlugin implements PluginInterface
 {
-
     /**
      * サイト名
      *
@@ -16,15 +14,12 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
      **/
     protected $site_name = 'アダルトギーク';
 
-
     /**
      * RSSフィードのURL
      *
      * @var string
      **/
     protected $rss_url = 'http://www.adultgeek.net/index.xml';
-
-
 
     /**
      * DOMElementからエントリのURLを返す
@@ -37,7 +32,6 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
         return $this->getNodeValueByTagName($entry, 'link');
     }
 
-
     /**
      * エントリの登録された日付を取得する
      *
@@ -48,7 +42,6 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
     {
         return $this->getDateByPubDate($entry);
     }
-
 
     /**
      * エントリのタイトルを取得する
@@ -64,7 +57,6 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
 
         return $title_el->plaintext;
     }
-
 
     /**
      * アイキャッチ画像のURLを取得する
@@ -82,7 +74,6 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
 
         return $img_el->getAttribute('src');
     }
-
 
     /**
      * 動画のURLを取得する
@@ -107,4 +98,3 @@ class AdultGeek extends AbstractPlugin implements PluginInterface
         return $movie_data;
     }
 }
-

@@ -8,12 +8,10 @@ use Midnight\Crawler\EntryManager,
 
 class Build extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      **/
     private $params;
-
 
     /**
      * エントリデータ
@@ -21,7 +19,6 @@ class Build extends AbstractCommand implements CommandInterface
      * @var array
      **/
     private $entry_data;
-
 
     /**
      * コマンドの実行
@@ -46,7 +43,6 @@ class Build extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * パラメータのバリデート
      *
@@ -58,7 +54,6 @@ class Build extends AbstractCommand implements CommandInterface
             throw new \Exception('ビルドするページ名を指定してください');
         }
     }
-
 
     /**
      * エントリデータの初期化
@@ -74,7 +69,6 @@ class Build extends AbstractCommand implements CommandInterface
         $this->entry_data = $manager->format($entry_data);
     }
 
-
     /**
      * デモページの構築
      *
@@ -86,7 +80,6 @@ class Build extends AbstractCommand implements CommandInterface
         $builder->setEntryData($this->entry_data);
         $builder->buildContents($this->params[1]);
     }
-
 
     /**
      * ヘルプメッセージの表示

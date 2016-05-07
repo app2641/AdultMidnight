@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Aws;
 
 use Aws\Ses\SesClient;
@@ -9,12 +8,10 @@ use Guzzle\Http\EntityBody;
 
 class Ses extends AbstractAws
 {
-
     /**
      * @var SesClient
      **/
     protected $client;
-
 
     /**
      * メールタイトル
@@ -23,7 +20,6 @@ class Ses extends AbstractAws
      **/
     private $title;
 
-
     /**
      * メール本文
      *
@@ -31,14 +27,12 @@ class Ses extends AbstractAws
      **/
     private $body;
 
-
     /**
      * メール送信先
      *
      * @var array
      **/
     private $to = array('app2641+adult-midnight@gmail.com');
-
 
     /**
      * コンストラクタ
@@ -51,7 +45,6 @@ class Ses extends AbstractAws
         $this->client = SesClient::factory($this->getConfig(Region::US_EAST_1));
     }
 
-
     /**
      * @param  string $body
      * @return void
@@ -60,7 +53,6 @@ class Ses extends AbstractAws
     {
         $this->body = $body;
     }
-
 
     /**
      * @param  string $title
@@ -71,7 +63,6 @@ class Ses extends AbstractAws
         $this->title = $title;
     }
 
-
     /**
      * @param  array $to
      * @return void
@@ -80,7 +71,6 @@ class Ses extends AbstractAws
     {
         $this->to = $to;
     }
-
 
     /**
      * メール送信処理
@@ -110,12 +100,10 @@ class Ses extends AbstractAws
                     )
                 )
             ));
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * パラメータのバリデート
@@ -137,4 +125,3 @@ class Ses extends AbstractAws
         }
     }
 }
-

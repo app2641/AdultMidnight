@@ -7,7 +7,6 @@ use Midnight\Aws\AutoScaling;
 
 class UpdateAutoScaling extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      */
@@ -19,12 +18,10 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
      */
     private $ami_id;
 
-
     /**
      * @var AutoScaling
      **/
     private $as;
-
 
     /**
      * コマンドの実行
@@ -47,7 +44,6 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * パラメータをバリデートする
      *
@@ -59,7 +55,6 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
             throw new \Exception('AMIを指定してください');
         }
     }
-
 
     /**
      * AMI-IDが実在するIDかを判別する
@@ -75,7 +70,6 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
 
         $this->ami_id = $ami_id;
     }
-
 
     /**
      * AutoScalingGroupの設定を更新する
@@ -98,12 +92,10 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
                 'VPCZoneIdentifier' => 'subnet-b2ed03c5'
             );
             $this->as->updateAutoScalingGroup($options);
-        
         } catch (\Exception $e) {
             $this->as->createAutoScalingGroup($options);
         }
     }
-
 
     /**
      * AutoScalingに使用するLaunchConfigurationを生成して返す
@@ -147,7 +139,6 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
         return $config_name;
     }
 
-
     /**
      * 新しいLaunchConfigurationを生成する
      *
@@ -169,7 +160,6 @@ class UpdateAutoScaling extends AbstractCommand implements CommandInterface
 
         $this->as->createLaunchConfiguration($options);
     }
-
 
     /**
      * ヘルプメッセージの表示

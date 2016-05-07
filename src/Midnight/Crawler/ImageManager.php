@@ -1,36 +1,30 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Midnight\Aws\S3;
 
 class ImageManager
 {
-
     /**
      * @var string
      **/
     private $url;
-
 
     /**
      * @var string
      **/
     private $title;
 
-
     /**
      * @var string
      **/
     private $download_path;
 
-
     /**
      * @var S3
      **/
     private $S3;
-
 
     /**
      * @param  S3 $S3
@@ -41,7 +35,6 @@ class ImageManager
         $this->S3 = $S3;
     }
 
-
     /**
      * @return string
      */
@@ -50,7 +43,6 @@ class ImageManager
         $path = str_replace(ROOT.'/public_html', '', $this->download_path);
         return $path;
     }
-
 
     /**
      * 画像を指定urlからダウンロードしてS3へアップロードする
@@ -69,12 +61,11 @@ class ImageManager
             $this->_download();
             $this->_convert();
             $this->_upload();
-        
+
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * パラメータをバリデートする
@@ -87,7 +78,6 @@ class ImageManager
             throw new \Exception('S3クラスを指定してください');
         }
     }
-
 
     /**
      * 画像をダウンロードする
@@ -119,7 +109,6 @@ class ImageManager
         }
     }
 
-
     /**
      * 指定したパスへディレクトリを生成する
      * 再帰的な生成にも対応
@@ -135,7 +124,6 @@ class ImageManager
             exec($command);
         }
     }
-
 
     /**
      * 画像をリサイズする
@@ -156,7 +144,6 @@ class ImageManager
             throw $e;
         }
     }
-
 
     /**
      * 画像をS3へアップロードする

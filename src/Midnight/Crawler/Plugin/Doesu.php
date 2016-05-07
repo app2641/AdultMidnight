@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -8,7 +7,6 @@ use Midnight\Utility\CrawlerException;
 
 class Doesu extends AbstractPlugin implements PluginInterface
 {
-
     /**
      * サイト名
      *
@@ -16,15 +14,12 @@ class Doesu extends AbstractPlugin implements PluginInterface
      **/
     protected $site_name = '無料エロ動画ドS！';
 
-
     /**
      * RSSフィードのURL
      *
      * @var string
      **/
     protected $rss_url = 'http://xvideos-sm.com/feed/atom';
-
-
 
     /**
      * コンテンツ要素を取得する
@@ -36,7 +31,6 @@ class Doesu extends AbstractPlugin implements PluginInterface
     {
         return $dom->getElementsByTagName('entry');
     }
-
 
     /**
      * DOMElementからエントリのURLを返す
@@ -50,7 +44,6 @@ class Doesu extends AbstractPlugin implements PluginInterface
         return $link->getAttribute('href');
     }
 
-
     /**
      * エントリの登録された日付を取得する
      *
@@ -61,7 +54,6 @@ class Doesu extends AbstractPlugin implements PluginInterface
     {
         return $this->getDateByPublished($entry);
     }
-
 
     /**
      * エントリのタイトルを取得する
@@ -77,7 +69,6 @@ class Doesu extends AbstractPlugin implements PluginInterface
 
         return $title_el->plaintext;
     }
-
 
     /**
      * アイキャッチ画像のURLを取得する
@@ -95,7 +86,6 @@ class Doesu extends AbstractPlugin implements PluginInterface
 
         return $img_el->getAttribute('src');
     }
-
 
     /**
      * 動画のURLを取得する
@@ -120,4 +110,3 @@ class Doesu extends AbstractPlugin implements PluginInterface
         return $movie_data;
     }
 }
-

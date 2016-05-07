@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class EroAnimeTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'eroanime.xml';
-
 
     /**
      * @var array
@@ -26,4 +23,3 @@ class EroAnimeTestData extends AbstractTestData
         'eroanime/error2.html'
     );
 }
-

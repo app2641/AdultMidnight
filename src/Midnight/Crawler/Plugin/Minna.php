@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -8,7 +7,6 @@ use Midnight\Utility\CrawlerException;
 
 class Minna extends AbstractPlugin implements PluginInterface
 {
-
     /**
      * サイト名
      *
@@ -16,15 +14,12 @@ class Minna extends AbstractPlugin implements PluginInterface
      **/
     protected $site_name = 'みんなが抜いたエロ動画';
 
-
     /**
      * RSSフィードのURL
      *
      * @var string
      **/
     protected $rss_url = 'http://eropeg.net/index.rdf';
-
-
 
     /**
      * DOMElementからエントリのURLを返す
@@ -37,7 +32,6 @@ class Minna extends AbstractPlugin implements PluginInterface
         return $this->getNodeValueByTagName($entry, 'link');
     }
 
-
     /**
      * エントリの登録された日付を取得する
      *
@@ -48,7 +42,6 @@ class Minna extends AbstractPlugin implements PluginInterface
     {
         return $this->getDateByDcDate($entry);
     }
-
 
     /**
      * エントリのタイトルを取得する
@@ -64,7 +57,6 @@ class Minna extends AbstractPlugin implements PluginInterface
 
         return $title_el->plaintext;
     }
-
 
     /**
      * アイキャッチ画像のURLを取得する
@@ -82,7 +74,6 @@ class Minna extends AbstractPlugin implements PluginInterface
 
         return $img_el->getAttribute('src');
     }
-
 
     /**
      * 動画のURLを取得する
@@ -129,7 +120,6 @@ class Minna extends AbstractPlugin implements PluginInterface
                 }
             }
 
-
             // iframeタグであった場合
             if ($child_el->tag == 'a') {
                 $url = $child_el->getAttribute('href');
@@ -144,4 +134,3 @@ class Minna extends AbstractPlugin implements PluginInterface
         return $movie_data;
     }
 }
-

@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 interface PluginInterface
 {
-
     /**
      * DOMDocumentからエントリのURLを取得する
      *
@@ -13,7 +11,6 @@ interface PluginInterface
      * @return string
      **/
     public function getEntryUrl ($entry);
-
 
     /**
      * DOMDocumentからエントリの登録日時を取得する
@@ -23,7 +20,6 @@ interface PluginInterface
      **/
     public function getEntryDate ($entry);
 
-
     /**
      * HTMLからエントリのタイトルを取得する
      *
@@ -32,7 +28,6 @@ interface PluginInterface
      **/
     public function getEntryTitle ($html);
 
-
     /**
      * HTMLからアイキャッチ画像のURLを取得する
      *
@@ -40,7 +35,6 @@ interface PluginInterface
      * @return string
      **/
     public function getEyeCatchUrl ($html);
-
 
     /**
      * HTMLから動画のURLを取得する

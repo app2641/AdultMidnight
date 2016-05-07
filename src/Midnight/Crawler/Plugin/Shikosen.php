@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -8,14 +7,12 @@ use Midnight\Utility\CrawlerException;
 
 class Shikosen extends AbstractPlugin implements PluginInterface
 {
-
     /**
      * サイト名
      *
      * @var string
      **/
     protected $site_name = 'シコセン';
-
 
     /**
      * RSSフィードのURL
@@ -24,14 +21,12 @@ class Shikosen extends AbstractPlugin implements PluginInterface
      **/
     protected $rss_url = 'http://hikaritube.com/feed.xml';
 
-
     /**
      * エントリのURL
      *
      * @var string
      **/
     public $entry_url;
-
 
     /**
      * DOMElementからエントリのURLを返す
@@ -45,7 +40,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
         return $this->entry_url;
     }
 
-
     /**
      * エントリの登録された日付を取得する
      *
@@ -56,7 +50,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
     {
         return $this->getDateByPubDate($entry);
     }
-
 
     /**
      * エントリのタイトルを取得する
@@ -72,7 +65,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
 
         return $title_el->plaintext;
     }
-
 
     /**
      * アイキャッチ画像のURLを取得する
@@ -91,7 +83,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
         return $img_url;
     }
 
-
     /**
      * トップページのurlを取得する
      * テストの場合はサンプルページを返す
@@ -106,7 +97,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
             return $this->test_data->getHtmlPaths()[1];
         }
     }
-
 
     /**
      * トップページを解析してアイキャッチを取得する
@@ -125,7 +115,6 @@ class Shikosen extends AbstractPlugin implements PluginInterface
 
         return $img_el->getAttribute('src');
     }
-
 
     /**
      * 動画のURLを取得する
@@ -151,4 +140,3 @@ class Shikosen extends AbstractPlugin implements PluginInterface
         return $movie_data;
     }
 }
-

@@ -227,7 +227,7 @@ class EromonTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($movies_url));
         $this->assertEquals(
-            'http://jp.xvideos.com/video10683385/', $movies_url[0]
+            'http://www.xvideos.com/video10683385/', $movies_url[0]
         );
     }
 

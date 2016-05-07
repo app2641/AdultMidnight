@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class IchizenTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'ichizen.xml';
-
 
     /**
      * @var array
@@ -26,4 +23,3 @@ class IchizenTestData extends AbstractTestData
         'ichizen/error2.html'
     );
 }
-

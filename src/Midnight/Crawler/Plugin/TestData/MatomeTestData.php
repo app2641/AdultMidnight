@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class MatomeTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'matome.xml';
-
 
     /**
      * @var array

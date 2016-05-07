@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Aws;
 
 use Aws\S3\S3Client;
@@ -9,18 +8,15 @@ use Guzzle\Http\EntityBody;
 
 class S3 extends AbstractAws
 {
-
     /**
      * @var S3Client
      **/
     protected $client;
 
-
     /**
      * @var string
      **/
     private $bucket;
-
 
     /**
      * コンストラクタ
@@ -35,7 +31,6 @@ class S3 extends AbstractAws
         $this->setBucket($this->ini['bucket']);
     }
 
-
     /**
      * @param  string $bucket
      * @return void
@@ -44,7 +39,6 @@ class S3 extends AbstractAws
     {
         $this->bucket = $bucket;
     }
-
 
     /**
      * S3の指定パスへファイルをアップロードする
@@ -69,7 +63,6 @@ class S3 extends AbstractAws
         return true;
     }
 
-
     /**
      * S3の指定パスのファイルをダウンロードする
      *
@@ -90,14 +83,12 @@ class S3 extends AbstractAws
             while ($data = $result['Body']->read(1024)) {
                 $response .= $data;
             }
-        
         } catch (\Exception $e) {
             throw $e;
         }
 
         return $response;
     }
-
 
     /**
      * 指定パスのファイルがS3にあるかどうかを判別する
@@ -110,4 +101,3 @@ class S3 extends AbstractAws
         return $this->client->doesObjectExist($this->bucket, $path);
     }
 }
-

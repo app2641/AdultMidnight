@@ -220,6 +220,6 @@ class RakuenTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video9475093/', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video9475093/', $movies_url[0]);
     }
 }
