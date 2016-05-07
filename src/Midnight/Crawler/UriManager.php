@@ -63,6 +63,7 @@ class UriManager
         switch ($this->parse_data['host']) {
             case 'flashservice.xvideos.com':
             case 'www.xvideos.com':
+            case 'jp.xvideos.com':
                 $url = $this->_resolveXvideosUrl();
                 break;
 

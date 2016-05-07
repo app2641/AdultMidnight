@@ -265,7 +265,7 @@ class HentaiAnimeTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video7221606/', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video7221606/', $movies_url[0]);
         $this->assertEquals('http://www.drtuber.com/video/86891/cougar-trap-ep-2-final', $movies_url[1]);
         $this->assertEquals(
             'http://myvi.tv/embed/html/ozATb8X10940rYjKtpS62pE9PqQ7rNPcb_MskTNo75D-R7IMrA5Z79ES1He8Waz9h0', $movies_url[2]

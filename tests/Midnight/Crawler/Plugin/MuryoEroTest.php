@@ -218,8 +218,8 @@ class MuryoEroTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals('http://jp.xvideos.com/video9401271/', $movies_url[0]);
-        $this->assertEquals('http://jp.xvideos.com/video9401309/', $movies_url[1]);
+        $this->assertEquals('http://www.xvideos.com/video9401271/', $movies_url[0]);
+        $this->assertEquals('http://www.xvideos.com/video9401309/', $movies_url[1]);
     }
 }
 
