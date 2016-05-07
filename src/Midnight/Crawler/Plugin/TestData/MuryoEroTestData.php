@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class MuryoEroTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'muryoero.xml';
-
 
     /**
      * @var array
@@ -25,4 +22,3 @@ class MuryoEroTestData extends AbstractTestData
         'muryoero/error2.html'
     );
 }
-

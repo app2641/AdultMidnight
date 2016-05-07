@@ -1,23 +1,19 @@
 <?php
 
-
 use Midnight\Crawler\Plugin\${name},
     Midnight\Crawler\Plugin\TestData\${name}TestData;
 
 class ${name}Test extends PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ${name}
      **/
     private $plugin;
 
-
     /**
      * @var ${name}TestData
      **/
     private $test_data;
-
 
     /**
      * セットアップ
@@ -31,7 +27,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->plugin = new ${name}();
         $this->plugin->setTestData($this->test_data);
     }
-
 
     /**
      * @test
@@ -55,7 +50,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->plugin->fetchRss();
     }
 
-
     /**
      * @test
      * @group ${group}
@@ -66,7 +60,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $dom = $this->plugin->fetchRss();
         $this->assertInstanceOf('DOMDocument', $dom);
     }
-
 
     /**
      * @test
@@ -80,7 +73,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('DOMNodeList', $entries);
         $this->assertFalse(is_null($entries->item(0)));
     }
-
 
     /**
      * @test
@@ -96,7 +88,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $url);
     }
 
-
     /**
      * @test
      * @group ${group}-get-entry-date
@@ -111,7 +102,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $date);
     }
 
-
     /**
      * @test
      * @medium
@@ -123,7 +113,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $html = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $this->assertInstanceOf('simple_html_dom', $html);
     }
-
 
     /**
      * @test
@@ -138,7 +127,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('', $title);
     }
-
 
     /**
      * @test
@@ -156,7 +144,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->plugin->getEntryTitle($html);
     }
 
-
     /**
      * @test
      * @medium
@@ -170,7 +157,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('', $img_url);
     }
-
 
     /**
      * @test
@@ -188,7 +174,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->plugin->getEyeCatchUrl($html);
     }
 
-
     /**
      * @test
      * @medium
@@ -205,7 +190,6 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->plugin->getEyeCatchUrl($html);
     }
 
-
     /**
      * @test
      * @medium
@@ -221,4 +205,3 @@ class ${name}Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $movies_url[0]);
     }
 }
-

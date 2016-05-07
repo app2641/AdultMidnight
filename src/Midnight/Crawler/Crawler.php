@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Midnight\Crawler\Plugin\PluginInterface;
@@ -10,12 +9,10 @@ use Midnight\Utility\Logger;
 
 class Crawler
 {
-    
     /**
      * @var Midnight\Crawler\Interface
      **/
     private $plugin;
-
 
     /**
      * クロールした情報を格納する配列
@@ -23,7 +20,6 @@ class Crawler
      * @var array
      **/
     private $crawl_data = array();
-
 
     /**
      * @param  $plugin
@@ -33,7 +29,6 @@ class Crawler
     {
         $this->plugin = $plugin;
     }
-
 
     /**
      * クロール処理
@@ -54,14 +49,13 @@ class Crawler
             foreach ($entries as $entry) {
                 $this->crawl_data[] = $this->_parseEntry($entry);
             }
-        
+
         } catch (\Exception $e) {
             throw $e;
         }
 
         return $this->crawl_data;
     }
-
 
     /**
      * パラメータのバリデート
@@ -74,7 +68,6 @@ class Crawler
             throw new \Exception('プラグインが指定されていません');
         }
     }
-
 
     /**
      * エントリを解析して必要データを配列で返す
@@ -90,7 +83,6 @@ class Crawler
             // 今日の登録されたエントリではない、またはTestData使用でなければそのまま返す
             if (date('Y-m-d') != $entry_date &&
                 $this->plugin->hasTestData() === false) return array();
-
 
             $url = false;
             $url = $this->plugin->getEntryUrl($entry);
@@ -113,7 +105,7 @@ class Crawler
             Logger::addLog($e->getMessage());
             Logger::addLog($this->plugin->getSiteName().PHP_EOL);
             $result = array();
-        
+
         } catch (\Exception $e) {
             if ($url !== false) Logger::addLog($url);
             Logger::addLog($e->getMessage());

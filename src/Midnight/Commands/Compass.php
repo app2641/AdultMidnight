@@ -5,12 +5,10 @@ use Emerald\Command\CommandInterface;
 
 class Compass extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      **/
     private $params;
-
 
     /**
      * sassファイル名
@@ -18,7 +16,6 @@ class Compass extends AbstractCommand implements CommandInterface
      * @var string
      **/
     private $sass_name;
-
 
     /**
      * コマンドの実行
@@ -40,7 +37,6 @@ class Compass extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * パラメータバリデート
      *
@@ -56,7 +52,6 @@ class Compass extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * compassを使ってsassをコンパイルする
      *
@@ -69,12 +64,10 @@ class Compass extends AbstractCommand implements CommandInterface
 
             chdir(ROOT.'/public_html/resources/sass');
             passthru($command);
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * ヘルプメッセージの表示

@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class EpustaTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'epusta.xml';
-
 
     /**
      * @var array

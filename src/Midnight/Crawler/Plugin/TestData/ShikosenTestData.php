@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class ShikosenTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'shikosen.xml';
-
 
     /**
      * @var array

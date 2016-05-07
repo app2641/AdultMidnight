@@ -11,12 +11,10 @@ use Midnight\Crawler\Plugin\TestData\AbstractTestData;
 
 class UpdateTestData extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      **/
     private $params;
-
 
     /**
      * コマンドの実行
@@ -43,7 +41,6 @@ class UpdateTestData extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * テストデータプラグインを取得して配列で返す
      *
@@ -54,7 +51,6 @@ class UpdateTestData extends AbstractCommand implements CommandInterface
         $container = new Container(new CrawlerPluginTestDataFactory);
         return $container->get($this->params[1]);
     }
-
 
     /**
      * テストデータを取得して更新する
@@ -83,7 +79,6 @@ class UpdateTestData extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * テストデータをダウンロードする
      *
@@ -106,7 +101,6 @@ class UpdateTestData extends AbstractCommand implements CommandInterface
 
         return $result;
     }
-
 
     /**
      * ヘルプメッセージの表示

@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class AdultVideoTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'adult-video.xml';
-
 
     /**
      * @var array
@@ -22,4 +19,3 @@ class AdultVideoTestData extends AbstractTestData
         'adult-video/error2.html'
     );
 }
-

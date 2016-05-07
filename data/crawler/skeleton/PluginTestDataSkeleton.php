@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class ${name}TestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = '${group}.xml';
-
 
     /**
      * @var array
@@ -25,4 +22,3 @@ class ${name}TestData extends AbstractTestData
         '${group}/error2.html'
     );
 }
-

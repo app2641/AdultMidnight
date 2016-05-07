@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Midnight\Utility\CrawlerException;
 
 class UriManager
 {
-
     /**
      * @var string
      **/
@@ -21,7 +19,6 @@ class UriManager
      **/
     private $parse_data;
 
-
     /**
      * ベースのurlを取得する
      *
@@ -31,7 +28,6 @@ class UriManager
     {
         return $this->parse_data['scheme'].'://'.$this->parse_data['host'];
     }
-
 
     /**
      * xvideos.comのURLかどうかを判別する
@@ -50,7 +46,6 @@ class UriManager
 
         return true;
     }
-
 
     /**
      * ホスト名によってメソッドをスイッチする
@@ -95,7 +90,6 @@ class UriManager
         return $url;
     }
 
-
     /**
      * xvideos.comのurlを解決する
      *
@@ -117,7 +111,6 @@ class UriManager
         return $url;
     }
 
-
     /**
      * asg.to (アゲサゲ) の動画urlを解決する
      *
@@ -135,7 +128,6 @@ class UriManager
 
         return $base_url.'/contentsPage.html?mcd='.$matches[1];
     }
-
 
     /**
      * FC2動画のurlを解決する
@@ -163,7 +155,6 @@ class UriManager
         return $base_url.'/content/'.$matches[1];
     }
 
-
     /**
      * @return string
      **/
@@ -171,7 +162,6 @@ class UriManager
     {
         return str_replace('player.php', 'video.php', $this->raw_url);
     }
-
 
     /**
      * Googleのurlを解決する
@@ -197,4 +187,3 @@ class UriManager
         return $url;
     }
 }
-

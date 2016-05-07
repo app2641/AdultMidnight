@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Aws;
 
 use Aws\AutoScaling\AutoScalingClient;
@@ -9,12 +8,10 @@ use Guzzle\Http\EntityBody;
 
 class AutoScaling extends AbstractAws
 {
-
     /**
      * AutoScalingClient
      */
     protected $client;
-
 
     /**
      * @return void
@@ -24,7 +21,6 @@ class AutoScaling extends AbstractAws
         parent::__construct();
         $this->client = AutoScalingClient::factory($this->getConfig());
     }
-
 
     /**
      * LaunchConfigurationをすべて取得する
@@ -43,7 +39,6 @@ class AutoScaling extends AbstractAws
         return $configs;
     }
 
-
     /**
      * 指定名のLaunchConfigurationを削除する
      *
@@ -56,12 +51,10 @@ class AutoScaling extends AbstractAws
             $this->client->deleteLaunchConfiguration(array(
                 'LaunchConfigurationName' => $name
             ));
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * 新しいLaunchConfigurationを生成する
@@ -73,12 +66,10 @@ class AutoScaling extends AbstractAws
     {
         try {
             $this->client->createLaunchConfiguration($options);
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * 新規のAutoScalingGroupを生成する
@@ -90,12 +81,10 @@ class AutoScaling extends AbstractAws
     {
         try {
             $this->client->createAutoScalingGroup($options);
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * AutoScalingGroupを更新する
@@ -107,12 +96,10 @@ class AutoScaling extends AbstractAws
     {
         try {
             $this->client->updateAutoScalingGroup($options);
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * ScheduledActionを更新する
@@ -124,10 +111,8 @@ class AutoScaling extends AbstractAws
     {
         try {
             $this->client->putScheduledUpdateGroupAction($options);
-        
         } catch (\Exception $e) {
             throw $e;
         }
     }
 }
-

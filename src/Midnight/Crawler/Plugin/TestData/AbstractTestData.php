@@ -1,22 +1,18 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 abstract class AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name;
 
-
     /**
      * @var array
      **/
     protected $html_paths;
-
 
     /**
      * テスト用RSSデータへのパスを返す
@@ -29,7 +25,6 @@ abstract class AbstractTestData
         return $rss_path;
     }
 
-
     /**
      * テスト用Htmlデータのパス群を返す
      *
@@ -40,4 +35,3 @@ abstract class AbstractTestData
         return $this->html_paths;
     }
 }
-

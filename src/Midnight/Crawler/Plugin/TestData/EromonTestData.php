@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class EromonTestData extends AbstractTestData
@@ -26,4 +25,3 @@ class EromonTestData extends AbstractTestData
         'eromon/error2.html'
     );
 }
-

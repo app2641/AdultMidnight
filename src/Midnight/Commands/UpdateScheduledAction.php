@@ -7,12 +7,10 @@ use Midnight\Aws\AutoScaling;
 
 class UpdateScheduledAction extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var AutoScaling
      **/
     private $as;
-
 
     /**
      * コマンドの実行
@@ -31,7 +29,6 @@ class UpdateScheduledAction extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * ScheduledActionを更新する
      *
@@ -49,12 +46,11 @@ class UpdateScheduledAction extends AbstractCommand implements CommandInterface
             );
 
             $this->as->UpdateScheduledAction($options);
-        
+
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 
     /**
      * ヘルプメッセージの表示

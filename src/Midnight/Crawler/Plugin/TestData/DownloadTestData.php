@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class DownloadTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/

@@ -14,14 +14,12 @@ use Garnet\Container,
 
 class GenerateEntryData extends AbstractCommand implements CommandInterface
 {
-
     /**
      * エントリデータ
      *
      * @var array
      **/
     private $crawl_data = array();
-
 
     /**
      * コマンドの実行
@@ -48,7 +46,6 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * テスト用ページをクロールする
      *
@@ -72,7 +69,6 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
         $this->crawl_data = $entry_manager->format($this->crawl_data);
     }
 
-
     /**
      * アイキャッチ画像のダウンロードを行う
      *
@@ -89,7 +85,6 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * Jsonファイルに保存
      *
@@ -101,7 +96,6 @@ class GenerateEntryData extends AbstractCommand implements CommandInterface
         $file_path = ROOT.'/data/fixtures/entry_data.json';
         file_put_contents($file_path, $json);
     }
-
 
     /**
      * ヘルプメッセージの表示

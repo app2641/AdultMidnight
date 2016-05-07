@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\Plugin\TestData\AbstractTestData;
@@ -10,14 +9,12 @@ require_once LIB.'/Library/SimpleHtmlDomParser/simple_html_dom.php';
 
 abstract class AbstractPlugin
 {
-
     /**
      * サイト名
      *
      * @var string
      **/
     protected $site_name;
-
 
     /**
      * DryRun設定
@@ -26,7 +23,6 @@ abstract class AbstractPlugin
      **/
     protected $test_data;
 
-
     /**
      * @return string
      **/
@@ -34,7 +30,6 @@ abstract class AbstractPlugin
     {
         return $this->site_name;
     }
-
 
     /**
      * DryRun設定を切り替える
@@ -47,7 +42,6 @@ abstract class AbstractPlugin
         $this->test_data = $test_data;
     }
 
-
     /**
      * テストデータを所持しているかを判別する
      *
@@ -57,7 +51,6 @@ abstract class AbstractPlugin
     {
         return (is_null($this->test_data)) ? false: true;
     }
-
 
     /**
      * RSSを取得する
@@ -83,7 +76,6 @@ abstract class AbstractPlugin
         return $dom;
     }
 
-
     /**
      * コンテンツ要素を取得する
      *
@@ -94,7 +86,6 @@ abstract class AbstractPlugin
     {
         return $dom->getElementsByTagName('item');
     }
-
 
     /**
      * 指定要素の値を取得する
@@ -111,7 +102,6 @@ abstract class AbstractPlugin
         return $elements->item(0)->nodeValue;
     }
 
-
     /**
      * Pubdate要素からエントリの登録日を取得する
      *
@@ -123,7 +113,6 @@ abstract class AbstractPlugin
         $date = $this->getNodeValueByTagName($element, 'pubDate');
         return date('Y-m-d', strtotime($date));
     }
-
 
     /**
      * published要素からエントリの登録日を取得する
@@ -137,7 +126,6 @@ abstract class AbstractPlugin
         return date('Y-m-d', strtotime($date));
     }
 
-
     /**
      * dc:date要素からエントリの登録日を取得する
      *
@@ -149,7 +137,6 @@ abstract class AbstractPlugin
         $date = $this->getNodeValueByTagName($element, 'date');
         return date('Y-m-d', strtotime($date));
     }
-
 
     /**
      * HTMLを取得する
@@ -180,4 +167,3 @@ abstract class AbstractPlugin
         return $html;
     }
 }
-

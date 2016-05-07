@@ -6,14 +6,12 @@ use Aws\Common\Enum\Region;
 
 abstract class AbstractAws
 {
-
     /**
      * クライアントクラス
      *
      * @var mixed
      **/
     protected $client;
-
 
     /**
      * aws.iniへのパス
@@ -22,14 +20,12 @@ abstract class AbstractAws
      **/
     protected $aws_ini_path = 'data/config/aws.ini';
 
-
     /**
      * aws.iniのパースデータ
      *
      * @var array
      **/
     protected $ini;
-
 
     /**
      * コンストラクタ
@@ -41,7 +37,6 @@ abstract class AbstractAws
         $this->_initIniFile();
     }
 
-
     /**
      * iniファイルを解析してメンバ変数に保存する
      *
@@ -51,7 +46,6 @@ abstract class AbstractAws
     {
         $this->ini = parse_ini_file($this->aws_ini_path);
     }
-
 
     /**
      * クライアントクラス生成に必要なコンフィグ値を配列で返す
@@ -68,4 +62,3 @@ abstract class AbstractAws
         );
     }
 }
-

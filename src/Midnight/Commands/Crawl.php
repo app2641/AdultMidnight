@@ -16,18 +16,15 @@ use Midnight\Utility\Logger;
 
 class Crawl extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      **/
     private $params;
 
-
     /**
      * @var array
      **/
     private $crawl_data = array();
-
 
     /**
      * コマンドの実行
@@ -55,8 +52,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         }
     }
 
-
-
     /**
      * ヘルプメッセージの表示
      *
@@ -67,7 +62,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         return 'サイトをクロールする。'.PHP_EOL.
             '引数にプラグイン名を与えて指定サイトのみのクロールが可能。';
     }
-
 
     /**
      * 今回使用するプラグインを配列で返す
@@ -92,7 +86,6 @@ class Crawl extends AbstractCommand implements CommandInterface
 
         return $plugins;
     }
-
 
     /**
      * クロール処理を行う
@@ -120,7 +113,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         $this->crawl_data = $entry_manager->format($this->crawl_data);
     }
 
-
     /**
      * アイキャッチ画像をダウンロードする
      *
@@ -138,7 +130,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * ページを構築する
      *
@@ -153,7 +144,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         $builder->setS3(new S3());
         $builder->buildContents('index');
     }
-
 
     /**
      * クロールのログをメール送信する
@@ -170,7 +160,6 @@ class Crawl extends AbstractCommand implements CommandInterface
         $ses->setBody($log);
         $ses->send();
     }
-
 
     /**
      * クロール中に発生したエラーログをメール送信する

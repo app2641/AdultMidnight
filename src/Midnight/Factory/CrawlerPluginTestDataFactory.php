@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Factory;
 
 use Garnet\Factory\AbstractFactory;
@@ -30,7 +29,6 @@ use Midnight\Crawler\Plugin\TestData\AdultAdultTestData,
 
 class CrawlerPluginTestDataFactory extends AbstractFactory
 {
-
     /**
      * @return AdultAdultTestData
      **/
@@ -38,7 +36,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new AdultAdultTestData();
     }
-
 
     /**
      * @return AdultGeekTestData
@@ -48,7 +45,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new AdultGeekTestData();
     }
 
-
     /**
      * @return AdultVideoTestData
      **/
@@ -56,7 +52,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new AdultVideoTestData();
     }
-
 
     /**
      * @return AvSelectionTestData
@@ -66,7 +61,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new AvSelectionTestData();
     }
 
-
     /**
      * @return BaaaaaaTestData
      **/
@@ -74,7 +68,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new BaaaaaaTestData();
     }
-
 
     /**
      * @return BikyakuTestData
@@ -84,7 +77,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new BikyakuTestData();
     }
 
-
     /**
      * @return DoesuTestData
      */
@@ -92,7 +84,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new DoesuTestData();
     }
-
 
     /**
      * @return DownloadTestData
@@ -102,7 +93,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new DownloadTestData();
     }
 
-
     /**
      * @return EpustaTestData
      */
@@ -110,7 +100,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new EpustaTestData();
     }
-
 
     /**
      * @return EroAnimeTestData
@@ -120,7 +109,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new EroAnimeTestData();
     }
 
-
     /**
      * @return EroEroTestData
      **/
@@ -128,7 +116,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new EroEroTestData();
     }
-
 
     /**
      * @return EromonTestData
@@ -138,7 +125,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new EromonTestData();
     }
 
-
     /**
      * @return EroOnaTestData
      **/
@@ -146,7 +132,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new EroOnaTestData();
     }
-
 
     /**
      * @return HentaiAnimeTestData
@@ -156,7 +141,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new HentaiAnimeTestData();
     }
 
-
     /**
      * @return IchizenTestData
      **/
@@ -164,7 +148,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new IchizenTestData();
     }
-
 
     /**
      * @return MatomeTestData
@@ -174,7 +157,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new MatomeTestData();
     }
 
-
     /**
      * @return MinnaTestData
      */
@@ -182,7 +164,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new MinnaTestData();
     }
-
 
     /**
      * @return MuryoTestData
@@ -192,7 +173,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new MuryoTestData();
     }
 
-
     /**
      * @return MuryoEroTestData
      */
@@ -200,7 +180,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new MuryoEroTestData();
     }
-
 
     /**
      * @return RakuenTestData
@@ -210,7 +189,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new RakuenTestData();
     }
 
-
     /**
      * @return ShikosenTestData
      */
@@ -218,7 +196,6 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
     {
         return new ShikosenTestData();
     }
-
 
     /**
      * @return YouskbeTestData
@@ -228,5 +205,3 @@ class CrawlerPluginTestDataFactory extends AbstractFactory
         return new YouskbeTestData();
     }
 }
-
-

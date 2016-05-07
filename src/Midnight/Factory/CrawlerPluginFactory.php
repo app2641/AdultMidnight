@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Factory;
 
 use Garnet\Factory\AbstractFactory;
@@ -30,7 +29,6 @@ use Midnight\Crawler\Plugin\AdultAdult,
 
 class CrawlerPluginFactory extends AbstractFactory
 {
-
     /**
      * @return AdultAdult
      **/
@@ -38,7 +36,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new AdultAdult();
     }
-
 
     /**
      * @return AdultGeek
@@ -48,7 +45,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new AdultGeek();
     }
 
-
     /**
      * @return AdultVideo
      **/
@@ -56,7 +52,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new AdultVideo();
     }
-
 
     /**
      * @return AvSelection
@@ -66,7 +61,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new AvSelection();
     }
 
-
     /**
      * @return Baaaaaa
      **/
@@ -74,7 +68,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Baaaaaa();
     }
-
 
     /**
      * @return Bikyaku
@@ -84,7 +77,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Bikyaku();
     }
 
-
     /**
      * @return Doesu
      **/
@@ -92,7 +84,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Doesu();
     }
-
 
     /**
      * @return Download
@@ -102,7 +93,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Download();
     }
 
-
     /**
      * @var Epusta
      **/
@@ -110,7 +100,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Epusta();
     }
-
 
     /**
      * @var EroAnime
@@ -120,7 +109,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new EroAnime();
     }
 
-
     /**
      * @var EroEro
      **/
@@ -128,7 +116,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new EroEro();
     }
-
 
     /**
      * @var Eromon
@@ -138,7 +125,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Eromon();
     }
 
-
     /**
      * @var EroOna
      **/
@@ -146,7 +132,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new EroOna();
     }
-
 
     /**
      * @var HentaiAnime
@@ -156,7 +141,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new HentaiAnime();
     }
 
-
     /**
      * @var Ichizen
      */
@@ -164,7 +148,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Ichizen();
     }
-
 
     /**
      * @var Matome
@@ -174,7 +157,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Matome();
     }
 
-
     /**
      * @return Minna
      **/
@@ -182,7 +164,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Minna();
     }
-
 
     /**
      * @var Muryo
@@ -192,7 +173,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Muryo();
     }
 
-
     /**
      * @var MuryoEro
      **/
@@ -200,7 +180,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new MuryoEro();
     }
-
 
     /**
      * @var Rakuen
@@ -210,7 +189,6 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Rakuen();
     }
 
-
     /**
      * @return Shikosen
      **/
@@ -218,7 +196,6 @@ class CrawlerPluginFactory extends AbstractFactory
     {
         return new Shikosen();
     }
-
 
     /**
      * @return Youskbe
@@ -228,4 +205,3 @@ class CrawlerPluginFactory extends AbstractFactory
         return new Youskbe();
     }
 }
-

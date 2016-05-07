@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Symfony\Component\Yaml\Yaml as YamlParser;
@@ -11,7 +10,6 @@ use Garnet\Container,
 
 class PluginManager
 {
-
     /**
      * plugins.ymlへのパス
      *
@@ -19,15 +17,12 @@ class PluginManager
      **/
     private $plugins_yml_path = 'data/crawler/plugins.yml';
 
-
     /**
      * Plugins区画のyamlデータ
      *
      * @var array
      **/
     private $plugins;
-
-
 
     /**
      * コンストラクタ
@@ -41,7 +36,6 @@ class PluginManager
         $yaml_data = $reader->fromFile(ROOT.'/'.$this->plugins_yml_path);
         $this->plugins = $yaml_data['Plugins'];
     }
-
 
     /**
      * 指定名のプラグインを有効化されているかを判別する
@@ -58,7 +52,6 @@ class PluginManager
         $plugin = $this->plugins[$name];
         return ($plugin['enable']) ? true: false;
     }
-
 
     /**
      * 現在有効化されているプラグイン名を配列で返す
@@ -77,7 +70,6 @@ class PluginManager
 
         return $plugin_names;
     }
-
 
     /**
      * 指定名のプラグインを取得する

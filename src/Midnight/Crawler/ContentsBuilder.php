@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 use Midnight\Aws\S3;
@@ -8,7 +7,6 @@ use Midnight\Utility\Logger;
 
 class ContentsBuilder
 {
-
     /**
      * メインページあるいはデモページを生成する際に、
      * コンテンツのエントリ情報となるデータ配列 
@@ -17,12 +15,10 @@ class ContentsBuilder
      */
     private $entry_data = array();
 
-
     /**
      * @var S3
      **/
     private $S3;
-
 
     /**
      * 生成するページのtitleやdescriptionの値を記載した設定ファイル
@@ -30,7 +26,6 @@ class ContentsBuilder
      * @var string
      **/
     private $site_ini_path = 'data/config/site.ini';
-
 
     /**
      * @param  array $entry_data 
@@ -41,7 +36,6 @@ class ContentsBuilder
         $this->entry_data = $entry_data;
     }
 
-
     /**
      * @param  S3 $S3
      * @return void
@@ -50,7 +44,6 @@ class ContentsBuilder
     {
         $this->S3 = $S3;
     }
-
 
     /**
      * レイアウトファイルを取得する
@@ -67,7 +60,6 @@ class ContentsBuilder
 
         return file_get_contents($layout_path);
     }
-
 
     /**
      * 引数に与えたコンテンツを生成する
@@ -88,7 +80,6 @@ class ContentsBuilder
                 break;
         }
     }
-
 
     /**
      * メインページまたはデモページを構築する
@@ -119,7 +110,6 @@ class ContentsBuilder
         $this->_uploadConents($path, $page_name.'.html');
     }
 
-
     /**
      * 昨日、一昨日のコンテンツにページャを指定する
      *
@@ -136,7 +126,6 @@ class ContentsBuilder
         if ($this->S3->doesObjectExist('contents/'.$yesterday.'.html') === true) {
             return false;
         }
-
 
         // 現在indexとなっているページを昨日のコンテンツに繰り下げる
         try {
@@ -157,7 +146,6 @@ class ContentsBuilder
             Logger::addLog('現在のindex.htmlを昨日のコンテンツにするの失敗した'.PHP_EOL);
         }
 
-
         // 一昨日のページャを更新する
         try {
             $contents = $this->S3->download('contents/'.$before_yesterday.'.html');
@@ -177,7 +165,6 @@ class ContentsBuilder
             Logger::addLog('一昨日のページャがindex.html指してたのを更新するのに失敗した'.PHP_EOL);
         }
     }
-
 
     /**
      * 管理人についてや注意点のページを構築する
@@ -205,7 +192,6 @@ class ContentsBuilder
         $this->_uploadConents($path, 'information/'.$page_name.'.html');
     }
 
-
     /**
      * 指定パスのファイルをS3の指定パスへアップロードする
      *
@@ -226,7 +212,6 @@ class ContentsBuilder
         }
     }
 
-
     /**
      * ヘッダやページャなどメインのレイアウトを構築する
      *
@@ -243,7 +228,6 @@ class ContentsBuilder
 
         return $layout;
     }
-
 
     /**
      * エントリのレイアウトを構築する
@@ -285,7 +269,6 @@ class ContentsBuilder
         return $entries;
     }
 
-
     /**
      * サブページのレイアウトを構築する
      *
@@ -298,7 +281,6 @@ class ContentsBuilder
         return $contents;
     }
 
-
     /**
      * サイドメニューのレイアウトを構築する
      *
@@ -310,7 +292,6 @@ class ContentsBuilder
         return $side_menu;
     }
 
-
     /**
      * フッターのレイアウトを構築する
      *
@@ -321,7 +302,6 @@ class ContentsBuilder
         $footer = $this->_getLayout('footer_layout');
         return $footer;
     }
-
 
     /**
      * titleやdescriptionなどのメタデータを仕込む
@@ -341,4 +321,3 @@ class ContentsBuilder
         return $layout;
     }
 }
-

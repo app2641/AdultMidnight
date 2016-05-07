@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Midnight\Crawler;
 
 class EntryManager
 {
-
     /**
      * 渡されたエントリデータの配列を正規化する
      * 空のエントリデータは排除する
@@ -41,7 +39,6 @@ class EntryManager
         return $format_data;
     }
 
-
     /**
      * 与えられた値が空もしくはnullかどうかを判別する
      *
@@ -59,4 +56,3 @@ class EntryManager
         return false;
     }
 }
-

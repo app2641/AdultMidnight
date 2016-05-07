@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Midnight\Utility;
 
 use Sapphire\Utility\Registry;
 
 class Logger
 {
-
     /**
      * ログを初期化する
      *
@@ -17,7 +15,6 @@ class Logger
     {
         Registry::set('log', '');
     }
-
 
     /**
      * 現在のログを取得する
@@ -35,7 +32,6 @@ class Logger
         return Registry::get('log');
     }
 
-
     /**
      * ログを追記する
      *
@@ -49,7 +45,6 @@ class Logger
 
         Registry::set('log', $log);
     }
-
 
     /**
      * エラーの詳細をトレースしてログを返す
@@ -77,4 +72,3 @@ class Logger
         return $text;
     }
 }
-

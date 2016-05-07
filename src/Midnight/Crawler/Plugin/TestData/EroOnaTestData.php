@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class EroOnaTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'eroona.xml';
-
 
     /**
      * @var array
@@ -27,4 +24,3 @@ class EroOnaTestData extends AbstractTestData
         'eroona/error2.html'
     );
 }
-

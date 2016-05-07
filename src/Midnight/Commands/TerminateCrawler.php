@@ -7,7 +7,6 @@ use Midnight\Aws\AutoScaling;
 
 class TerminateCrawler extends AbstractCommand implements CommandInterface
 {
-
     /**
      * コマンドの実行
      *
@@ -31,7 +30,6 @@ class TerminateCrawler extends AbstractCommand implements CommandInterface
             $this->errorLog($e->getMessage());
         }
     }
-
 
     /**
      * ヘルプメッセージの表示

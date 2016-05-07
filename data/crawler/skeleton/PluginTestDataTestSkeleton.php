@@ -1,17 +1,14 @@
 <?php
 
-
 use Garnet\Container,
     Midnight\Factory\CrawlerPluginTestDataFactory;
 
 class ${name}TestDataTest extends PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ${name}TestDatt
      **/
     private $test_data;
-
 
     /**
      * @return void
@@ -21,7 +18,6 @@ class ${name}TestDataTest extends PHPUnit_Framework_TestCase
         $container = new Container(new CrawlerPluginTestDataFactory);
         $this->test_data = $container->get('${name}');
     }
-
 
     /**
      * @test
@@ -33,7 +29,6 @@ class ${name}TestDataTest extends PHPUnit_Framework_TestCase
         $rss_path = $this->test_data->getRssPath();
         $this->assertEquals(ROOT.'/data/fixtures/rss/${group}.xml', $rss_path);
     }
-
 
     /**
      * @test

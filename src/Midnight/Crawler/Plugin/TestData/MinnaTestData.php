@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class MinnaTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'minna.xml';
-
 
     /**
      * @var array

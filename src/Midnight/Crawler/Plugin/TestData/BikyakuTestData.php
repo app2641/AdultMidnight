@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class BikyakuTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'bikyaku.xml';
-
 
     /**
      * @var array

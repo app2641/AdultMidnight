@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin\TestData;
 
 class HentaiAnimeTestData extends AbstractTestData
 {
-
     /**
      * @var string
      **/
     protected $rss_name = 'hentai-anime.xml';
-
 
     /**
      * @var array
@@ -23,4 +20,3 @@ class HentaiAnimeTestData extends AbstractTestData
         'hentai-anime/error2.html'
     );
 }
-

@@ -5,42 +5,35 @@ use Emerald\Command\CommandInterface;
 
 class GeneratePlugin extends AbstractCommand implements CommandInterface
 {
-
     /**
      * @var array
      **/
     private $params;
-
 
     /**
      * @var string
      **/
     private $name;
 
-
     /**
      * @var boolean
      **/
     private $copied_plugin = false;
-
 
     /**
      * @var boolean
      **/
     private $copied_plugin_test = false;
 
-
     /**
      * @var boolean
      **/
     private $copied_test_data = false;
 
-
     /**
      * @var boolean
      **/
     private $copied_test_data_test = false;
-
 
     /**
      * コマンドの実行
@@ -72,7 +65,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * パラメータのバリデート
      *
@@ -89,7 +81,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         $this->name = ucfirst($this->params[0]);
     }
 
-
     /**
      * 指定パスのファイルがあるかどうかを判別する
      *
@@ -102,7 +93,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         }
     }
 
-
     /**
      * プラグインクラスのパスを生成する
      *
@@ -112,7 +102,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
     {
         return sprintf(ROOT.'/src/Midnight/Crawler/Plugin/%s.php', $this->name);
     }
-
 
     /**
      * プラグインテストクラスのパスを生成する
@@ -124,7 +113,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         return sprintf(ROOT.'/tests/Midnight/Crawler/Plugin/%sTest.php', $this->name);
     }
 
-
     /**
      * テストデータクラスのパスを生成する
      *
@@ -135,7 +123,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         return sprintf(ROOT.'/src/Midnight/Crawler/Plugin/TestData/%sTestData.php', $this->name);
     }
 
-
     /**
      * テストデータテストクラスのパスを生成する
      *
@@ -145,7 +132,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
     {
         return sprintf(ROOT.'/tests/Midnight/Crawler/Plugin/TestData/%sTestDataTest.php', $this->name);
     }
-
 
     /**
      * プラグインクラスのスケルトンファイルをコピーする
@@ -165,7 +151,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
 
         $this->copied_plugin = true;
     }
-
 
     /**
      * プラグインテストクラスのスケルトンをコピーする
@@ -188,7 +173,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
         $this->copied_plugin_test = true;
     }
 
-
     /**
      * テストデータクラスのスケルトンをコピーする
      *
@@ -209,7 +193,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
 
         $this->copied_test_data = true;
     }
-
 
     /**
      * テストデータテストクラスのスケルトンをコピーする
@@ -232,7 +215,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
 
         $this->copied_test_data_test = true;
     }
-
 
     /**
      * 作成してしまったファイルを削除する
@@ -261,7 +243,6 @@ class GeneratePlugin extends AbstractCommand implements CommandInterface
             unlink($this->_getTestDataTestPath());
         }
     }
-
 
     /**
      * ヘルプメッセージの表示
