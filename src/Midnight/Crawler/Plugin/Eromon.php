@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Midnight\Crawler\Plugin;
 
 use Midnight\Crawler\UriManager;
@@ -20,7 +19,7 @@ class Eromon extends AbstractPlugin implements PluginInterface
      *
      * @var string
      **/
-    protected $rss_url = 'http://erovi0.blog.fc2.com/?xml';
+    protected $rss_url = 'http://eromon.info/?xml';
 
     /**
      * DOMElementからエントリのURLを返す
@@ -52,7 +51,7 @@ class Eromon extends AbstractPlugin implements PluginInterface
      **/
     public function getEntryTitle ($html)
     {
-        $query = 'div#main_contents div.content h2.entry_header';
+        $query = 'div.entry h2.entry-head a';
         $title_el = $html->find($query, 0);
         if (is_null($title_el)) throw new CrawlerException('タイトルを取得出来ませんでした');
 
@@ -67,13 +66,13 @@ class Eromon extends AbstractPlugin implements PluginInterface
      **/
     public function getEyeCatchUrl ($html)
     {
-        $query = 'div#main_contents div.content div.entry_body div img';
+        $query = 'div.entry-content div.entry-body div img';
         $img_el = $html->find($query, 0);
 
         // img要素の親にdivを挟んでいるパターンのページも存在するため
         // 二重でクエリを発行して確認している
         if (is_null($img_el)) {
-            $query = 'div#main_contents div.content div.entry_body img';
+            $query = 'div.entry-content div.entry-body img';
             $img_el = $html->find($query, 0);
         }
         if (is_null($img_el)) throw new CrawlerException('アイキャッチを取得出来ませんでした');
@@ -90,7 +89,7 @@ class Eromon extends AbstractPlugin implements PluginInterface
      **/
     public function getMoviesUrl ($html)
     {
-        $query = 'div#main_contents div.content div.entry_body iframe';
+        $query = 'div.entry-content div.entry-body iframe';
         $movies_els = $html->find($query);
         $movie_data = array();
         $manager    = new UriManager();
@@ -105,23 +104,6 @@ class Eromon extends AbstractPlugin implements PluginInterface
                 $movie_data[] = $manager->resolve($link_el->getAttribute('href'));
             }
         }
-
-        // if (count($movie_data) > 0) return $movie_data;
-
-        // div.entry_more_text以下にiframeがある場合もある
-        // $query = 'div#container div#content div.entry_middle div.entry_more_text iframe';
-        // $movies_els = $html->find($query);
-
-        // // 動画はこちらテキストのリンクを取得する
-        // foreach ($movies_els as $movies_el) {
-            // // iframeの次の次の要素であるa要素を取得する
-            // $link_el = $this->_fetchMovieLinkElement($movies_el);
-            // if (is_null($link_el)) continue;
-
-            // if ($link_el->nodeName() === 'a') {
-                // $movie_data[] = $manager->resolve($link_el->getAttribute('href'));
-            // }
-        // }
 
         return $movie_data;
     }
@@ -140,4 +122,3 @@ class Eromon extends AbstractPlugin implements PluginInterface
         return $next_el->nextSibling();
     }
 }
-

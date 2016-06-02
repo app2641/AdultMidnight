@@ -86,7 +86,7 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $entries = $this->plugin->getEntries($dom);
 
         $url = $this->plugin->getEntryUrl($entries->item(0));
-        $this->assertEquals('http://erovi0.blog.fc2.com/blog-entry-4370.html', $url);
+        $this->assertEquals('http://eromon.info/blog-entry-4370.html', $url);
     }
 
     /**
@@ -155,13 +155,13 @@ class EromonTest extends PHPUnit_Framework_TestCase
     {
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[0]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
-        $this->assertEquals('http://blog-imgs-75-origin.fc2.com/e/r/o/erovi0/MCDV-16.jpg', $img_url);
+        $this->assertEquals('http://blog-imgs-75.fc2.com/e/r/o/erovi0/MCDV-16.jpg', $img_url);
 
 
         // img要素の親にdivを挟んでいるパターンのページ
         $html    = $this->plugin->fetchHtml($this->test_data->getHtmlPaths()[1]);
         $img_url = $this->plugin->getEyeCatchUrl($html);
-        $this->assertEquals('http://blog-imgs-75-origin.fc2.com/e/r/o/erovi0/apak088sops.jpg', $img_url);
+        $this->assertEquals('http://blog-imgs-75.fc2.com/e/r/o/erovi0/apak088sops.jpg', $img_url);
     }
 
     /**
@@ -243,10 +243,7 @@ class EromonTest extends PHPUnit_Framework_TestCase
         $movies_url = $this->plugin->getMoviesUrl($html);
 
         $this->assertTrue(is_array($movies_url));
-        $this->assertEquals(
-            'http://jp.xhamster.com/movies/1123387/i_become_a_stalker_in_the_home.html',
-            $movies_url[0]
-        );
+        $this->assertEquals(0, count($movies_url));
     }
 
     /**
